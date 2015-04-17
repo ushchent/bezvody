@@ -10,9 +10,11 @@ function insertMap() {
 }
 
 function addMarkers() {
+    
+    var markers = [];
     for (var i = 0; i < jsonData.length; i++) {
         var coordinates = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
-        var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' + jsonData[i].type + " " + jsonData[i].name + ", " + jsonData[i].house + '<br>Горячей воды не будет с ' + jsonData[i].start + ' по ' + jsonData[i].end + '</div>';
+        var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' + jsonData[i].type + " " + jsonData[i].name + ", " + jsonData[i].house + '<br>Горячую вод отключат ' + jsonData[i].start + '</div>';
         var toolTip = new google.maps.InfoWindow({
            content: address
         });
@@ -21,10 +23,10 @@ function addMarkers() {
             map: map,
             infowindow: toolTip
         });
-        google.maps.event.addListener(marker, "click", function() {
-            this.infowindow.open(map, this);
-        });
+        markers.push(marker);
     };
+    
+    var markerclusterer = new MarkerClusterer(map, markers);
 }
 
 window.onload = function() {
