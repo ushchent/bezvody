@@ -12,17 +12,21 @@ function insertMap() {
 function addMarkers() {
     
     var markers = [];
+
     for (var i = 0; i < jsonData.length; i++) {
         var coordinates = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
-        var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' + jsonData[i].type + " " + jsonData[i].name + ", " + jsonData[i].house + '<br>Горячую вод отключат ' + jsonData[i].start + '</div>';
-        var toolTip = new google.maps.InfoWindow({
-           content: address
-        });
+        var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' + jsonData[i].type + " " + jsonData[i].name + ", " + jsonData[i].house + '<br>Горячую воду отключат ' + jsonData[i].start + '</div>';
         var marker = new google.maps.Marker({
             position: coordinates,
             map: map,
-            infowindow: toolTip
+            infowindow: new google.maps.InfoWindow({
+            content: address
+            })
         });
+            google.maps.event.addListener(marker, 'click', function() {
+                this.infowindow.open(map, this);
+
+            });
         markers.push(marker);
     };
     
