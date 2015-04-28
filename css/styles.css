@@ -2,4 +2,35 @@
     width: 800px;
     height: 500px;
     margin-top: 1em;
+    }
+.button {
+    display: inline;
+    border: 2px solid black;
+    padding: 2px;
+    font-family: sans-serif;
+    }
+.active {
+
+    }
+
+.text {
+    width: 800px;
+    }
+
+#uzhe_otkliuchili {
+    border-color: blue;
 }
+#skoro_otkliuchat {
+    border-color: yellow;
+}
+#dolzhny_vkliuchit {
+    border-color: red;
+}
+li {
+    list-style: none;
+    float: left;
+    padding: 1px;
+    border: 1px solid black;
+    margin: 2px;
+}
+
