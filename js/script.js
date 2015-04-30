@@ -1,4 +1,5 @@
 var map,
+    singleMarker,
     jsonData,
     icon,
     timeSpan = 86400000 * 14,
@@ -14,11 +15,14 @@ function insertMap() {
     map = new google.maps.Map(document.getElementById("mapDiv"), mapParameters);
 }
 
-function menuAction() {
-    var buttons = document.getElementById("menu").getElementsByTagName("input");
+function setMenuEvents() {
+    var buttons = document.getElementById("menu").getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].onclick = function() {
             markerclusterer.clearMarkers();
+            if (singleMarker) {
+                singleMarker.setMap(null);
+        }
             selectData(this.getAttribute("id"));
         }
     }
@@ -33,7 +37,7 @@ function selectData(input) {
                 newData.push(jsonData[i]);
                 icon = "img/blue.png";
             }
-            
+
         } else if (input == "skoro_otkliuchat") {
             if (startDate.getTime() > today.getTime()) {
                 newData.push(jsonData[i]);
@@ -52,11 +56,10 @@ function selectData(input) {
 
 function addMarkers(indata, input) {
     var markers = [];
-
     for (var i = 0; i < indata.length; i++) {
             var coordinates = new google.maps.LatLng(indata[i].lat, indata[i].lon);
             var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' +
-                indata[i].type + " " + indata[i].name + ", " + indata[i].house +
+                indata[i].address +
                 '<br>Горячую воду отключат ' + indata[i].start + '</div>';
             var marker = new google.maps.Marker({
                 position: coordinates,
@@ -80,6 +83,59 @@ function addMarkers(indata, input) {
     document.getElementById(input).classList.add("active");
 }
 
+function selectAddress() {
+    var addresses = [];
+    for (var i = 0; i < jsonData.length; i++) {
+        addresses.push(jsonData[i].address);
+    };
+    
+    $( "#autocomplete" ).autocomplete({
+        source: addresses,
+        minLength: 4
+    });
+    
+    var addressField = document.getElementById("autocomplete");
+    addressField.onfocus = function() {
+        if (addressField.value == "Проверить адрес") {
+            addressField.value = "";
+        }
+    }
+    addressField.onblur = function() {
+        if (addressField.value == "") {
+            addressField.value = "Проверить адрес";
+        }
+    }
+    
+    var addressButton = document.getElementById("address_button");
+    addressButton.onclick = function() {
+        if (addressField.value == "Проверить адрес") {
+            addressField.value = "Введите адрес";
+        }
+        var givenAddress = document.getElementById("autocomplete").value;
+        for (var i = 0; i < jsonData.length; i++) {
+            if (givenAddress == jsonData[i].address) {
+                var givenAddressLatLng = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
+                markerclusterer.clearMarkers();
+                map.setCenter(givenAddressLatLng);
+                map.setZoom(15);
+                var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' +
+                    jsonData[i].address +
+                    '<br>Горячую воду отключают ' + jsonData[i].start + '</div>';
+                singleMarker = new google.maps.Marker({
+                    position: givenAddressLatLng,
+                    map: map,
+                    infowindow: new google.maps.InfoWindow({
+                    content: address
+                        })
+                    });
+                    google.maps.event.addListener(singleMarker, 'click', function() {
+                        this.infowindow.open(map, this);
+                });
+            }
+        };
+    }
+}
+
 window.onload = function() {
     insertMap();
     var request = new XMLHttpRequest();
@@ -88,7 +144,8 @@ window.onload = function() {
             data = request.responseText;
             jsonData = JSON.parse(data);
             selectData("uzhe_otkliuchili")
-            menuAction();
+            setMenuEvents();
+            selectAddress();
         }
     };
     request.open("GET", "data/data.json", true);
