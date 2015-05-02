@@ -2,8 +2,8 @@ var map,
     singleMarker,
     jsonData,
     icon,
-    timeSpan = 86400000 * 14,
     markerclusterer,
+    timeSpan = 86400000 * 14,
     today = new Date("2015-05-26");
 
 function insertMap() {
@@ -21,8 +21,12 @@ function setMenuEvents() {
         buttons[i].onclick = function() {
             markerclusterer.clearMarkers();
             if (singleMarker) {
-                singleMarker.setMap(null);
-        }
+                    singleMarker.setMap(null);
+                };
+            if (!map.setZoom(11)) {
+                    map.setZoom(11);
+                    map.setCenter(new google.maps.LatLng(53.90, 27.56));
+                };
             selectData(this.getAttribute("id"));
         }
     }
@@ -80,7 +84,6 @@ function addMarkers(indata, input) {
                 }]
             };
     markerclusterer = new MarkerClusterer(map, markers, mcOptions);
-    document.getElementById(input).classList.add("active");
 }
 
 function selectAddress() {
@@ -108,12 +111,18 @@ function selectAddress() {
     
     var addressButton = document.getElementById("address_button");
     addressButton.onclick = function() {
-        if (addressField.value == "Проверить адрес") {
-            addressField.value = "Введите адрес";
-        }
+        if (singleMarker) {
+                singleMarker.setMap(null);
+            };
+        var checker = false;
         var givenAddress = document.getElementById("autocomplete").value;
+        if (givenAddress == "Проверить адрес") {
+            givenAddress = "Введите адрес";
+            checker = true;
+        };
         for (var i = 0; i < jsonData.length; i++) {
             if (givenAddress == jsonData[i].address) {
+                checker = true;
                 var givenAddressLatLng = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
                 markerclusterer.clearMarkers();
                 map.setCenter(givenAddressLatLng);
@@ -132,6 +141,9 @@ function selectAddress() {
                         this.infowindow.open(map, this);
                 });
             }
+        };
+        if (checker == false) {
+            alert("По адресу " + givenAddress + " в ближайшее время отключений не ожидается.");
         };
     }
 }
