@@ -4,7 +4,7 @@ var map,
     icon,
     markerclusterer,
     timeSpan = 86400000 * 14,
-    today = new Date("2015-05-26");
+    today = new Date();
 
 function insertMap() {
     var mapParameters = {
@@ -134,16 +134,16 @@ function selectAddress() {
                     position: givenAddressLatLng,
                     map: map,
                     infowindow: new google.maps.InfoWindow({
-                    content: address
+                        content: address
                         })
                     });
-                    google.maps.event.addListener(singleMarker, 'click', function() {
+                google.maps.event.addListener(singleMarker, 'click', function() {
                         this.infowindow.open(map, this);
-                });
-            }
-        };
+                    });
+                }
+            };
         if (checker == false) {
-            alert("По адресу " + givenAddress + " в ближайшее время отключений не ожидается.");
+            alert("По адресу " + givenAddress + " в ближайший месяц отключения не ожидается.");
         };
     }
 }
