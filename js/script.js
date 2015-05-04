@@ -64,7 +64,7 @@ function addMarkers(indata, input) {
             var coordinates = new google.maps.LatLng(indata[i].lat, indata[i].lon);
             var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' +
                 indata[i].address +
-                '<br>Горячую воду отключат ' + indata[i].start + '</div>';
+                '<br>Горячую воду отключают ' + indata[i].start + '</div>';
             var marker = new google.maps.Marker({
                 position: coordinates,
                 map: map,
