@@ -1,7 +1,8 @@
 var map,
     singleMarker,
     jsonData,
-    icon,
+    clusterIcon,
+    markerIcon,
     markerclusterer,
     timeSpan = 86400000 * 14,
     today = new Date();
@@ -35,52 +36,33 @@ function setMenuEvents() {
 function selectData(input) {
     var newData = [];
     for (var i = 0; i < jsonData.length; i++) {
-        var startDate = new Date(jsonData[i].start);
+        var startDate = new Date(jsonData[i].start);       
         if (input == "uzhe_otkliuchili") {
             if (startDate.getTime() <= today.getTime() && startDate.getTime() >= today.getTime() - timeSpan) {
                 newData.push(jsonData[i]);
-                icon = "img/blue.png";
+                clusterIcon = "img/blue.png";
+                markerIcon = "http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png"
             }
 
         } else if (input == "skoro_otkliuchat") {
             if (startDate.getTime() > today.getTime()) {
                 newData.push(jsonData[i]);
-                icon = "img/yellow.png";
+                clusterIcon = "img/yellow.png";
+                markerIcon = "http://gmaps-samples.googlecode.com/svn/trunk/markers/orange/blank.png"
             }
 
         } else if (input == "dolzhny_vkliuchit") {
             if (startDate.getTime() < today.getTime() - timeSpan) {
                 newData.push(jsonData[i]);
-                icon = "img/red.png";
+                clusterIcon = "img/red.png";
+                markerIcon = "http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png";
             }
         }
     }
-    addMarkers(newData, input, icon);
+    addMarkers(newData, clusterIcon, markerIcon)
 }
 
-function convertDate(d) {
-    var months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-    var month = d.getMonth();
-    var date = d.getDate();
-    return date + " " + months[month];
-}
-
-function writeMessage(d) {
-    var noWater = [], isWater = [], soonNoWater = [];
-    for (var i = 0; i < jsonData.length; i++) {
-        var startDate = new Date(jsonData[i].start);
-            if (startDate.getTime() <= d.getTime() && startDate.getTime() >= d.getTime() - timeSpan) {
-                noWater.push(jsonData[i]);
-            } else if (startDate.getTime() > d.getTime()) {
-                soonNoWater.push(jsonData[i]);
-            } else if (startDate.getTime() < d.getTime() - timeSpan) {
-                isWater.push(jsonData[i]);
-            }
-        }
-document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " уже должна быть вода в " + isWater.length + " домах, без горячей воды остаются " + noWater.length + " домов,  и скоро отключат в " + soonNoWater.length + " домах:"));
-}
-
-function addMarkers(indata, input) {
+function addMarkers(indata, clusterIcon, markerIcon) {
     var markers = [];
     for (var i = 0; i < indata.length; i++) {
             var coordinates = new google.maps.LatLng(indata[i].lat, indata[i].lon);
@@ -90,8 +72,9 @@ function addMarkers(indata, input) {
             var marker = new google.maps.Marker({
                 position: coordinates,
                 map: map,
+                icon: markerIcon,
                 infowindow: new google.maps.InfoWindow({
-                content: address
+                content: address,
                 })
             });
                 google.maps.event.addListener(marker, 'click', function() {
@@ -101,7 +84,7 @@ function addMarkers(indata, input) {
     };
     var mcOptions = {styles: [{
             height: 52,
-            url: icon,
+            url: clusterIcon,
             width: 53
                 }]
             };
@@ -112,24 +95,24 @@ function selectAddress() {
     var addresses = [];
     for (var i = 0; i < jsonData.length; i++) {
         addresses.push(jsonData[i].address);
-    };;
-
+    };
+    
     $( "#autocomplete" ).autocomplete({
         source: addresses,
         minLength: 4
     });
-
+    
     var addressField = document.getElementById("autocomplete");
     addressField.onfocus = function() {
         if (addressField.value == "Проверить адрес") {
             addressField.value = "";
         }
-    }
+    };
     addressField.onblur = function() {
         if (addressField.value == "") {
             addressField.value = "Проверить адрес";
         }
-    }
+    };
 
     var addressButton = document.getElementById("address_button");
     addressButton.onclick = function() {
@@ -145,6 +128,15 @@ function selectAddress() {
         for (var i = 0; i < jsonData.length; i++) {
             if (givenAddress == jsonData[i].address) {
                 checker = true;
+                var singleMarkerIcon;
+                var sDate = new Date(jsonData[i].start);   
+                if (sDate.getTime() <= today.getTime() && sDate.getTime() >= today.getTime() - timeSpan) {
+                    singleMarkerIcon = "http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/blank.png"
+                } else if (sDate.getTime() > today.getTime()) {
+                    singleMarkerIcon = "http://gmaps-samples.googlecode.com/svn/trunk/markers/orange/blank.png";
+                } else if (sDate.getTime() < today.getTime() - timeSpan) {
+                    singleMarkerIcon = "http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png";
+                }
                 var givenAddressLatLng = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
                 markerclusterer.clearMarkers();
                 map.setCenter(givenAddressLatLng);
@@ -155,6 +147,7 @@ function selectAddress() {
                 singleMarker = new google.maps.Marker({
                     position: givenAddressLatLng,
                     map: map,
+                    icon: singleMarkerIcon,
                     infowindow: new google.maps.InfoWindow({
                         content: address
                         })
@@ -165,7 +158,7 @@ function selectAddress() {
                 }
             };
         if (checker == false) {
-            alert("По адресу " + givenAddress + " в ближайшее время отключения не ожидается. Вы также можете проверить этот адрес в первоисточнике http://minsk.gov.by/ru/actual/view/585/.");
+            alert("По адресу " + givenAddress + " в ближайший месяц отключения не ожидается.");
         };
     }
 }
@@ -177,8 +170,7 @@ window.onload = function() {
         if (request.readyState === 4) {
             data = request.responseText;
             jsonData = JSON.parse(data);
-            writeMessage(today);
-            selectData("dolzhny_vkliuchit")
+            selectData("uzhe_otkliuchili")
             setMenuEvents();
             selectAddress();
         }
