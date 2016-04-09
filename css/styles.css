@@ -1,3 +1,16 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+article, footer {
+    margin-left: 1em;
+}
+
+#logo {
+    display: block;
+    background-color: #2A2F4E;
+}
+
 #mapDiv {
     width: 800px;
     height: 500px;
@@ -14,6 +27,9 @@ input {
     width: 800px;
     display: block;
     }
+footer {
+    width: 800px;
+}
 
 #uzhe_otkliuchili {
     border-color: blue;
