@@ -178,7 +178,7 @@ window.onload = function() {
             data = request.responseText;
             jsonData = JSON.parse(data);
             writeMessage(today);
-            selectData("dolzhny_vkliuchit")
+            selectData("skoro_otkliuchat")
             setMenuEvents();
             selectAddress();
         }
