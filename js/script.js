@@ -183,6 +183,6 @@ window.onload = function() {
             selectAddress();
         }
     };
-    request.open("GET", "data/data.json", true);
+    request.open("GET", "data/data_16.json", true);
     request.send(null);
 };
