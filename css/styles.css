@@ -12,7 +12,7 @@ article, footer {
 }
 
 #mapDiv {
-    width: 800px;
+    width: 70%;
     height: 500px;
     margin-top: 1em;
     }
@@ -24,11 +24,11 @@ input {
     }
 
 .text {
-    width: 800px;
+    width: 70%;
     display: block;
     }
 footer {
-    width: 800px;
+    width: 70%;
 }
 
 #uzhe_otkliuchili {
