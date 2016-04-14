@@ -77,7 +77,7 @@ function writeMessage(d) {
                 isWater.push(jsonData[i]);
             }
         }
-document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " уже должна быть вода в " + isWater.length + " домах, без горячей воды остаются " + noWater.length + " домов,  и скоро отключат в " + soonNoWater.length + " домах:"));
+document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " уже должна быть вода в " + isWater.length + " домах, без горячей воды остаются " + noWater.length + " домов, и скоро отключат в " + soonNoWater.length + " домах:"));
 }
 
 function addMarkers(indata, input) {
@@ -165,7 +165,7 @@ function selectAddress() {
                 }
             };
         if (checker == false) {
-            alert("По адресу " + givenAddress + " в ближайшее время отключения не ожидается. Вы также можете проверить этот адрес в первоисточнике http://minsk.gov.by/ru/actual/view/585/.");
+            alert("По адресу " + givenAddress + " в ближайшее время отключения не ожидается. Вы также можете проверить этот адрес в первоисточнике http://minsk.gov.by/ru/actual/view/625/.");
         };
     }
 }
