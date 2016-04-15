@@ -30,13 +30,17 @@ input {
 footer {
     width: 70%;
 }
-
 #uzhe_otkliuchili {
-    border-color: blue;
-}
-#skoro_otkliuchat {
-    border-color: yellow;
-}
-#dolzhny_vkliuchit {
-    border-color: red;
-}
+            border-color: #008BFE;
+                background-color: #008BFE;
+                    color: white;
+            }
+            #skoro_otkliuchat {
+                        border-color: #FFBF00;
+                            background-color: #FFBF00;
+                    }
+                    #dolzhny_vkliuchit {
+                               border-color: #EC1313;
+                                  background-color: #EC1313;
+                                     color: white;
+                             }
