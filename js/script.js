@@ -4,7 +4,8 @@ var map,
     icon,
     markerclusterer,
     timeSpan = 86400000 * 14,
-    today = new Date();
+    today = new Date(),
+    request;
 
 function insertMap() {
     var mapParameters = {
@@ -77,7 +78,8 @@ function writeMessage(d) {
                 isWater.push(jsonData[i]);
             }
         }
-document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " уже должна быть вода в " + isWater.length + " домах, без горячей воды остаются " + noWater.length + " домов, и скоро отключат в " + soonNoWater.length + " домах:"));
+document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " без горячей воды остаются " + noWater.length + " дома, уже должна быть вода в " + isWater.length + " домов, и скоро отключат в " + soonNoWater.length + " домах:"));
+
 }
 
 function addMarkers(indata, input) {
@@ -172,17 +174,22 @@ function selectAddress() {
 
 window.onload = function() {
     insertMap();
-    var request = new XMLHttpRequest();
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+    } else {  
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
     request.onreadystatechange = function(){
         if (request.readyState === 4) {
             data = request.responseText;
             jsonData = JSON.parse(data);
             writeMessage(today);
-            selectData("skoro_otkliuchat")
+            selectData("uzhe_otkliuchili")
             setMenuEvents();
             selectAddress();
         }
     };
-    request.open("GET", "data/data_16.json", true);
+    request.open("GET", "data/data_6.json", true);
     request.send(null);
 };

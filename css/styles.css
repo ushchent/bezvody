@@ -1,46 +1,34 @@
 body {
-    margin: 0;
+    margin: 0 auto;
+    max-width: 80%;
     font-family: sans-serif;
 }
-article, footer {
-    margin-left: 1em;
-}
-
-#logo {
-    display: block;
+header {
     background-color: #2A2F4E;
 }
-
 #mapDiv {
-    width: 70%;
     height: 500px;
     margin-top: 1em;
     }
 input {
     display: inline;
-    border: 2px solid black;
-    padding: 2px;
-    font-family: sans-serif;
+    border: 2px solid;
+    padding: 3px;
     }
-
-.text {
-    width: 70%;
-    display: block;
-    }
-footer {
-    width: 70%;
+.button:hover {
+    cursor: pointer;
 }
 #uzhe_otkliuchili {
-            border-color: #008BFE;
-                background-color: #008BFE;
-                    color: white;
+	border: 2px solid #008BFE;
+    background-color: #008BFE;
+    color: white;
             }
-            #skoro_otkliuchat {
-                        border-color: #FFBF00;
-                            background-color: #FFBF00;
-                    }
-                    #dolzhny_vkliuchit {
-                               border-color: #EC1313;
-                                  background-color: #EC1313;
-                                     color: white;
-                             }
+#skoro_otkliuchat {
+	border: 2px solid #FFBF00;
+    background-color: #FFBF00;
+    }
+#dolzhny_vkliuchit {
+	border: 2px solid #EC1313;
+    background-color: #EC1313;
+    color: white;
+    }

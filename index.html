@@ -2,22 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="График отключения горячей воды в Минске.">
         <title>График отключения горячей воды в Минске в 2016 году</title>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE&sensor=false"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE&sensor=false"></script>
         <script src="js/markerclusterer_compiled.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="css/styles.css">
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-62655921-1', 'auto');
-          ga('send', 'pageview');
-        </script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {
@@ -27,7 +20,8 @@
                     id:36789295,
                     clickmap:true,
                     trackLinks:true,
-                    accurateTrackBounce:true
+                    accurateTrackBounce:true,
+                    webvisor:true
                 });
             } catch(e) { }
         });
@@ -48,18 +42,16 @@
 <!-- /Yandex.Metrika counter -->
     </head>
 <body>
-    <div id="logo">
-        <a href="/">
-                    <img src="img/logo.jpg" />
-                  </a>
-    </div>
-    <article>
+    <header>
+         <a href="/">
+             <img src="img/logo.jpg" />
+          </a>
+    </header>
+    <main>
     <h1>14 дней без горячей воды</h1>
-    <div class="text">
         <p>Каждый год в Минске с конца весны и до начала осени проводятся испытания тепловых сетей перед отопительным сезоном. Поэтому городские службы последовательно отключают горячее водоснабжение потребителям на срок, как правило, не более 14 суток.</p>
-        <p>В 2016 году отключения горячей воды в Минске начинаются 18 апреля. Это информационное приложение позволяет узнать где и в какой период в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>
-        <p id="message" class="text"></p>
-    </div>
+        <p>В 2016 году отключения горячей воды в Минске начинаются <strike>18 апреля</strike> [в связи с похолоданием график отключений изменился - о новых сроках будет сообщено дополнительно]. Это информационное приложение позволяет узнать где и в какой период в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>
+        <p id="message"></p>
     <div id="menu">
         <input class="button" type="button" id="uzhe_otkliuchili" value="Уже отключили">
         <input class="button" type="button" id="skoro_otkliuchat" value="Скоро отключат">
@@ -68,11 +60,9 @@
         <input class="button" type="button" id="address_button" value="Показать адрес на карте">
     </div>
     <div id="mapDiv" class="map"></div>
-
-    <div class="text">
-        <p>Во время испытаний возможны повреждения теплопровода. При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить диспетчеру УП «Минсккоммунтеплосеть» по тел. <b>267-88-88</b>.</p>
+        <p>Во время испытаний возможны повреждения теплопровода. При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
         <p>Приложение создано в рамках проекта dataШкола сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>" и работает на основе <a href="http://minsk.gov.by/ru/actual/view/625/">данных Мингорисполкома</a>, которые проверены нами с помощью специалистов УП "Минсккоммунтеплосеть" и преобразованы в машиночитаемый вид.</p>
-        <p><b>Упоминания в СМИ:</b></p>
+        <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
         <li>Компьютерные Вести, <a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>
         <li>Телеграф, <a href="http://telegraf.by/2015/05/290076-minchane-sozdali-prilojenie-14-dnei-bez-goryachei-vodi">http://telegraf.by/2015/05/290076...</a></li>
@@ -81,8 +71,7 @@
         <li>Агентство социальных новостей, <a href="http://socnews.by/cites/2015/05/07/article_4622">http://socnews.by/cites/2015/05/07/...</a></li>
         <li>Новы Час, <a href="http://novychas.info/hramadstva/mincanie_stvaryli_interaktyuny/">http://novychas.info/hramadstva/mincanie...</a></li>
         </ul>
-        
-        <p><b>Прочее:</b></p>
+        <p><strong>Прочее:</strong>
         <ul>
         <li>Набор данных, используемый в приложении: <a href="http://bezvody.opendata.by/data/data_16.json">bezvody.opendata.by/data/data.json</a></li>
         <li>Репозиторий приложения: <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
@@ -91,25 +80,9 @@
         </ul>
         <p>Редактор приложения Алексей Медвецкий, am@opendata.by.</p>
         <div id="tibo"><a href="http://www.tc.by/exhibitions/tibo/ip2016/"><img src="http://www.tc.by/i/photo/ip.jpg"></a></div>
-    </div>
-    </article>
+    </main>
     <footer>
     <script src="js/script.js"></script>
-<!--
-    <div id="disqus_thread"></div>
-      <script type="text/javascript">
-          /* * * CONFIGURATION VARIABLES * * */
-          var disqus_shortname = 'bezvody-opendataby';
-          
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
--->
     </footer>
 </body>
 </html>
