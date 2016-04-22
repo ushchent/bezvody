@@ -78,7 +78,7 @@ function writeMessage(d) {
                 isWater.push(jsonData[i]);
             }
         }
-document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " без горячей воды остаются " + noWater.length + " дома, уже должна быть вода в " + isWater.length + " домов, и скоро отключат в " + soonNoWater.length + " домах:"));
+document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " без горячей воды остаются " + noWater.length + " домов и скоро отключат в " + soonNoWater.length + " домах:")); // и уже должна быть вода в " + isWater.length + " домов:"));
 
 }
 
@@ -185,11 +185,11 @@ window.onload = function() {
             data = request.responseText;
             jsonData = JSON.parse(data);
             writeMessage(today);
-            selectData("uzhe_otkliuchili")
+            selectData("skoro_otkliuchat")
             setMenuEvents();
             selectAddress();
         }
     };
-    request.open("GET", "data/data_6.json", true);
+    request.open("GET", "data/data_16.json", true);
     request.send(null);
 };
