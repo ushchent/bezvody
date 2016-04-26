@@ -6,6 +6,16 @@ body {
 header {
     background-color: #2A2F4E;
 }
+header p {
+    display: inline;
+    color: white;
+    float: right;
+    padding-right: 2em;
+}
+header p a {
+    color: white;
+    text-decoration: none;
+}
 #mapDiv {
     height: 500px;
     margin-top: 1em;
@@ -15,20 +25,45 @@ input {
     border: 2px solid;
     padding: 3px;
     }
+#remont {
+    width: 50%;
+    border: 1px solid black;
+    padding: 4px;
+}
+#remont_button {
+    padding: 2px;
+}
+#remont_table{
+    margin-bottom: 3em;
+}
+table {
+    width: 50%;
+    margin-top: 1em;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+thead {
+    font-weight: bold;
+}
 .button:hover {
     cursor: pointer;
 }
 #uzhe_otkliuchili {
-	border: 2px solid #008BFE;
+    border: 2px solid #008BFE;
     background-color: #008BFE;
     color: white;
-            }
+}
 #skoro_otkliuchat {
-	border: 2px solid #FFBF00;
+    border: 2px solid #FFBF00;
     background-color: #FFBF00;
     }
 #dolzhny_vkliuchit {
-	border: 2px solid #EC1313;
+    border: 2px solid #EC1313;
     background-color: #EC1313;
     color: white;
     }

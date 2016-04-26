@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="График отключения горячей воды в Минске.">
+        <meta name="description" content="График отключения горячей воды в Минске. График капитального ремонта жилых домов в Минске.">
         <title>График отключения горячей воды в Минске в 2016 году</title>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE&sensor=false"></script>
         <script src="js/markerclusterer_compiled.js"></script>
@@ -46,6 +46,7 @@
          <a href="/">
              <img src="img/logo.jpg" />
           </a>
+          <p><a href="#remont_table">График капитального ремонта жилых домов в Минске</a></p>
     </header>
     <main>
     <h1>14 дней без горячей воды</h1>
@@ -62,6 +63,10 @@
     <div id="mapDiv" class="map"></div>
         <p>Во время испытаний возможны повреждения теплопровода. При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
         <p>Приложение создано в рамках проекта dataШкола сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>" и работает на основе <a href="http://minsk.gov.by/ru/actual/view/625/">данных Мингорисполкома</a>, которые проверены нами с помощью специалистов УП "Минсккоммунтеплосеть" и преобразованы в машиночитаемый вид.</p>
+        <h2>График капитального ремонта жилых домов в Минске</h2>
+        <input id="remont" value="Ваш адрес">
+        <input type="button" id="remont_button" value="Показать">
+        <div id="remont_table"></div>
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
         <li>Компьютерные Вести, <a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>

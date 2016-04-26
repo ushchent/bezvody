@@ -5,6 +5,7 @@ var map,
     markerclusterer,
     timeSpan = 86400000 * 14,
     today = new Date(),
+    remontData,
     request;
 
 function insertMap() {
@@ -79,7 +80,6 @@ function writeMessage(d) {
             }
         }
 document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " без горячей воды остаются " + noWater.length + " домов и скоро отключат в " + soonNoWater.length + " домах:")); // и уже должна быть вода в " + isWater.length + " домов:"));
-
 }
 
 function addMarkers(indata, input) {
@@ -132,7 +132,6 @@ function selectAddress() {
             addressField.value = "Проверить адрес";
         }
     }
-
     var addressButton = document.getElementById("address_button");
     addressButton.onclick = function() {
         if (singleMarker) {
@@ -172,6 +171,10 @@ function selectAddress() {
     }
 }
 
+function get_remont_data() {
+    
+}
+
 window.onload = function() {
     insertMap();
     if (window.XMLHttpRequest) {
@@ -179,7 +182,6 @@ window.onload = function() {
     } else {  
         request = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
     request.onreadystatechange = function(){
         if (request.readyState === 4) {
             data = request.responseText;
@@ -193,3 +195,95 @@ window.onload = function() {
     request.open("GET", "data/data_16.json", true);
     request.send(null);
 };
+
+$(document).ready(function() {
+    
+var itemField = document.getElementById("remont");
+    itemField.onfocus = function() {
+        if (itemField.value == "Ваш адрес") {
+            itemField.value = "";
+        }
+    }
+    itemField.onblur = function() {
+        if (itemField.value == "") {
+            itemField.value = "Ваш адрес";
+        }
+    }
+var remont_addresses = [];
+
+$.ajax({
+            url: 'data/remont_16.json',
+            dataType: 'json',
+            success: function(data) {
+                remontData = data;
+                for (var i = 0; i < remontData.length; i++) {
+        remont_addresses.push(remontData[i].adres);
+    }
+            },
+            error: function( remontData, status, error ) { 
+                console.log(status);
+                console.log(error);
+            }
+        });
+
+$( "#remont" ).autocomplete({
+        source: remont_addresses,
+        minLength: 4
+    });
+
+var remontButton = document.getElementById("remont_button");
+
+remontButton.onclick = function() {
+     
+if (document.getElementById("remont_table").getElementsByTagName("table")[0]) {
+            document.getElementById("remont_table").removeChild(document.getElementById("remont_table").getElementsByTagName("table")[0]);
+       } else if (document.getElementById("remont_table").getElementsByTagName("p")[0]){
+           document.getElementById("remont_table").removeChild(document.getElementById("remont_table").getElementsByTagName("p")[0]);
+       }
+    var selectedAddress = document.getElementById("remont").value;
+    var tableData = remontData.filter(function(d) { return d.adres == selectedAddress; });
+
+
+var target = document.getElementById("remont_table");
+
+if (tableData.length != 0) {
+    
+    var table = document.createElement("table");
+    
+    var thead = document.createElement("thead");
+    var trHead = document.createElement("tr");
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+
+    var theaders = ["Адрес", "Год постройки", "Начало капремонта"];
+    for (var i = 1; i < theaders.length; i++) {
+        var headerText = document.createTextNode(theaders[i]);
+        var tdHead = document.createElement("td");
+        tdHead.appendChild(headerText);
+        trHead.appendChild(tdHead);
+    }
+
+    var tbody = document.createElement("tbody");
+    var trBody = document.createElement("tr");
+
+    var gpostr = tableData[0].gpostr;
+    var grem = tableData[0].grem;
+    var bodyData = [];
+    bodyData.push(gpostr);
+    bodyData.push(grem);
+    for (var i = 0; i < bodyData.length; i++) {
+        var bodyText = document.createTextNode(bodyData[i]);
+        var tdBody = document.createElement("td");
+        tdBody.appendChild(bodyText);
+        trBody.appendChild(tdBody);
+    }
+    tbody.appendChild(trBody);
+    table.appendChild(tbody);
+    
+    target.appendChild(table);
+ } else {
+     var message = "<p>У нас пока нет данных о проведении капремонта по указанному адресу.<br>Зайдите позже или обратитесь в свое ЖЭУ.</p>";
+     target.innerHTML = message;
+ };
+};
+});
