@@ -123,53 +123,113 @@ function selectAddress() {
 
     var addressField = document.getElementById("autocomplete");
     addressField.onfocus = function() {
-        if (addressField.value == "Проверить адрес") {
+        if (addressField.value == "Введите адрес") {
             addressField.value = "";
         }
     }
     addressField.onblur = function() {
         if (addressField.value == "") {
-            addressField.value = "Проверить адрес";
+            addressField.value = "Введите адрес";
         }
     }
-    var addressButton = document.getElementById("address_button");
+
+    //addressButton.onclick = function() {
+        //if (singleMarker) {
+                //singleMarker.setMap(null);
+            //};
+        //var checker = false;
+        //var givenAddress = document.getElementById("autocomplete").value;
+        //if (givenAddress == "Введите адрес") {
+            //givenAddress = "Введите адрес";
+            //checker = true;
+        //};
+        //for (var i = 0; i < jsonData.length; i++) {
+            //if (givenAddress == jsonData[i].address) {
+                //checker = true;
+                //var givenAddressLatLng = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
+                //markerclusterer.clearMarkers();
+                //map.setCenter(givenAddressLatLng);
+                //map.setZoom(15);
+                //var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' +
+                    //jsonData[i].address +
+                    //'<br>Горячую воду отключают ' + jsonData[i].start + '</div>';
+                //singleMarker = new google.maps.Marker({
+                    //position: givenAddressLatLng,
+                    //map: map,
+                    //infowindow: new google.maps.InfoWindow({
+                        //content: address
+                        //})
+                    //});
+                //google.maps.event.addListener(singleMarker, 'click', function() {
+                        //this.infowindow.open(map, this);
+                    //});
+                //}
+            //};
+        //if (checker == false) {
+            //alert("По адресу " + givenAddress + " в ближайшее время отключения не ожидается. Вы также можете проверить этот адрес в первоисточнике http://minsk.gov.by/ru/actual/view/625/.");
+        //};
+    //}
+}
+
+function showAddress() {
+    var addresses = [];
+    for (var i = 0; i < jsonData.length; i++) {
+        addresses.push(jsonData[i].address);
+    };;
+
+    $( "#autocomplete" ).autocomplete({
+        source: addresses,
+        minLength: 4
+    });
+
+    var addressField = document.getElementById("autocomplete");
+    addressField.onfocus = function() {
+        if (addressField.value == "Введите адрес") {
+            addressField.value = "";
+        }
+    }
+    addressField.onblur = function() {
+        if (addressField.value == "") {
+            addressField.value = "Введите адрес";
+        }
+    }
+    var addressButton = document.getElementById("show_data");
+    
     addressButton.onclick = function() {
-        if (singleMarker) {
-                singleMarker.setMap(null);
-            };
-        var checker = false;
-        var givenAddress = document.getElementById("autocomplete").value;
-        if (givenAddress == "Проверить адрес") {
-            givenAddress = "Введите адрес";
-            checker = true;
-        };
-        for (var i = 0; i < jsonData.length; i++) {
-            if (givenAddress == jsonData[i].address) {
-                checker = true;
-                var givenAddressLatLng = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
-                markerclusterer.clearMarkers();
-                map.setCenter(givenAddressLatLng);
-                map.setZoom(15);
-                var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' +
-                    jsonData[i].address +
-                    '<br>Горячую воду отключают ' + jsonData[i].start + '</div>';
-                singleMarker = new google.maps.Marker({
-                    position: givenAddressLatLng,
-                    map: map,
-                    infowindow: new google.maps.InfoWindow({
-                        content: address
-                        })
-                    });
-                google.maps.event.addListener(singleMarker, 'click', function() {
-                        this.infowindow.open(map, this);
-                    });
-                }
-            };
-        if (checker == false) {
-            alert("По адресу " + givenAddress + " в ближайшее время отключения не ожидается. Вы также можете проверить этот адрес в первоисточнике http://minsk.gov.by/ru/actual/view/625/.");
-        };
+if (document.getElementById("data_show").getElementsByTagName("p")[0]) {
+            document.getElementById("data_show").removeChild(document.getElementById("data_show").getElementsByTagName("p")[0]);
+       }
+       
+    //var addressButton = document.getElementById("address_button");
+    
+    var address_to_show = document.getElementById("autocomplete").value;
+
+
+	 var messageData = jsonData.filter(function(d) { return d.address == address_to_show; });
+
+
+var target_paragraph = document.getElementById("data_show");
+
+if (messageData.length != 0) {
+    
+    var message_paragraph = document.createElement("p");
+    var message_body = 'По адресу "' + address_to_show + '" горячую воду отключают ' + messageData[0].start + '.';
+
+    var message_text = document.createTextNode(message_body);
+    message_paragraph.appendChild(message_text);
+    target_paragraph.appendChild(message_paragraph);
+    
+    //<input class="button" type="button" id="address_button" value="Показать на карте">
+    
+
+ } else {
+     var message_body = "<p>У нас пока нет данных об отключении горячей воды по указанному адресу.<br>Вы также можете проверить данные в <a href='http://minsk.gov.by/ru/actual/view/625/'>первоисточнике</a>.";
+     target_paragraph.innerHTML = message_body;
+ };
     }
 }
+
+
 
 function get_remont_data() {
     
@@ -189,6 +249,7 @@ window.onload = function() {
             writeMessage(today);
             selectData("skoro_otkliuchat")
             setMenuEvents();
+            showAddress();
             selectAddress();
         }
     };
@@ -200,13 +261,13 @@ $(document).ready(function() {
     
 var itemField = document.getElementById("remont");
     itemField.onfocus = function() {
-        if (itemField.value == "Ваш адрес") {
+        if (itemField.value == "Введите адрес") {
             itemField.value = "";
         }
     }
     itemField.onblur = function() {
         if (itemField.value == "") {
-            itemField.value = "Ваш адрес";
+            itemField.value = "Введите адрес";
         }
     }
 var remont_addresses = [];
@@ -282,7 +343,7 @@ if (tableData.length != 0) {
     
     target.appendChild(table);
  } else {
-     var message = "<p>У нас пока нет данных о проведении капремонта по указанному адресу.<br>Зайдите позже или обратитесь в свое ЖЭУ.</p>";
+     var message = "<p>У нас пока нет данных о проведении капремонта по указанному адресу.<br>Пожалуйста, зайдите позже или обратитесь в свое ЖЭУ.</p>";
      target.innerHTML = message;
  };
 };
