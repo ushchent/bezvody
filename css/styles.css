@@ -16,6 +16,14 @@ header p a {
     color: white;
     text-decoration: none;
 }
+h1 sup {
+  font-weight: normal;
+	font-size: 12px;
+	margin-left: 1em;
+	padding: 3px;
+	background-color: #F26060;
+	color: white;
+}
 #data_show p {
     background-color: #E2E5F8;
     padding: 3px;

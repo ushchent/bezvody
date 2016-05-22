@@ -12,7 +12,9 @@
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
+
 <script type="text/javascript">
+	if (document.location.hostname != "localhost") {
     (function (d, w, c) {
         (w[c] = w[c] || []).push(function() {
             try {
@@ -37,8 +39,12 @@
             d.addEventListener("DOMContentLoaded", f, false);
         } else { f(); }
     })(document, window, "yandex_metrika_callbacks");
+} else {
+	console.log("You're on localhost.");
+}
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/36789295" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
 <!-- /Yandex.Metrika counter -->
     </head>
 <body>
@@ -48,9 +54,9 @@
           </a>
     </header>
     <main>
-    <h1>14 дней без горячей воды</h1>
+    <h1>14 дней без горячей воды<sup>май-июнь 2016</sup></h1>
         <p>Каждый год в Минске с конца весны и до начала осени проводятся испытания тепловых сетей перед отопительным сезоном. Поэтому городские службы последовательно отключают горячее водоснабжение потребителям на срок, как правило, не более 14 суток.</p>
-        <p>В 2016 году отключения горячей воды в Минске начинаются 11 мая. Это информационное приложение позволяет узнать где и в какой период в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>
+        <p>В 2016 году отключения горячей воды в Минске начались 11 мая. Это информационное приложение позволяет узнать, где и как долго в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>
         <h2>Узнать дату отключения по адресу</h2>
         <input id="autocomplete" value="Введите адрес">
         <input class="button" type="button" id="show_data" value="Узнать">
