@@ -79,7 +79,7 @@ function writeMessage(d) {
                 isWater.push(jsonData[i]);
             }
         }
-document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " без горячей воды остаются " + noWater.length + " домов и скоро отключат в " + soonNoWater.length + " домах:")); // и уже должна быть вода в " + isWater.length + " домов:"));
+document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " без горячей воды остаются " + noWater.length + " домов, скоро отключат в " + soonNoWater.length + " домах и уже должна быть вода в " + isWater.length + " домов:")); 
 }
 
 function addMarkers(indata, input) {

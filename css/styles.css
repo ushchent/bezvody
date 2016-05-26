@@ -6,15 +6,10 @@ body {
 header, footer {
     background-color: #2A2F4E;
 }
-header p {
-    display: inline;
-    color: white;
+header #vk {
     float: right;
-    padding-right: 2em;
-}
-header p a {
-    color: white;
-    text-decoration: none;
+    padding: 4px 6px;
+    margin: 4px 6px;
 }
 h1 sup {
   font-weight: normal;
