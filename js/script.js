@@ -17,6 +17,29 @@ function insertMap() {
     map = new google.maps.Map(document.getElementById("mapDiv"), mapParameters);
 }
 
+function nominativ(s) {
+	var n = parseInt(s.charAt(s.length - 1));
+	if (n == 1) {
+		return "дом";
+	} else if (n > 1 && n < 5) {
+		return "дома";
+	} else {
+	return "домов";
+	}
+}
+
+function dativ(s) {
+	var n = parseInt(s.charAt(s.length - 1));
+	if (n == 1) {
+		return "доме";
+	} else if (n > 1) {
+		return "домах";
+	} else {
+	return "домов";
+	}
+}
+
+
 function setMenuEvents() {
     var buttons = document.getElementById("menu").getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++) {
@@ -79,7 +102,22 @@ function writeMessage(d) {
                 isWater.push(jsonData[i]);
             }
         }
-document.getElementById("message").appendChild(document.createTextNode(convertDate(d) + " без горячей воды остаются " + noWater.length + " домов, скоро отключат в " + soonNoWater.length + " домах и уже должна быть вода в " + isWater.length + " домов:")); 
+document.getElementById("message").appendChild(
+	document.createTextNode(convertDate(d)
+		+ " без горячей воды остаются "
+		+ noWater.length
+		+ " "
+		+ nominativ(noWater.length.toString())
+		+ ", скоро отключат в "
+		+ soonNoWater.length
+		+ " "
+		+ dativ(noWater.length.toString())
+		+ " и уже должна быть вода в "
+		+ isWater.length
+		+ " "
+		+ dativ(isWater.length.toString())
+		+ ":")
+	); 
 }
 
 function addMarkers(indata, input) {
