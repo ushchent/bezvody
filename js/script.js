@@ -35,7 +35,7 @@ function dativ(s) {
 	} else if (n > 1) {
 		return "домах";
 	} else {
-	return "домов";
+	return "домах";
 	}
 }
 
@@ -291,7 +291,7 @@ window.onload = function() {
             selectAddress();
         }
     };
-    request.open("GET", "data/data_16.json", true);
+    request.open("GET", "data/data.json", true);
     request.send(null);
 };
 
