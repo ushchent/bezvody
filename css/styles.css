@@ -37,7 +37,7 @@ input {
     border: 1px solid black;
     padding: 4px;
 }
-#remont_button, #show_data {
+#remont_button {
     padding: 2px;
 }
 #remont_table{
@@ -64,6 +64,19 @@ thead {
     border: 2px solid #008BFE;
     background-color: #008BFE;
     color: white;
+    padding: 3px;
+}
+#menu input {
+    font-size: 18px;
+    padding: 4px;
+}
+#autocomplete {
+        font-size: 18px;
+    padding: 4px;
+}
+#show_data {
+    font-size: 18px;
+    padding: 2px;
 }
 #skoro_otkliuchat {
     border: 2px solid #FFBF00;
