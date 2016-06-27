@@ -19,7 +19,7 @@ h1 sup {
 	background-color: #F26060;
 	color: white;
 }
-#data_show p {
+#data_show p, #remont_table p {
     background-color: #E2E5F8;
     padding: 3px;
 }
