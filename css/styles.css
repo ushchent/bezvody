@@ -35,10 +35,11 @@ input {
 #remont, #autocomplete {
     width: 50%;
     border: 1px solid black;
-    padding: 4px;
+    padding: 6px;
 }
 #remont_button {
-    padding: 2px;
+    padding: 5px;
+    border-width: 1px;
 }
 #remont_table{
     margin-bottom: 3em;
@@ -72,11 +73,13 @@ thead {
 }
 #autocomplete {
         font-size: 18px;
-    padding: 4px;
+    padding: 5px;
+    
 }
 #show_data {
     font-size: 18px;
-    padding: 2px;
+    padding: 4px;
+    border-width: 1px;
 }
 #skoro_otkliuchat {
     border: 2px solid #FFBF00;
