@@ -77,9 +77,10 @@ thead {
     
 }
 #ui-id-2, #ui-id-1 {
-		    max-height: 200px;
-					    overflow: scroll;
-								}
+    box-sizing: border-box;
+    max-height: 191px;
+	overflow: scroll;
+}
 #show_data {
     font-size: 18px;
     padding: 4px;
