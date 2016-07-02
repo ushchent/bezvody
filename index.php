@@ -1,6 +1,3 @@
-<?php
-	header("Access-Control-Allow-Origin: *");
-?>
 <!DOCTYPE HTML>
 <html>
     <head>
