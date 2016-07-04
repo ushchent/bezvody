@@ -16,9 +16,18 @@ h1 sup {
 	font-size: 12px;
 	margin-left: 1em;
 	padding: 3px;
+	background-color: #2A2F4E;
+	color: white;
+}
+#ad {
+  font-weight: normal;
+	font-size: 12px;
+	margin-right: .5em;
+	padding: 3px;
 	background-color: #F26060;
 	color: white;
 }
+
 #data_show p, #remont_table p {
     background-color: #E2E5F8;
     padding: 3px;
@@ -44,20 +53,6 @@ input {
 #remont_table{
     margin-bottom: 3em;
 }
-table {
-    width: 50%;
-    margin-top: 1em;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-table td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-}
-thead {
-    font-weight: bold;
-}
 .button:hover {
     cursor: pointer;
 }
@@ -72,7 +67,7 @@ thead {
     padding: 4px;
 }
 #autocomplete {
-        font-size: 18px;
+    font-size: 18px;
     padding: 5px;
     
 }

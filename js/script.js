@@ -241,6 +241,7 @@ if (document.getElementById("data_show").getElementsByTagName("p")[0]) {
     //var addressButton = document.getElementById("address_button");
     
     var address_to_show = document.getElementById("autocomplete").value;
+    console.log(address_to_show);
 
 
 	 var messageData = jsonData.filter(function(d) { return d.address == address_to_show; });
