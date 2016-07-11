@@ -317,6 +317,9 @@ $.ajax({
                 remontData = data;
                 for (var i = 0; i < remontData.length; i++) {
         remont_addresses.push(remontData[i].adres);
+var remont_volume = document.getElementById("remont_vol");
+remont_volume.innerHTML = remont_addresses.length + " домов";
+
     }
             },
             error: function( remontData, status, error ) { 
@@ -361,6 +364,5 @@ if (tableData.length != 0) {
      target.innerHTML = message;
  };
     }
-
 
 });
