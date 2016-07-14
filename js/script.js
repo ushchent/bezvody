@@ -39,7 +39,6 @@ function dativ(s) {
 	}
 }
 
-
 function setMenuEvents() {
     var buttons = document.getElementById("menu").getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++) {
@@ -266,8 +265,6 @@ if (messageData.length != 0) {
  };
     }
 }
-
-
 
 function get_remont_data() {
     

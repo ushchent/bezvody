@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,6 @@
         <title>График отключения горячей воды в Минске в 2016 году</title>
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
-
 <script type="text/javascript">
 	if (document.location.hostname != "localhost") {
     (function (d, w, c) {
@@ -39,7 +38,6 @@
 }
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/36789295" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
 <!-- /Yandex.Metrika counter -->
     </head>
 <body>

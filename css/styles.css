@@ -1,6 +1,6 @@
 body {
     margin: 0 auto;
-    max-width: 80%;
+    max-width: 90%;
     font-family: sans-serif;
 }
 header, footer {
@@ -23,6 +23,7 @@ sup {
   font-weight: normal;
 	font-size: 12px;
 	margin-right: .5em;
+	margin-left: 0;
 	padding: 3px;
 	background-color: #F26060;
 	color: white;
