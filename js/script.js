@@ -260,7 +260,7 @@ if (messageData.length != 0) {
    
 
  } else {
-     var message_body = "<p>У нас пока нет данных об отключении горячей воды по указанному адресу.<br>Вы также можете проверить данные в <a href='http://minsk.gov.by/ru/actual/view/625/'>первоисточнике</a>.";
+     var message_body = "<p>Отключения горячей воды по указанному адресу в ближайшее время не ожидается.<br>Пожалуйста, обратитесь позже.";
      target_paragraph.innerHTML = message_body;
  };
     }
