@@ -29,6 +29,35 @@ sup {
 	color: white;
 }
 
+
+#data_show {
+    
+   width: 50%;
+    border: 1px solid black;
+    padding: 0 10px 0 0;
+    overflow: scroll;
+    max-height: 110px;
+}
+
+#data_show li {
+    
+    list-style: none;
+    margin-left: 0;
+}
+
+#data_show ul {
+    margin: 0.2em auto 0.2em 0;
+    padding-left: .3em;
+}
+
+
+.hidden {
+	display: none;
+}
+
+
+
+
 #data_show p, #remont_table p {
     background-color: #E2E5F8;
     padding: 3px;
@@ -72,11 +101,7 @@ input {
     padding: 5px;
     
 }
-#ui-id-2, #ui-id-1 {
-    box-sizing: border-box;
-    max-height: 191px;
-	overflow: scroll;
-}
+
 #show_data {
     font-size: 18px;
     padding: 4px;

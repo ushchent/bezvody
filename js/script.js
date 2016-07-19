@@ -8,6 +8,21 @@ var map,
     remontData,
     request;
 
+
+var addressField = document.getElementById("autocomplete");
+    addressField.onfocus = function() {
+        if (addressField.value == "Введите адрес") {
+            addressField.value = "";
+        }
+    }
+    addressField.onblur = function() {
+        if (addressField.value == "") {
+            addressField.value = "Введите адрес";
+        }
+    };
+
+
+
 function insertMap() {
     var mapParameters = {
         center: new google.maps.LatLng(53.90, 27.56),
@@ -39,6 +54,55 @@ function dativ(s) {
 	}
 }
 
+function get_address(str) {
+	
+	var target = document.getElementById("data_show");
+	
+	if (str.length <= 4 || str == "Введите адрес") {
+	
+		target.className = "hidden";
+	}
+          if (str.length > 4) {
+			  target.className = "";
+			  
+			  // А если меньше 4, то убирать список вообще.
+          
+          if (window.XMLHttpRequest) {
+
+            var request = new XMLHttpRequest();
+          } else {  
+            var request = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+				
+				
+				// Убираем ранее созданный список, если он есть.
+				if (target.getElementsByTagName('ul')[0]) {
+					target.getElementsByTagName('ul')[0].remove();
+				}
+				
+				var list = document.createElement("ul");
+
+              var data = JSON.parse(request.responseText);
+              for (var i = 0; i < data.length; i++) {
+				  var address_text = document.createTextNode(data[i].address);
+				  var list_item = document.createElement("li");
+				  list_item.appendChild(address_text);
+				  list.appendChild(list_item);
+				  
+			  }
+			  target.appendChild(list);
+              document.getElementById("data_show").style.border = "1px solid #A5ACB2";
+            }
+          }
+          request.open("GET","api/?q=" + str, true);
+          request.send();
+        }
+}
+
+
+
 function setMenuEvents() {
     var buttons = document.getElementById("menu").getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++) {
@@ -55,9 +119,46 @@ function setMenuEvents() {
         }
     }
 }
-
+/*
 function selectData(input) {
-    var newData = [];
+
+          if (window.XMLHttpRequest) {
+
+            var request = new XMLHttpRequest();
+          } else {  
+            var request = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+
+        if (input == "uzhe_otkliuchili") {
+				var query_date = today_base - timeSpan;
+                icon = "img/blue.png";
+            }
+
+        } else if (input == "skoro_otkliuchat") {
+				var query_date = today_base - timeSpan;
+                icon = "img/yellow.png";
+            }
+
+        } else if (input == "dolzhny_vkliuchit") {
+            if (startDate.getTime() < today.getTime() - timeSpan) {
+                newData.push(jsonData[i]);
+                icon = "img/red.png";
+            }
+        }
+
+    addMarkers(newData, icon);
+
+				
+            }
+          }
+          request.open("GET","api/?q=" + str, true);
+          request.send();
+
+
+
+    
     for (var i = 0; i < jsonData.length; i++) {
         var startDate = new Date(jsonData[i].start);
         if (input == "uzhe_otkliuchili") {
@@ -81,6 +182,7 @@ function selectData(input) {
     }
     addMarkers(newData, input, icon);
 }
+}
 
 function convertDate(d) {
     var months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
@@ -88,7 +190,7 @@ function convertDate(d) {
     var date = d.getDate();
     return date + " " + months[month];
 }
-
+// Это для кнопок переделать.
 function writeMessage(d) {
     var noWater = [], isWater = [], soonNoWater = [];
     for (var i = 0; i < jsonData.length; i++) {
@@ -158,17 +260,7 @@ function selectAddress() {
         minLength: 4
     });
 
-    var addressField = document.getElementById("autocomplete");
-    addressField.onfocus = function() {
-        if (addressField.value == "Введите адрес") {
-            addressField.value = "";
-        }
-    }
-    addressField.onblur = function() {
-        if (addressField.value == "") {
-            addressField.value = "Введите адрес";
-        }
-    }
+
 
     //addressButton.onclick = function() {
         //if (singleMarker) {
@@ -208,63 +300,63 @@ function selectAddress() {
     //}
 }
 
-function showAddress() {
-    var addresses = [];
-    for (var i = 0; i < jsonData.length; i++) {
-        addresses.push(jsonData[i].address);
-    };;
+//function showAddress() {
+    //var addresses = [];
+    //for (var i = 0; i < jsonData.length; i++) {
+        //addresses.push(jsonData[i].address);
+    //};;
 
-    $( "#autocomplete" ).autocomplete({
-        source: addresses,
-        minLength: 4
-    });
+    //$( "#autocomplete" ).autocomplete({
+        //source: addresses,
+        //minLength: 4
+    //});
 
-    var addressField = document.getElementById("autocomplete");
-    addressField.onfocus = function() {
-        if (addressField.value == "Введите адрес") {
-            addressField.value = "";
-        }
-    }
-    addressField.onblur = function() {
-        if (addressField.value == "") {
-            addressField.value = "Введите адрес";
-        }
-    }
-    var addressButton = document.getElementById("show_data");
+    //var addressField = document.getElementById("autocomplete");
+    //addressField.onfocus = function() {
+        //if (addressField.value == "Введите адрес") {
+            //addressField.value = "";
+        //}
+    //}
+    //addressField.onblur = function() {
+        //if (addressField.value == "") {
+            //addressField.value = "Введите адрес";
+        //}
+    //}
+    //var addressButton = document.getElementById("show_data");
     
-    addressButton.onclick = function() {
-if (document.getElementById("data_show").getElementsByTagName("p")[0]) {
-            document.getElementById("data_show").removeChild(document.getElementById("data_show").getElementsByTagName("p")[0]);
-       }
+    //addressButton.onclick = function() {
+//if (document.getElementById("data_show").getElementsByTagName("p")[0]) {
+            //document.getElementById("data_show").removeChild(document.getElementById("data_show").getElementsByTagName("p")[0]);
+       //}
        
-    //var addressButton = document.getElementById("address_button");
+    ////var addressButton = document.getElementById("address_button");
     
-    var address_to_show = document.getElementById("autocomplete").value;
-    console.log(address_to_show);
+    //var address_to_show = document.getElementById("autocomplete").value;
+    //console.log(address_to_show);
 
 
-	 var messageData = jsonData.filter(function(d) { return d.address == address_to_show; });
+	 //var messageData = jsonData.filter(function(d) { return d.address == address_to_show; });
 
 
-var target_paragraph = document.getElementById("data_show");
+//var target_paragraph = document.getElementById("data_show");
 
-if (messageData.length != 0) {
+//if (messageData.length != 0) {
     
-    var message_paragraph = document.createElement("p");
-    var message_body = 'По адресу "' + address_to_show + '" горячую воду отключают ' + messageData[0].start + '.';
+    //var message_paragraph = document.createElement("p");
+    //var message_body = 'По адресу "' + address_to_show + '" горячую воду отключают ' + messageData[0].start + '.';
 
-    var message_text = document.createTextNode(message_body);
-    message_paragraph.appendChild(message_text);
-    target_paragraph.appendChild(message_paragraph);
+    //var message_text = document.createTextNode(message_body);
+    //message_paragraph.appendChild(message_text);
+    //target_paragraph.appendChild(message_paragraph);
     
    
 
- } else {
-     var message_body = "<p>Отключения горячей воды по указанному адресу в ближайшее время не ожидается.<br>Пожалуйста, обратитесь позже.";
-     target_paragraph.innerHTML = message_body;
- };
-    }
-}
+ //} else {
+     //var message_body = "<p>Отключения горячей воды по указанному адресу в ближайшее время не ожидается.<br>Пожалуйста, обратитесь позже.";
+     //target_paragraph.innerHTML = message_body;
+ //};
+    //}
+//}
 
 function get_remont_data() {
     
@@ -272,94 +364,93 @@ function get_remont_data() {
 
 window.onload = function() {
     insertMap();
-    if (window.XMLHttpRequest) {
-        request = new XMLHttpRequest();
-    } else {  
-        request = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    request.onreadystatechange = function(){
-        if (request.readyState === 4) {
-            data = request.responseText;
-            jsonData = JSON.parse(data);
-            writeMessage(today);
-            selectData("uzhe_otkliuchili")
-            setMenuEvents();
-            showAddress();
-            selectAddress();
-        }
-    };
-    request.open("GET", "data/data.json", true);
-    request.send(null);
+
+    writeMessage(today);
+	selectData("uzhe_otkliuchili")
+    setMenuEvents();
+    showAddress();
+    selectAddress();
 };
 
-$(document).ready(function() {
+
+
+
+
+
+
+
+
+// Это ремонт. Пока не трогать.
+
+//$(document).ready(function() {
     
-var itemField = document.getElementById("remont");
-    itemField.onfocus = function() {
-        if (itemField.value == "Введите адрес") {
-            itemField.value = "";
-        }
-    }
-    itemField.onblur = function() {
-        if (itemField.value == "") {
-            itemField.value = "Введите адрес";
-        }
-    }
-var remont_addresses = [];
+//var itemField = document.getElementById("remont");
+    //itemField.onfocus = function() {
+        //if (itemField.value == "Введите адрес") {
+            //itemField.value = "";
+        //}
+    //}
+    //itemField.onblur = function() {
+        //if (itemField.value == "") {
+            //itemField.value = "Введите адрес";
+        //}
+    //}
+//var remont_addresses = [];
 
-$.ajax({
-            url: 'data/remont_16.json',
-            dataType: 'json',
-            success: function(data) {
-                remontData = data;
-                for (var i = 0; i < remontData.length; i++) {
-        remont_addresses.push(remontData[i].adres);
-var remont_volume = document.getElementById("remont_vol");
-remont_volume.innerHTML = remont_addresses.length + " домов";
+//$.ajax({
+            //url: 'data/remont_16.json',
+            //dataType: 'json',
+            //success: function(data) {
+                //remontData = data;
+                //for (var i = 0; i < remontData.length; i++) {
+        //remont_addresses.push(remontData[i].adres);
+//var remont_volume = document.getElementById("remont_vol");
+//remont_volume.innerHTML = remont_addresses.length + " домов";
 
-    }
-            },
-            error: function( remontData, status, error ) { 
-                console.log(status);
-                console.log(error);
-            }
-        });
+    //}
+            //},
+            //error: function( remontData, status, error ) { 
+                //console.log(status);
+                //console.log(error);
+            //}
+        //});
 
-$( "#remont" ).autocomplete({
-        source: remont_addresses,
-        minLength: 4
-    });
+//$( "#remont" ).autocomplete({
+        //source: remont_addresses,
+        //minLength: 4
+    //});
 
-var remontButton = document.getElementById("remont_button");
+//var remontButton = document.getElementById("remont_button");
 
 
-    remontButton.onclick = function() {
-if (document.getElementById("remont_table").getElementsByTagName("p")[0]) {
-            document.getElementById("remont_table").removeChild(document.getElementById("remont_table").getElementsByTagName("p")[0]);
-       }
+    //remontButton.onclick = function() {
+//if (document.getElementById("remont_table").getElementsByTagName("p")[0]) {
+            //document.getElementById("remont_table").removeChild(document.getElementById("remont_table").getElementsByTagName("p")[0]);
+       //}
        
-    //var addressButton = document.getElementById("address_button");
+    ////var addressButton = document.getElementById("address_button");
     
-    var selectedAddress = document.getElementById("remont").value;
+    //var selectedAddress = document.getElementById("remont").value;
 
 
-	     var tableData = remontData.filter(function(d) { return d.adres == selectedAddress; });
+	     //var tableData = remontData.filter(function(d) { return d.adres == selectedAddress; });
 
-var target = document.getElementById("remont_table");
+//var target = document.getElementById("remont_table");
 
-if (tableData.length != 0) {
+//if (tableData.length != 0) {
     
-    var paragraph = document.createElement("p");
-    var message = 'По адресу "' + selectedAddress + '" капитальный ремонт ожидается в ' + tableData[0].year + '.';
+    //var paragraph = document.createElement("p");
+    //var message = 'По адресу "' + selectedAddress + '" капитальный ремонт ожидается в ' + tableData[0].year + '.';
 
-    var text = document.createTextNode(message);
-    paragraph.appendChild(text);
-    target.appendChild(paragraph);    
+    //var text = document.createTextNode(message);
+    //paragraph.appendChild(text);
+    //target.appendChild(paragraph);    
 
- } else {
-     var message = "<p>У нас пока нет данных о проведении капремонта по указанному адресу.<br>Пожалуйста, обратитесь в свое ЖЭУ.</p>";
-     target.innerHTML = message;
- };
-    }
+ //} else {
+     //var message = "<p>У нас пока нет данных о проведении капремонта по указанному адресу.<br>Пожалуйста, обратитесь в свое ЖЭУ.</p>";
+     //target.innerHTML = message;
+ //};
+    //}
 
-});
+//});
+*/

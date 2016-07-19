@@ -1,10 +1,25 @@
+<?php
+	$today_base = date("Y-m-d");
+	$db = new SQLite3("data/bezvody.sqlite");
+	$sql_netvody = "select * from data where start >= '$today_base;'";
+	
+	$netvody = $db->query($sql_netvody);
+	$netvody_ = $netvody->fetchArray(SQLITE3_ASSOC);
+    $data = [];
+    while ($row = $netvody->fetchArray(SQLITE3_ASSOC)) {
+        array_push($data, $row);
+    };
+?>
+
 <!DOCTYPE HTML>
 <html lang="ru">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="График отключения горячей воды в Минске. График капитального ремонта жилых домов в Минске.">
+		<meta name="description" content="График отключения горячей воды в Минске.
+			График капитального ремонта жилых домов в Минске.">
         <title>График отключения горячей воды в Минске в 2016 году</title>
+
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -51,12 +66,11 @@
         <p>В 2016 году отключения горячей воды в Минске начались 11 мая. Это информационное приложение позволяет узнать, где и как долго в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>
         <p><sup id="ad">Реклама</sup>Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды. Возьмите <strong>водонагреватель в аренду</strong> на две недели. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.</p>
         <h2>Узнать дату отключения по адресу</h2>
-        
-        <input id="autocomplete" value="Введите адрес">
+        <input id="autocomplete" value="Введите адрес" onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
-        <div id="data_show"></div>
+        <div id="data_show" class="hidden"></div>
         <p id="message"></p>
-    <div id="menu">
+<!--    <div id="menu">
         <input class="button" type="button" id="uzhe_otkliuchili" value="Уже отключили">
         <input class="button" type="button" id="skoro_otkliuchat" value="Скоро отключат">
         <input class="button" type="button" id="dolzhny_vkliuchit" value="Должны включить">
@@ -79,8 +93,6 @@
         <li>Sputnik Беларусь, <a href="http://sputnik.by/technology/20150605/1015580135.html">http://sputnik.by/technology/20150605/...</a></li>
 		<li>Еўрарадыё, <a href="http://euroradio.by/shto-robyac-kamunalshchyki-pakul-adklyuchanaya-garachaya-vada">http://euroradio.by/shto-robyac-kamunalshchyki...</a></li>
 		<li>Комсомольская правда, <a href="http://www.kp.by/daily/26535.5/3552619/">http://www.kp.by/daily/26535.5/3552619</a></li>
-
-
         </ul>
         <p><strong>Прочее:</strong>
         <ul>
@@ -92,12 +104,12 @@
     </main>
     <footer>
 	<p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>
+	
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE&sensor=false"></script>
     <script src="js/markerclusterer_compiled.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="js/script.js"></script>
+
     </footer>
+-->
+    <script src="js/script.js"></script>
 </body>
 </html>
