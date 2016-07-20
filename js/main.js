@@ -6,7 +6,6 @@ var addressField = document.getElementById("autocomplete");
 addressField.onfocus = function() {
         if (addressField.value == "Введите адрес") {
             addressField.value = "";
-            
         }
     }
 addressField.onblur = function() {
@@ -17,8 +16,6 @@ addressField.onblur = function() {
 
 // Определяем дату отключения и выводим сообщение.
 document.getElementById("show_data").onclick = function() {
-
-
 
 if (document.getElementById("autocomplete").value == "Введите адрес." || data == undefined) {
 	message.innerHTML = "Пожалуйста, введите адрес.";
@@ -35,12 +32,11 @@ if (document.getElementById("autocomplete").value == "Введите адрес.
 
 		message.innerHTML = "По адресу '" + address_selected + "' горячую воду отключают " + start + ".";		
 } else if (data.length == 0) {
-			var message_body = "<p>Отключения горячей воды по указанному адресу в ближайшие " + days_left + " дней не ожидается.<br>Пожалуйста, обратитесь позже.";
+			var message_body = "<p>В ближайшие " + days_left + " дней отключения горячей воды по указанному адресу не ожидается. Пожалуйста, обратитесь позже.";
 			 message.innerHTML = message_body;
 } 
 
 }
-
 
 function list_items_listeners(item) {
 	var items = document.getElementsByTagName(item);
@@ -49,14 +45,12 @@ function list_items_listeners(item) {
 			var selected = this.textContent;
 			document.getElementById("autocomplete").value = selected;
 			document.getElementById("data_show").className = "hidden";
-
-			
 		});
 	}
 }
 
 function get_address(str) {
-	
+
 	var target = document.getElementById("data_show");
 	message.innerHTML = "";
 	
@@ -91,7 +85,6 @@ function get_address(str) {
 				  var list_item = document.createElement("li");
 				  list_item.appendChild(address_text);
 				  list.appendChild(list_item);
-				  
 			  }
 			  target.appendChild(list);
 			  list_items_listeners("li")

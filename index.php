@@ -3,12 +3,12 @@
 	$db = new SQLite3("data/bezvody.sqlite");
 	$sql_netvody = "select * from data where start >= '$today_base_string;'";
 	
-	$netvody = $db->query($sql_netvody);
-	$netvody_ = $netvody->fetchArray(SQLITE3_ASSOC);
-    $data = [];
-    while ($row = $netvody->fetchArray(SQLITE3_ASSOC)) {
-        array_push($data, $row);
-    };
+	//$netvody = $db->query($sql_netvody);
+	//$netvody_ = $netvody->fetchArray(SQLITE3_ASSOC);
+    //$data = [];
+    //while ($row = $netvody->fetchArray(SQLITE3_ASSOC)) {
+        //array_push($data, $row);
+    //};
     $margin_date_string = $db->query("select max(start) as max from data;")->fetchArray(SQLITE3_ASSOC)['max'];
 
     $today_base_date = new DateTime($today_base_string);
