@@ -1,6 +1,5 @@
 var map,
     singleMarker,
-    jsonData,
     icon,
     markerclusterer,
     timeSpan = 86400000 * 14,
@@ -9,17 +8,10 @@ var map,
     request;
 
 
-var addressField = document.getElementById("autocomplete");
-    addressField.onfocus = function() {
-        if (addressField.value == "Введите адрес") {
-            addressField.value = "";
-        }
-    }
-    addressField.onblur = function() {
-        if (addressField.value == "") {
-            addressField.value = "Введите адрес";
-        }
-    };
+
+
+
+
 
 
 
@@ -54,52 +46,6 @@ function dativ(s) {
 	}
 }
 
-function get_address(str) {
-	
-	var target = document.getElementById("data_show");
-	
-	if (str.length <= 4 || str == "Введите адрес") {
-	
-		target.className = "hidden";
-	}
-          if (str.length > 4) {
-			  target.className = "";
-			  
-			  // А если меньше 4, то убирать список вообще.
-          
-          if (window.XMLHttpRequest) {
-
-            var request = new XMLHttpRequest();
-          } else {  
-            var request = new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-				
-				
-				// Убираем ранее созданный список, если он есть.
-				if (target.getElementsByTagName('ul')[0]) {
-					target.getElementsByTagName('ul')[0].remove();
-				}
-				
-				var list = document.createElement("ul");
-
-              var data = JSON.parse(request.responseText);
-              for (var i = 0; i < data.length; i++) {
-				  var address_text = document.createTextNode(data[i].address);
-				  var list_item = document.createElement("li");
-				  list_item.appendChild(address_text);
-				  list.appendChild(list_item);
-				  
-			  }
-			  target.appendChild(list);
-              document.getElementById("data_show").style.border = "1px solid #A5ACB2";
-            }
-          }
-          request.open("GET","api/?q=" + str, true);
-          request.send();
-        }
-}
 
 
 
@@ -119,46 +65,8 @@ function setMenuEvents() {
         }
     }
 }
-/*
 function selectData(input) {
-
-          if (window.XMLHttpRequest) {
-
-            var request = new XMLHttpRequest();
-          } else {  
-            var request = new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-
-        if (input == "uzhe_otkliuchili") {
-				var query_date = today_base - timeSpan;
-                icon = "img/blue.png";
-            }
-
-        } else if (input == "skoro_otkliuchat") {
-				var query_date = today_base - timeSpan;
-                icon = "img/yellow.png";
-            }
-
-        } else if (input == "dolzhny_vkliuchit") {
-            if (startDate.getTime() < today.getTime() - timeSpan) {
-                newData.push(jsonData[i]);
-                icon = "img/red.png";
-            }
-        }
-
-    addMarkers(newData, icon);
-
-				
-            }
-          }
-          request.open("GET","api/?q=" + str, true);
-          request.send();
-
-
-
-    
+    var newData = [];
     for (var i = 0; i < jsonData.length; i++) {
         var startDate = new Date(jsonData[i].start);
         if (input == "uzhe_otkliuchili") {
@@ -182,7 +90,6 @@ function selectData(input) {
     }
     addMarkers(newData, input, icon);
 }
-}
 
 function convertDate(d) {
     var months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
@@ -190,7 +97,7 @@ function convertDate(d) {
     var date = d.getDate();
     return date + " " + months[month];
 }
-// Это для кнопок переделать.
+
 function writeMessage(d) {
     var noWater = [], isWater = [], soonNoWater = [];
     for (var i = 0; i < jsonData.length; i++) {
@@ -203,7 +110,7 @@ function writeMessage(d) {
                 isWater.push(jsonData[i]);
             }
         }
-document.getElementById("message").appendChild(
+document.getElementById("svodka").appendChild(
 	document.createTextNode(convertDate(d)
 		+ " без горячей воды остаются "
 		+ noWater.length
@@ -249,140 +156,28 @@ function addMarkers(indata, input) {
     markerclusterer = new MarkerClusterer(map, markers, mcOptions);
 }
 
-function selectAddress() {
-    var addresses = [];
-    for (var i = 0; i < jsonData.length; i++) {
-        addresses.push(jsonData[i].address);
-    };;
-
-    $( "#autocomplete" ).autocomplete({
-        source: addresses,
-        minLength: 4
-    });
 
 
-
-    //addressButton.onclick = function() {
-        //if (singleMarker) {
-                //singleMarker.setMap(null);
-            //};
-        //var checker = false;
-        //var givenAddress = document.getElementById("autocomplete").value;
-        //if (givenAddress == "Введите адрес") {
-            //givenAddress = "Введите адрес";
-            //checker = true;
-        //};
-        //for (var i = 0; i < jsonData.length; i++) {
-            //if (givenAddress == jsonData[i].address) {
-                //checker = true;
-                //var givenAddressLatLng = new google.maps.LatLng(jsonData[i].lat, jsonData[i].lon);
-                //markerclusterer.clearMarkers();
-                //map.setCenter(givenAddressLatLng);
-                //map.setZoom(15);
-                //var address = '<div style="width: 200px, height: 100px;"><b>Адрес:</b> ' +
-                    //jsonData[i].address +
-                    //'<br>Горячую воду отключают ' + jsonData[i].start + '</div>';
-                //singleMarker = new google.maps.Marker({
-                    //position: givenAddressLatLng,
-                    //map: map,
-                    //infowindow: new google.maps.InfoWindow({
-                        //content: address
-                        //})
-                    //});
-                //google.maps.event.addListener(singleMarker, 'click', function() {
-                        //this.infowindow.open(map, this);
-                    //});
-                //}
-            //};
-        //if (checker == false) {
-            //alert("По адресу " + givenAddress + " в ближайшее время отключения не ожидается. Вы также можете проверить этот адрес в первоисточнике http://minsk.gov.by/ru/actual/view/625/.");
-        //};
-    //}
-}
-
-//function showAddress() {
-    //var addresses = [];
-    //for (var i = 0; i < jsonData.length; i++) {
-        //addresses.push(jsonData[i].address);
-    //};;
-
-    //$( "#autocomplete" ).autocomplete({
-        //source: addresses,
-        //minLength: 4
-    //});
-
-    //var addressField = document.getElementById("autocomplete");
-    //addressField.onfocus = function() {
-        //if (addressField.value == "Введите адрес") {
-            //addressField.value = "";
-        //}
-    //}
-    //addressField.onblur = function() {
-        //if (addressField.value == "") {
-            //addressField.value = "Введите адрес";
-        //}
-    //}
-    //var addressButton = document.getElementById("show_data");
-    
-    //addressButton.onclick = function() {
-//if (document.getElementById("data_show").getElementsByTagName("p")[0]) {
-            //document.getElementById("data_show").removeChild(document.getElementById("data_show").getElementsByTagName("p")[0]);
-       //}
-       
-    ////var addressButton = document.getElementById("address_button");
-    
-    //var address_to_show = document.getElementById("autocomplete").value;
-    //console.log(address_to_show);
-
-
-	 //var messageData = jsonData.filter(function(d) { return d.address == address_to_show; });
-
-
-//var target_paragraph = document.getElementById("data_show");
-
-//if (messageData.length != 0) {
-    
-    //var message_paragraph = document.createElement("p");
-    //var message_body = 'По адресу "' + address_to_show + '" горячую воду отключают ' + messageData[0].start + '.';
-
-    //var message_text = document.createTextNode(message_body);
-    //message_paragraph.appendChild(message_text);
-    //target_paragraph.appendChild(message_paragraph);
-    
-   
-
- //} else {
-     //var message_body = "<p>Отключения горячей воды по указанному адресу в ближайшее время не ожидается.<br>Пожалуйста, обратитесь позже.";
-     //target_paragraph.innerHTML = message_body;
- //};
-    //}
-//}
-
-function get_remont_data() {
-    
-}
-
-window.onload = function() {
     insertMap();
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+    } else {  
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    request.onreadystatechange = function(){
+        if (request.readyState === 4 && request.status == 200) {
+            jsonData = JSON.parse(request.responseText);
+            writeMessage(today);
+            selectData("uzhe_otkliuchili")
+            setMenuEvents();
 
-    writeMessage(today);
-	selectData("uzhe_otkliuchili")
-    setMenuEvents();
-    showAddress();
-    selectAddress();
-};
+        }
+    };
+    request.open("GET", "data/data.json", true);
+    request.send(null);
 
 
-
-
-
-
-
-
-
-// Это ремонт. Пока не трогать.
-
-//$(document).ready(function() {
+//window.onload = function() {
     
 //var itemField = document.getElementById("remont");
     //itemField.onfocus = function() {
@@ -397,28 +192,9 @@ window.onload = function() {
     //}
 //var remont_addresses = [];
 
-//$.ajax({
-            //url: 'data/remont_16.json',
-            //dataType: 'json',
-            //success: function(data) {
-                //remontData = data;
-                //for (var i = 0; i < remontData.length; i++) {
-        //remont_addresses.push(remontData[i].adres);
-//var remont_volume = document.getElementById("remont_vol");
-//remont_volume.innerHTML = remont_addresses.length + " домов";
 
-    //}
-            //},
-            //error: function( remontData, status, error ) { 
-                //console.log(status);
-                //console.log(error);
-            //}
-        //});
 
-//$( "#remont" ).autocomplete({
-        //source: remont_addresses,
-        //minLength: 4
-    //});
+
 
 //var remontButton = document.getElementById("remont_button");
 
@@ -452,5 +228,4 @@ window.onload = function() {
  //};
     //}
 
-//});
-*/
+//};

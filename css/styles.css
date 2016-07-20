@@ -43,6 +43,13 @@ sup {
     
     list-style: none;
     margin-left: 0;
+    cursor: pointer;
+}
+
+#data_show li:hover {
+	background-color: #CECECE;
+	margin: 0;
+	padding: 0;
 }
 
 #data_show ul {
@@ -58,7 +65,7 @@ sup {
 
 
 
-#data_show p, #remont_table p {
+#remont_table p {
     background-color: #E2E5F8;
     padding: 3px;
 }
