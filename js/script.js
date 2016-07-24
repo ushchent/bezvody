@@ -110,22 +110,13 @@ function writeMessage(d) {
                 isWater.push(jsonData[i]);
             }
         }
-document.getElementById("svodka").appendChild(
-	document.createTextNode(convertDate(d)
-		+ " без горячей воды остаются "
-		+ noWater.length
-		+ " "
-		+ nominativ(noWater.length.toString())
-		+ ", скоро отключат в "
-		+ soonNoWater.length
-		+ " "
-		+ dativ(noWater.length.toString())
-		+ " и уже должна быть вода в "
-		+ isWater.length
-		+ " "
-		+ dativ(isWater.length.toString())
-		+ ":")
-	); 
+
+document.getElementById("uzhe_otkliuchili").value = noWater.length;
+document.getElementById("skoro_otkliuchat").value = soonNoWater.length;
+document.getElementById("dolzhny_vkliuchit").value = isWater.length;
+        
+        
+document.getElementById("svodka").appendChild(document.createTextNode(convertDate(d))); 
 }
 
 function addMarkers(indata, input) {

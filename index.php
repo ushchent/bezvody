@@ -22,13 +22,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="График отключения горячей воды в Минске.
-			График капитального ремонта жилых домов в Минске.">
+		<meta name="description" content="Здесь можно узнать, когда и где отключают горячую воду в Минске летом.">
         <title>График отключения горячей воды в Минске в 2016 году</title>
 
         <link rel="stylesheet" href="css/styles.css">
-<!-- Yandex.Metrika counter -->
 
+
+
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	if (document.location.hostname != "localhost") {
     (function (d, w, c) {
@@ -65,36 +66,48 @@
     </head>
 <body>
     <header>
-         <a href="/"><img src="img/logo.jpg" /></a>
+         <a href="/"><img id="logo" src="img/logo.jpg" /></a>
          <a href="http://vk.com/opendataby"><img id="vk" src="img/vk32.png" /></a>
     </header>
     <main>
 	<script> var days_left = <?php echo $days_till_margin; ?>;</script>
     <h1>14 дней без горячей воды<sup>май-июль 2016</sup></h1>
         <p>Каждый год в Минске с конца весны и до начала осени проводятся испытания тепловых сетей перед отопительным сезоном. Поэтому городские службы последовательно отключают горячее водоснабжение потребителям на срок, как правило, не более 14 суток.</p>
-        <p>В 2016 году отключения горячей воды в Минске начались 11 мая. Это информационное приложение позволяет узнать, где и как долго в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>
-        <p><sup id="ad">Реклама</sup>Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды. Возьмите <strong>водонагреватель в аренду</strong> на две недели. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.</p>
+        <p>В 2016 году отключения горячей воды начались 11 мая. Здесь можно узнать, где и как долго в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>     
+		 <div id="ad">
+		<p id="caption">Реклама</p>
+		<p id="text">Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды.<br>Возьмите <strong>водонагреватель в аренду</strong> на две недели. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.</p>
+		</div>
         <h2>Узнать дату отключения по адресу</h2>
         <input id="autocomplete" value="Введите адрес" onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
         <div id="data_show" class="hidden"></div>
-        <p id="response"></p>
-        <p id="message"></p>
-        <p id="svodka"></p>
-        <div id="menu">
-        <input class="button" type="button" id="uzhe_otkliuchili" value="Уже отключили">
-        <input class="button" type="button" id="skoro_otkliuchat" value="Скоро отключат">
-        <input class="button" type="button" id="dolzhny_vkliuchit" value="Должны включить">
-    </div>
-    <div id="mapDiv" class="map"></div>
-        <p>Во время испытаний возможны повреждения теплопровода. При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
-        <p>Приложение работает на основе <a href="http://minsk.gov.by/ru/actual/view/625/">данных Мингорисполкома</a>, которые проверены нами с помощью специалистов УП "Минсккоммунтеплосеть" и преобразованы в машиночитаемый вид.</p>
 <!--
-        <h2>График капитального ремонта жилых домов в Минске в 2016 году<sup id="remont_vol"></sup></h2>
-        <input id="remont" value="Введите адрес">
-        <input type="button" class="button" id="remont_button" value="Узнать">
-        <div id="remont_table"></div>
+        <p id="response"></p>
 -->
+        <p id="message"></p>
+        <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
+
+        <div id="menu">
+		
+        <div class="buttonGroup"><input class="button" type="button" id="uzhe_otkliuchili" value="Уже отключили">
+        <p>дома уже отключили,</p>
+        </div>
+        <div class="buttonGroup">
+        <input class="button" type="button" id="skoro_otkliuchat" value="Скоро отключат">
+        <p>скоро отключат и</p>
+        </div>
+        <div class="buttonGroup">
+        <input class="button" type="button" id="dolzhny_vkliuchit" value="Должны включить">
+        <p>уже должны подключить.</p>
+		</div>
+    </div>
+
+    <div id="mapDiv" class="map"></div>
+    <div id="warning">
+        <p>Во время испытаний возможны повреждения теплопровода.<br>При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
+        <p>Приложение работает на основе <a href="http://minsk.gov.by/ru/actual/view/625/">данных Мингорисполкома</a>, которые проверены нами с помощью специалистов УП "Минсккоммунтеплосеть" и преобразованы в машиночитаемый вид.</p>
+</div>
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
         <li>Компьютерные Вести, <a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>
@@ -117,10 +130,13 @@
     </main>
     <footer>
 	<p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>
+
 	<script src="js/main.js"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE&sensor=false"></script>
     <script src="js/markerclusterer_compiled.js"></script>
     <script src="js/script.js"></script>
+
     </footer>
 </body>
 </html>

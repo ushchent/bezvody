@@ -1,6 +1,6 @@
 var data;
 
-var message = document.getElementById("response");
+var message = document.getElementById("message");
 // Сначала только функции, которые используются в поиске адреса.
 var addressField = document.getElementById("autocomplete");
 addressField.onfocus = function() {
