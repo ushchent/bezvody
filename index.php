@@ -1,20 +1,17 @@
 <?php
 	$today_base_string = date("Y-m-d");
 	$db = new SQLite3("data/bezvody.sqlite");
-	$sql_netvody = "select * from data where start >= '$today_base_string;'";
-	
-	//$netvody = $db->query($sql_netvody);
-	//$netvody_ = $netvody->fetchArray(SQLITE3_ASSOC);
-    //$data = [];
-    //while ($row = $netvody->fetchArray(SQLITE3_ASSOC)) {
-        //array_push($data, $row);
-    //};
-    $margin_date_string = $db->query("select max(start) as max from data;")->fetchArray(SQLITE3_ASSOC)['max'];
+
+    $nearest_date_string = $db->query("select max(start) as max from data_all;")->fetchArray(SQLITE3_ASSOC)['max'];
 
     $today_base_date = new DateTime($today_base_string);
-    $margin_date = new DateTime($margin_date_string);
+    $nearest_date = new DateTime($nearest_date_string);
 
-	$days_till_margin = $today_base_date->diff($margin_date)->days;
+	$days_till_margin = $today_base_date->diff($nearest_date)->days;
+	
+
+$margin_date = $today_base_date->modify( '-14 days');
+	
 ?>
 
 <!DOCTYPE HTML>
@@ -71,7 +68,7 @@
     </header>
     <main>
 	<script> var days_left = <?php echo $days_till_margin; ?>;</script>
-    <h1>14 дней без горячей воды<sup>май-июль 2016</sup></h1>
+    <h1>14 дней без горячей воды<sup>май-август 2016</sup></h1>
         <p>Каждый год в Минске с конца весны и до начала осени проводятся испытания тепловых сетей перед отопительным сезоном. Поэтому городские службы последовательно отключают горячее водоснабжение потребителям на срок, как правило, не более 14 суток.</p>
         <p>В 2016 году отключения горячей воды начались 11 мая. Здесь можно узнать, где и как долго в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>     
 		 <div id="ad">
@@ -82,9 +79,6 @@
         <input id="autocomplete" value="Введите адрес" onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
         <div id="data_show" class="hidden"></div>
-<!--
-        <p id="response"></p>
--->
         <p id="message"></p>
         <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
 

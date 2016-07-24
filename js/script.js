@@ -7,14 +7,6 @@ var map,
     remontData,
     request;
 
-
-
-
-
-
-
-
-
 function insertMap() {
     var mapParameters = {
         center: new google.maps.LatLng(53.90, 27.56),
@@ -45,9 +37,6 @@ function dativ(s) {
 	return "домах";
 	}
 }
-
-
-
 
 function setMenuEvents() {
     var buttons = document.getElementById("menu").getElementsByClassName("button");
@@ -114,8 +103,6 @@ function writeMessage(d) {
 document.getElementById("uzhe_otkliuchili").value = noWater.length;
 document.getElementById("skoro_otkliuchat").value = soonNoWater.length;
 document.getElementById("dolzhny_vkliuchit").value = isWater.length;
-        
-        
 document.getElementById("svodka").appendChild(document.createTextNode(convertDate(d))); 
 }
 
@@ -148,14 +135,13 @@ function addMarkers(indata, input) {
 }
 
 
-
     insertMap();
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
     } else {  
         request = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    request.onreadystatechange = function(){
+    request.onreadystatechange = function() {
         if (request.readyState === 4 && request.status == 200) {
             jsonData = JSON.parse(request.responseText);
             writeMessage(today);
@@ -164,59 +150,5 @@ function addMarkers(indata, input) {
 
         }
     };
-    request.open("GET", "data/data.json", true);
+    request.open("GET", "data/data_all.json", true);
     request.send(null);
-
-
-//window.onload = function() {
-    
-//var itemField = document.getElementById("remont");
-    //itemField.onfocus = function() {
-        //if (itemField.value == "Введите адрес") {
-            //itemField.value = "";
-        //}
-    //}
-    //itemField.onblur = function() {
-        //if (itemField.value == "") {
-            //itemField.value = "Введите адрес";
-        //}
-    //}
-//var remont_addresses = [];
-
-
-
-
-
-//var remontButton = document.getElementById("remont_button");
-
-
-    //remontButton.onclick = function() {
-//if (document.getElementById("remont_table").getElementsByTagName("p")[0]) {
-            //document.getElementById("remont_table").removeChild(document.getElementById("remont_table").getElementsByTagName("p")[0]);
-       //}
-       
-    ////var addressButton = document.getElementById("address_button");
-    
-    //var selectedAddress = document.getElementById("remont").value;
-
-
-	     //var tableData = remontData.filter(function(d) { return d.adres == selectedAddress; });
-
-//var target = document.getElementById("remont_table");
-
-//if (tableData.length != 0) {
-    
-    //var paragraph = document.createElement("p");
-    //var message = 'По адресу "' + selectedAddress + '" капитальный ремонт ожидается в ' + tableData[0].year + '.';
-
-    //var text = document.createTextNode(message);
-    //paragraph.appendChild(text);
-    //target.appendChild(paragraph);    
-
- //} else {
-     //var message = "<p>У нас пока нет данных о проведении капремонта по указанному адресу.<br>Пожалуйста, обратитесь в свое ЖЭУ.</p>";
-     //target.innerHTML = message;
- //};
-    //}
-
-//};

@@ -58,7 +58,7 @@ sup {
     border: 3px solid black;
     padding: 0 10px 0 0;
     overflow: scroll;
-    max-height: 110px;
+    max-height: 150px;
     margin-top: 0;
 }
 #data_show li {
@@ -131,7 +131,7 @@ sup {
 	margin-top: 2em;
 }	
 
-/* Раздел ремонта */
+/* Подвал */
 
 footer p {
     padding-top: 1em;
