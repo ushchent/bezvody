@@ -65,12 +65,11 @@ sup {
     list-style: none;
     margin-left: 0;
     cursor: pointer;
+    padding: 2px;
 }
 
 #data_show li:hover {
 	background-color: #CECECE;
-	margin: 0;
-	padding: 0;
 }
 #data_show ul {
     margin: 0.2em auto 0.2em 0;
@@ -100,7 +99,7 @@ sup {
 	text-align: center;
     float: left;
     display: inline;
-    padding-right: 1em;
+    padding-right: .5em;
 }
 .button:hover {
     cursor: pointer;

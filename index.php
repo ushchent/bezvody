@@ -8,10 +8,18 @@
     $nearest_date = new DateTime($nearest_date_string);
 
 	$days_till_margin = $today_base_date->diff($nearest_date)->days;
-	
+	$margin_date = $today_base_date->modify('-14 days');
+	$margin_data_string = $margin_date->format("Y-m-d");
+		
+	$sql_netvody = "select count(*) as count from data_all where start between '$margin_data_string' and '$today_base_string';";
+	$netvody = $db->query($sql_netvody)->fetchArray(SQLITE3_ASSOC)["count"];
 
-$margin_date = $today_base_date->modify( '-14 days');
-	
+	$sql_skoronet = "select count(*) as count from data_all where start > '$today_base_string';";
+	$skoronet = $db->query($sql_skoronet)->fetchArray(SQLITE3_ASSOC)["count"];
+
+	$sql_jestvoda = "select count(*) as count from data_all where start < '$margin_data_string';";
+	$jestvoda = $db->query($sql_jestvoda)->fetchArray(SQLITE3_ASSOC)["count"];
+
 ?>
 
 <!DOCTYPE HTML>
@@ -21,11 +29,7 @@ $margin_date = $today_base_date->modify( '-14 days');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Здесь можно узнать, когда и где отключают горячую воду в Минске летом.">
         <title>График отключения горячей воды в Минске в 2016 году</title>
-
         <link rel="stylesheet" href="css/styles.css">
-
-
-
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	if (document.location.hostname != "localhost") {
@@ -58,7 +62,6 @@ $margin_date = $today_base_date->modify( '-14 days');
 }
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/36789295" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
 <!-- /Yandex.Metrika counter -->
     </head>
 <body>
@@ -81,27 +84,31 @@ $margin_date = $today_base_date->modify( '-14 days');
         <div id="data_show" class="hidden"></div>
         <p id="message"></p>
         <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
-
         <div id="menu">
-		
-        <div class="buttonGroup"><input class="button" type="button" id="uzhe_otkliuchili" value="Уже отключили">
+        <div class="buttonGroup"><input class="button" type="button" id="uzhe_otkliuchili" value="<?php echo $netvody; ?>">
         <p>дома уже отключили,</p>
         </div>
         <div class="buttonGroup">
-        <input class="button" type="button" id="skoro_otkliuchat" value="Скоро отключат">
+        <input class="button" type="button" id="skoro_otkliuchat" value="<?php echo $skoronet; ?>">
         <p>скоро отключат и</p>
         </div>
         <div class="buttonGroup">
-        <input class="button" type="button" id="dolzhny_vkliuchit" value="Должны включить">
+        <input class="button" type="button" id="dolzhny_vkliuchit" value="<?php echo $jestvoda; ?>">
         <p>уже должны подключить.</p>
 		</div>
     </div>
-
     <div id="mapDiv" class="map"></div>
     <div id="warning">
         <p>Во время испытаний возможны повреждения теплопровода.<br>При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
         <p>Приложение работает на основе <a href="http://minsk.gov.by/ru/actual/view/625/">данных Мингорисполкома</a>, которые проверены нами с помощью специалистов УП "Минсккоммунтеплосеть" и преобразованы в машиночитаемый вид.</p>
 </div>
+
+
+		<h2>График капитального ремонта жилых домов в Минске в 2016 году<sup id="count_remont"></sup></h2>
+        <input id="remont" onkeyup="get_address(this.value)" value="Введите адрес">
+        <input type="button" id="button remont" value="Узнать">
+        <div id="message_remont" class="hidden"></div>
+
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
         <li>Компьютерные Вести, <a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>
@@ -124,13 +131,10 @@ $margin_date = $today_base_date->modify( '-14 days');
     </main>
     <footer>
 	<p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>
-
 	<script src="js/main.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE&sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE"></script>
     <script src="js/markerclusterer_compiled.js"></script>
     <script src="js/script.js"></script>
-
     </footer>
 </body>
 </html>

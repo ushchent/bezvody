@@ -1,7 +1,7 @@
-var data;
+var data, today = new Date();
 
 var message = document.getElementById("message");
-// Сначала только функции, которые используются в поиске адреса.
+
 var addressField = document.getElementById("autocomplete");
 addressField.onfocus = function() {
         if (addressField.value == "Введите адрес") {
@@ -13,6 +13,21 @@ addressField.onblur = function() {
             addressField.value = "Введите адрес";
         }
     };
+
+var addressField = document.getElementById("remont");
+addressField.onfocus = function() {
+        if (addressField.value == "Введите адрес") {
+            addressField.value = "";
+        }
+    }
+addressField.onblur = function() {
+        if (addressField.value == "") {
+            addressField.value = "Введите адрес";
+        }
+    };
+
+document.getElementById("svodka").appendChild(document.createTextNode(convertDate(today)));
+
 
 // Определяем дату отключения и выводим сообщение.
 document.getElementById("show_data").onclick = function() {
@@ -36,6 +51,13 @@ if (document.getElementById("autocomplete").value == "Введите адрес.
 			 message.innerHTML = message_body;
 } 
 
+}
+
+function convertDate(d) {
+    var months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+    var month = d.getMonth();
+    var date = d.getDate();
+    return date + " " + months[month];
 }
 
 function list_items_listeners(item) {
@@ -91,7 +113,55 @@ function get_address(str) {
               document.getElementById("data_show").style.border = "1px solid #A5ACB2";
             }
           }
-          request.open("GET","api/?q=" + str, true);
+          request.open("GET", "api/?q=" + str, true);
+          request.send();
+        }
+}
+
+
+function get_remont(str) {
+
+	var target = document.getElementById("message_remont");
+	message.innerHTML = "";
+	
+	if (str.length <= 4 || str == "Введите адрес") {
+	
+		target.className = "hidden";
+	}
+          if (str.length > 4) {
+          
+          if (window.XMLHttpRequest) {
+
+            var request = new XMLHttpRequest();
+          } else {  
+            var request = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+
+				if (target.getElementsByTagName('ul')[0]) {
+					target.getElementsByTagName('ul')[0].remove();
+				}
+				var list = document.createElement("ul");
+
+              data = JSON.parse(request.responseText);
+              if (data.length == 0) {
+				target.className = "hidden";
+				} else {
+					target.className = "";
+				}
+              for (var i = 0; i < data.length; i++) {
+				  var address_text = document.createTextNode(data[i].address);
+				  var list_item = document.createElement("li");
+				  list_item.appendChild(address_text);
+				  list.appendChild(list_item);
+			  }
+			  target.appendChild(list);
+			  list_items_listeners("li")
+              document.getElementById("message_remont").style.border = "1px solid #A5ACB2";
+            }
+          }
+          request.open("GET", "api/?r=" + str, true);
           request.send();
         }
 }
