@@ -1,6 +1,9 @@
 <?php
 	$today_base_string = date("Y-m-d");
 	$db = new SQLite3("data/bezvody.sqlite");
+	
+	$sql_remont = "select count(*) as count from remont;";
+	$remont = $db->query($sql_remont)->fetchArray(SQLITE3_ASSOC)["count"];
 
     $nearest_date_string = $db->query("select max(start) as max from data_all;")->fetchArray(SQLITE3_ASSOC)['max'];
 
@@ -19,7 +22,6 @@
 
 	$sql_jestvoda = "select count(*) as count from data_all where start < '$margin_data_string';";
 	$jestvoda = $db->query($sql_jestvoda)->fetchArray(SQLITE3_ASSOC)["count"];
-
 ?>
 
 <!DOCTYPE HTML>
@@ -27,7 +29,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Здесь можно узнать, когда и где отключают горячую воду в Минске летом.">
+		<meta name="description" content="Здесь можно узнать, когда и где отключают горячую воду в Минске летом, а также где ожидается капитальный ремонт.">
         <title>График отключения горячей воды в Минске в 2016 году</title>
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
@@ -99,16 +101,14 @@
     </div>
     <div id="mapDiv" class="map"></div>
     <div id="warning">
-        <p>Во время испытаний возможны повреждения теплопровода.<br>При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
-        <p>Приложение работает на основе <a href="http://minsk.gov.by/ru/actual/view/625/">данных Мингорисполкома</a>, которые проверены нами с помощью специалистов УП "Минсккоммунтеплосеть" и преобразованы в машиночитаемый вид.</p>
-</div>
-
-
-		<h2>График капитального ремонта жилых домов в Минске в 2016 году<sup id="count_remont"></sup></h2>
-        <input id="remont" onkeyup="get_address(this.value)" value="Введите адрес">
-        <input type="button" id="button remont" value="Узнать">
-        <div id="message_remont" class="hidden"></div>
-
+        <p>Во время испытаний возможны повреждения теплопровода. При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
+        </div>
+		<h2>График капитального ремонта жилых домов в Минске в 2016 году<sup><?php echo $remont . " домов"; ?></sup></h2>
+        <input id="remont" onkeyup="get_remont(this.value)" value="Введите адрес">
+        <input type="button" id="buttonRemont" value="Узнать">
+        <div id="remontMessage" class="hidden"></div>
+        <p id="remontResponse"></p>
+<div id="info">
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
         <li>Компьютерные Вести, <a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>
@@ -123,11 +123,13 @@
         </ul>
         <p><strong>Прочее:</strong>
         <ul>
+        <li>Источник данных: Мингорисполком, <a href="http://minsk.gov.by/ru/actual/view/625/">http://minsk.gov.by/ru/actual/view/625/</a></li>
         <li>Репозиторий приложения: <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
         <li>Другие проекты сообщества "Открытые данные для Беларуси": <a href="http://opendata.by/projects/">opendata.by/projects</a></li>
         <li>Контакты сообщества для желающих присоединиться: <a href="http://opendata.by/about/">opendata.by/about</a></li>
+        <li>Редактор приложения Алексей Медвецкий, am@opendata.by.</li>
         </ul>
-        <p>Редактор приложения Алексей Медвецкий, am@opendata.by.</p>
+</div>
     </main>
     <footer>
 	<p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>

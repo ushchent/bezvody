@@ -40,14 +40,11 @@
 		
 		if (strlen($query) > 4) {
 			$stripped_query = mb_substr($query, 1, strlen($query));
-			$sql = "select address, start from data_all where address like '%{$stripped_query}%';";
+			$sql = "select address from remont where address like '%{$stripped_query}%';";
 			echo return_json($sql, $db);
 		} else {
 			echo "[]";
 		}
-		
-		
-		
 	} else {
 		echo "[]";
 	}

@@ -40,20 +40,20 @@ sup {
 
 /* Выпадающий список */
 
-#autocomplete {
+#autocomplete, #remont {
     font-size: 18px;
     padding: 5px;
     width: 50%;
     margin-bottom: 0;
 }
 
-#show_data {
+#show_data, #buttonRemont {
     font-size: 18px;
     padding: 5px;
     border-width: 1px;
     margin-left: .2%;
 }
-#data_show {
+#data_show, #remontMessage {
 	width: 50%;
     border: 3px solid black;
     padding: 0 10px 0 0;
@@ -61,17 +61,17 @@ sup {
     max-height: 150px;
     margin-top: 0;
 }
-#data_show li {
+#data_show li, #remontMessage li {
     list-style: none;
     margin-left: 0;
     cursor: pointer;
     padding: 2px;
 }
 
-#data_show li:hover {
+#data_show li:hover, #remontMessage li:hover {
 	background-color: #CECECE;
 }
-#data_show ul {
+#data_show ul, #remontMessage ul {
     margin: 0.2em auto 0.2em 0;
     padding-left: .3em;
 }
@@ -130,6 +130,9 @@ sup {
 	margin-top: 2em;
 }	
 
+#info {
+	margin-top: 2em;
+}
 /* Подвал */
 
 footer p {
