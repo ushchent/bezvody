@@ -1,4 +1,12 @@
 <?php
+
+	$ad_texts = [
+	'Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды. Возьмите <strong>водонагреватель в аренду</strong> c посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+	'С начала года в Минске родились 10 904 ребенка. Компания "НетосТех" поздравляет семьи с пополнением и предлагает взять <strong>водонагреватель напрокат</strong>. Оплата посуточная. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+	'Горячую воду можно вернуть. Компания "НетосТех" предлагает <strong>водонагреватели в аренду</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+	'В августе горячую воду отключат в 2 852 домах столицы. Возьмите <strong>водонагреватель напрокат</strong> на нужное вам количество дней в компании "НетосТех". Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+	'"А нам все равно!" &copy; Пускай отключают &#x263A;. Компания "НетосТех" предлагает <strong>водонагреватели напрокат</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.'
+	];
 	$today_base_string = date("Y-m-d");
 	$db = new SQLite3("data/bezvody.sqlite");
 	
@@ -33,6 +41,7 @@
         <title>График отключения горячей воды в Минске в 2016 году</title>
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
+
 <script type="text/javascript">
 	if (document.location.hostname != "localhost") {
     (function (d, w, c) {
@@ -64,6 +73,7 @@
 }
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/36789295" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
 <!-- /Yandex.Metrika counter -->
     </head>
 <body>
@@ -77,8 +87,9 @@
         <p>Каждый год в Минске с конца весны и до начала осени проводятся испытания тепловых сетей перед отопительным сезоном. Поэтому городские службы последовательно отключают горячее водоснабжение потребителям на срок, как правило, не более 14 суток.</p>
         <p>В 2016 году отключения горячей воды начались 11 мая. Здесь можно узнать, где и как долго в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>     
 		 <div id="ad">
-		<p id="caption">Реклама</p>
-		<p id="text">Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды.<br>Возьмите <strong>водонагреватель в аренду</strong> на две недели. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.</p>
+<!--		<p id="caption">Реклама</p>
+		<p id="text"><?php echo $ad_texts[array_rand($ad_texts)]?></p>
+-->
 		</div>
         <h2>Узнать дату отключения по адресу</h2>
         <input id="autocomplete" value="Введите адрес" onkeyup="get_address(this.value)">
@@ -88,7 +99,7 @@
         <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
         <div id="menu">
         <div class="buttonGroup"><input class="button" type="button" id="uzhe_otkliuchili" value="<?php echo $netvody; ?>">
-        <p>дома уже отключили,</p>
+        <p id="blue"></p>
         </div>
         <div class="buttonGroup">
         <input class="button" type="button" id="skoro_otkliuchat" value="<?php echo $skoronet; ?>">
@@ -125,9 +136,9 @@
         <ul>
         <li>Источник данных: Мингорисполком, <a href="http://minsk.gov.by/ru/actual/view/625/">http://minsk.gov.by/ru/actual/view/625/</a></li>
         <li>Репозиторий приложения: <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
+        <li>Редактор приложения Алексей Медвецкий, am@opendata.by</li>
         <li>Другие проекты сообщества "Открытые данные для Беларуси": <a href="http://opendata.by/projects/">opendata.by/projects</a></li>
         <li>Контакты сообщества для желающих присоединиться: <a href="http://opendata.by/about/">opendata.by/about</a></li>
-        <li>Редактор приложения Алексей Медвецкий, am@opendata.by.</li>
         </ul>
 </div>
     </main>

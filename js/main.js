@@ -54,26 +54,15 @@ if (document.getElementById("autocomplete").value == "Введите адрес"
 
 }
 
-document.getElementById("buttonRemont").onclick = function() {
-
-if (document.getElementById("remont").value == "Введите адрес" || remont_data == undefined) {
-	message_remont.innerHTML = "Пожалуйста, введите адрес.";
-} else if (remont_data.length > 0) {
-	
-		var address_selected = document.getElementById("remont").value;
-
-		for (var i = 0; i < remont_data.length; i++) {
-			if (remont_data[i].address == address_selected) {
-				var address_found = remont_data[i].address;
-				break;
-			};
-		};
-		
-		message_remont.innerHTML = "По адресу '" + address_found + "' капитальный ремонт ожидается в 2016 году.";		
-} else if (remont_data.length == 0) {
-			var message_body = "<p>В текущем году капитальный ремонт по указанному адресу не ожидается.";
-			 message_remont.innerHTML = message_body;
-}
+function nominativ(s) {
+	var n = parseInt(s.charAt(s.length - 1));
+	if (n == 1) {
+		return "дом";
+	} else if (n > 1 && n < 5) {
+		return "дома";
+	} else {
+	return "домов";
+	}
 }
 
 function convertDate(d) {
@@ -202,3 +191,31 @@ function get_remont(str) {
           request.send();
         }
 }
+
+
+document.getElementById("buttonRemont").onclick = function() {
+
+if (document.getElementById("remont").value == "Введите адрес" || remont_data == undefined) {
+	message_remont.innerHTML = "Пожалуйста, введите адрес.";
+} else if (remont_data.length > 0) {
+	
+		var address_selected = document.getElementById("remont").value;
+
+		for (var i = 0; i < remont_data.length; i++) {
+			if (remont_data[i].address == address_selected) {
+				var address_found = remont_data[i].address;
+				break;
+			};
+		};
+		
+		message_remont.innerHTML = "По адресу '" + address_found + "' капитальный ремонт ожидается в 2016 году.";		
+} else if (remont_data.length == 0) {
+			var message_body = "<p>В текущем году капитальный ремонт по указанному адресу не ожидается.";
+			 message_remont.innerHTML = message_body;
+}
+}
+
+document.getElementById("blue").innerHTML = nominativ(document.getElementById("uzhe_otkliuchili").value) + " уже отключили,";
+
+
+
