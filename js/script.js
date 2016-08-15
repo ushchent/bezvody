@@ -64,7 +64,7 @@ function addMarkers(indata, input, icon) {
 }
 
 function setMenuEvents() {
-    var buttons = document.getElementById("menu").getElementsByClassName("button");
+    var buttons = document.getElementsByClassName("menu")[0].getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].onclick = function() {
             markerclusterer.clearMarkers();

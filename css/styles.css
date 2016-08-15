@@ -14,6 +14,13 @@ header #vk {
     padding: 4px 6px;
     margin: 4px 6px;
 }
+header img {
+	max-width: 100%;
+	}
+header p a {
+	color: white;
+	text-decoration: none;
+}
 sup {
     font-weight: normal;
 	font-size: 12px;
@@ -83,14 +90,18 @@ sup {
 	margin-bottom: 2em;
 }
 
-/* Кнопки карты */
-#menu, #mapDiv {
+#buttonRemont {
+    margin-bottom: 1em;
+}
+
+/* Кнопки карты и тарифов */
+.menu, #mapDiv {
 	display: flex;
 }
 #mapDiv {
 	height: 23em;
 }
-#menu {
+.menu {
 	font-size: 1em;
 }
 #karta {
@@ -105,7 +116,7 @@ sup {
 .button:hover {
     cursor: pointer;
 }
-#menu .button {
+.menu .button {
     border-radius: 50%;
     -moz-border-radius: 50%; 
     -webkit-border-radius: 50%; 
@@ -113,16 +124,16 @@ sup {
     height: 4em;
     font-size: 1.1em;
 }
-#uzhe_otkliuchili {
+#uzhe_otkliuchili, #voda {
     border: 2px solid #008BFE;
     background-color: #008BFE;
     color: white;
 }
-#skoro_otkliuchat {
+#skoro_otkliuchat, #gas {
     border: 2px solid #FFBF00;
     background-color: #FFBF00;
     }
-#dolzhny_vkliuchit {
+#dolzhny_vkliuchit, #svet {
     border: 2px solid #EC1313;
     background-color: #EC1313;
     color: white;
@@ -132,8 +143,12 @@ sup {
 }	
 
 #info {
-	margin-top: 2em;
+	margin-top: 3em;
 }
+#gas.active, #svet.active, #voda.active {
+	border: 4px solid #FF9B86;
+}
+
 /* Подвал */
 
 footer p {

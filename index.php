@@ -1,10 +1,9 @@
 <?php
-
 	$ad_texts = [
 	'Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды. Возьмите <strong>водонагреватель в аренду</strong> c посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
 	'С начала года в Минске родились 10 904 ребенка. Компания "НетосТех" поздравляет семьи с пополнением и предлагает взять <strong>водонагреватель напрокат</strong>. Оплата посуточная. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
 	'Горячую воду можно вернуть. Компания "НетосТех" предлагает <strong>водонагреватели в аренду</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
-	'В августе горячую воду отключат в 2 852 домах столицы. Возьмите <strong>водонагреватель напрокат</strong> на нужное вам количество дней в компании "НетосТех". Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+	'В августе горячую воду отключают в 2 852 домах столицы. Возьмите <strong>водонагреватель напрокат</strong> на нужное вам количество дней в компании "НетосТех". Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
 	'"А нам все равно!" &copy; Пускай отключают &#x263A;. Компания "НетосТех" предлагает <strong>водонагреватели напрокат</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.'
 	];
 	$today_base_string = date("Y-m-d");
@@ -31,7 +30,6 @@
 	$sql_jestvoda = "select count(*) as count from data_all where start < '$margin_data_string';";
 	$jestvoda = $db->query($sql_jestvoda)->fetchArray(SQLITE3_ASSOC)["count"];
 ?>
-
 <!DOCTYPE HTML>
 <html lang="ru">
     <head>
@@ -41,7 +39,6 @@
         <title>График отключения горячей воды в Минске в 2016 году</title>
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
-
 <script type="text/javascript">
 	if (document.location.hostname != "localhost") {
     (function (d, w, c) {
@@ -73,7 +70,6 @@
 }
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/36789295" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
 <!-- /Yandex.Metrika counter -->
     </head>
 <body>
@@ -96,16 +92,17 @@
         <div id="data_show" class="hidden"></div>
         <p id="message"></p>
         <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
-        <div id="menu">
-        <div class="buttonGroup"><input class="button" type="button" id="uzhe_otkliuchili" value="<?php echo $netvody; ?>">
+        <div class="menu">
+		<div class="buttonGroup">
+			<input class="button" type="button" id="uzhe_otkliuchili" value="<?php echo $netvody; ?>">
         <p id="blue"></p>
         </div>
         <div class="buttonGroup">
-        <input class="button" type="button" id="skoro_otkliuchat" value="<?php echo $skoronet; ?>">
+        	<input class="button" type="button" id="skoro_otkliuchat" value="<?php echo $skoronet; ?>">
         <p>скоро отключат и</p>
         </div>
         <div class="buttonGroup">
-        <input class="button" type="button" id="dolzhny_vkliuchit" value="<?php echo $jestvoda; ?>">
+        	<input class="button" type="button" id="dolzhny_vkliuchit" value="<?php echo $jestvoda; ?>">
         <p>уже должны подключить.</p>
 		</div>
     </div>
@@ -118,6 +115,31 @@
         <input type="button" id="buttonRemont" value="Узнать">
         <div id="remontMessage" class="hidden"></div>
         <p id="remontResponse"></p>
+		<h2>Тарифы на основные коммунальные услуги в Минске</h2>	
+	
+        <div class="menu">
+        <div class="buttonGroup"><input class="button active" type="button"
+			id="voda" value="Вода">
+        </div>
+        <div class="buttonGroup">
+        <input class="button" type="button" id="gas" value="Газ">
+        </div>
+        <div class="buttonGroup">
+        <input class="button" type="button" id="svet" value="Свет">
+		</div>
+</div>
+		<section id="tarify">
+			<h3>Водоснабжение</h3>                                      
+			  <ul>                                                                    
+			    <li>До 140 литров на человека в месяц &ndash; 0,279 рублей за кубометр</li>
+	            <li>Свыше 140 литров &ndash; 0,6875 рублей</li>               
+			  </ul>                                                                   
+			<h3>Водоотведение</h3>                                                  
+			  <ul>                                                                    
+			    <li>До 140 литров &ndash; 0,1863 рубля</li>                   
+			    <li>Свыше 140 литров &ndash; 0,453 рубля</li>                 
+			  </ul>
+		</section>
 <div id="info">
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
@@ -148,5 +170,74 @@
     <script src="js/markerclusterer_compiled.js"></script>
     <script src="js/script.js"></script>
     </footer>
+	<script> 
+		function handle_classes(d) {
+			var target = document.getElementsByClassName("menu")[1];
+			var buttons = target.getElementsByClassName("button");
+			for (var i = 0; i < buttons.length; i++) {
+				buttons[i].classList.remove("active");
+			}
+			var classes = d.classList;
+			classes.add("active");
+
+
+		}
+		var voda = `<h3>Водоснабжение</h3>
+		<ul>
+			<li>До 140 литров на человека в месяц &ndash; 0,279 рублей за
+			кубометр</li>
+			<li>Свыше 140 литров на человека &ndash; 0,6875 рублей</li>
+		</ul>
+		<h3>Водоотведение</h3>
+		<ul>
+			<li>До 140 литров на человека &ndash; 0,1863 рубля</li>
+			<li>Свыше 140 литров на человека &ndash; 0,453 рубля</li>
+		</ul>`;
+		var gas = `<h3>Со счетчиком газа и газовым котлом</h3>
+					<ul>
+					<li>До 3 000 м3 в год &ndash; 0,2842 рубля за
+					кубометр / 0,0776 рубля за кубометр в отопительный сезон</li>
+					<li>От 3 000 м3 до 5 500 м3 &ndash; 0,36946 рубля /
+					0,1008 рубля</li>
+					<li>Свыше 5 500 м3 &ndash; 0,3738 рубля</li>
+					</ul>
+					<h3>Со счетчиком и без газового котла</h3>
+					<ul>
+					<li>за кубометр &ndash; 0,2842 рубля</li>
+					</ul>
+					<h3>Без счетчика и без газового котла</h3>
+						<ul>
+							<li>На одного человека в месяц &ndash; 2,26 рубля</li>
+
+						</ul>`;
+		var svet = `<h3>С электроплитой</h3>
+							<ul>
+							<li>При потреблении до 250 кВт&#183;ч в
+							месяц &ndash; 0,1009 рубля</li>
+							<li>от 250 до 400 кВт&#183;ч &ndash; 0,13117</li>
+							<li>Свыше 400 кВт&#183;ч &ndash; 0,19</li>
+							</ul>
+							<h3>С газовой плитой</h3>
+							<ul>
+							<li>До 150 кВт&#183;ч &ndash; 0,1188</li>
+							<li>от 150 до 300 кВт&#183;ч &ndash; 0,1544</li>	
+							<li>свыше 300 кВт&#183;ч &ndash; 0,19</li>	
+							</ul>	
+						`;
+		var voda_handler = document.getElementById("voda");
+		var target = document.getElementById("tarify");
+		voda_handler.onclick = function() {
+			handle_classes(this);
+			target.innerHTML = voda;
+		} 
+		var gas_handler = document.getElementById("gas");
+		gas_handler.onclick = function() { handle_classes(this);
+			target.innerHTML = gas; };
+		var svet_handler = document.getElementById("svet");
+		svet_handler.onclick = function() {
+			handle_classes(this);
+			target.innerHTML = svet;
+		}
+	</script>
 </body>
 </html>
