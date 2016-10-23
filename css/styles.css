@@ -48,6 +48,7 @@ sup {
 /* Выпадающий список */
 
 #autocomplete, #remont {
+    position: realtive;
     font-size: 20px;
     padding: 5px;
     width: 50%;
@@ -61,7 +62,9 @@ sup {
     margin-left: .2%;
 }
 #data_show, #remontMessage {
-	width: 50%;
+    position: absolute;
+    background-color: white;
+	width: 40%;
     border: 3px solid black;
     padding: 0 10px 0 0;
     overflow: scroll;
@@ -90,9 +93,6 @@ sup {
 	margin-bottom: 2em;
 }
 
-#buttonRemont {
-    margin-bottom: 1em;
-}
 
 /* Кнопки карты и тарифов */
 .menu, #mapDiv {
