@@ -13,24 +13,22 @@
 		return json_encode($json_data);
 		$db->close();	
 	};
-
 	$db = new SQLite3('../data/bezvody.sqlite');
-
 	if (isset($_GET['q'])) {
 		$query = (string)trim($_GET['q']);
 
 		if ($query == "uzhe_otkliuchili") {
-			$sql = "select * from data_all where start between '$margin_data_string' and '$today_base_string';";
+			$sql = "select * from data_all where start between '$margin_data_string' and '$today_base_string' and lat != '';";
 			echo return_json($sql, $db);
 		} else if ($query == "skoro_otkliuchat") {
-			$sql = "select * from data_all where start > '$today_base_string';";
+			$sql = "select * from data_all where start > '$today_base_string' and lat != '';";
 			echo return_json($sql, $db);
 		} else if ($query == "dolzhny_vkliuchit") {
-			$sql = "select * from data_all where start < '$margin_data_string';";
+			$sql = "select * from data_all where start < '$margin_data_string' and lat != '';";
 			echo return_json($sql, $db);
 		} else if (strlen($query) > 4) {
 			$stripped_query = mb_substr($query, 1, strlen($query));
-			$sql = "select address, start from data_all where address like '%{$stripped_query}%';";
+			$sql = "select data_all.address, data_all.start, uchastkovyje.fio as fio_uchmil from data_all left join uchastkovyje on data_all.address = uchastkovyje.address where data_all.address like '%{$stripped_query}%';";
 			echo return_json($sql, $db);
 		} else {
 			echo "[]";
@@ -40,13 +38,15 @@
 		
 		if (strlen($query) > 4) {
 			$stripped_query = mb_substr($query, 1, strlen($query));
-			$sql = "select address from remont where address like '%{$stripped_query}%';";
+			$sql = "select address from remont_2018 where address like '%{$stripped_query}%';";
 			echo return_json($sql, $db);
 		} else {
 			echo "[]";
 		}
+    } else if (isset($_GET["d"])) {
+        $query = (string)trim($_GET["d"]);
+        $sql = "select * from data_all where start = '$query' and lat != '';";
+        echo return_json($sql, $db);
 	} else {
 		echo "[]";
 	}
-?>
-

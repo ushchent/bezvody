@@ -1,42 +1,51 @@
 <?php
-	$ad_texts = [
-	'Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды. Возьмите <strong>водонагреватель в аренду</strong> c посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+
+	$ad_texts = [ 'Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды. Возьмите <strong>водонагреватель в аренду</strong> c посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
 	'С начала года в Минске родились 10 904 ребенка. Компания "НетосТех" поздравляет семьи с пополнением и предлагает взять <strong>водонагреватель напрокат</strong>. Оплата посуточная. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
 	'Горячую воду можно вернуть. Компания "НетосТех" предлагает <strong>водонагреватели в аренду</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
-	'В августе горячую воду отключают в 2 852 домах столицы. Возьмите <strong>водонагреватель напрокат</strong> на нужное вам количество дней в компании "НетосТех". Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+   'В августе горячую воду отключают в 2 852 домах столицы. Возьмите <strong>водонагреватель напрокат</strong> на нужное вам количество дней в компании "НетосТех". Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
 	'"А нам все равно!" &copy; Пускай отключают &#x263A;. Компания "НетосТех" предлагает <strong>водонагреватели напрокат</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.'
 	];
+
+$rand_keys = array_rand($ad_texts, 1);
+$ad_selected = $ad_texts[$rand_keys];
+
+	// Определяем сегодняшнюю дату
 	$today_base_string = date("Y-m-d");
 	$db = new SQLite3("data/bezvody.sqlite");
 	
-	$sql_remont = "select count(*) as count from remont;";
+	$sql_remont = "select count(*) as count from remont_2018;";
 	$remont = $db->query($sql_remont)->fetchArray(SQLITE3_ASSOC)["count"];
 
-    $nearest_date_string = $db->query("select max(start) as max from data_all;")->fetchArray(SQLITE3_ASSOC)['max'];
-
+    $nearest_date_string = $db->query("select min(start) as min from data_all;")->fetchArray(SQLITE3_ASSOC)['min'];
+    
+    $farthest_date_string = $db->query("select max(start) as max from data_all;")->fetchArray(SQLITE3_ASSOC)['max'];
+    
     $today_base_date = new DateTime($today_base_string);
     $nearest_date = new DateTime($nearest_date_string);
+    $farthest_date = new DateTime($farthest_date_string);
 
-	$days_till_margin = $today_base_date->diff($nearest_date)->days;
+	$days_till_margin = $today_base_date->diff($farthest_date)->days;
 	$margin_date = $today_base_date->modify('-14 days');
 	$margin_data_string = $margin_date->format("Y-m-d");
-		
+	
 	$sql_netvody = "select count(*) as count from data_all where start between '$margin_data_string' and '$today_base_string';";
 	$netvody = $db->query($sql_netvody)->fetchArray(SQLITE3_ASSOC)["count"];
-
 	$sql_skoronet = "select count(*) as count from data_all where start > '$today_base_string';";
 	$skoronet = $db->query($sql_skoronet)->fetchArray(SQLITE3_ASSOC)["count"];
 
 	$sql_jestvoda = "select count(*) as count from data_all where start < '$margin_data_string';";
 	$jestvoda = $db->query($sql_jestvoda)->fetchArray(SQLITE3_ASSOC)["count"];
+
 ?>
+
 <!DOCTYPE HTML>
 <html lang="ru">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Здесь можно узнать, когда и где отключают горячую воду в Минске летом, а также где ожидается капитальный ремонт.">
-        <title>График отключения горячей воды в Минске в 2016 году</title>
+        <title>График отключения горячей воды в Минске в 2018 году</title>
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -69,56 +78,73 @@
 	console.log("You're on localhost.");
 }
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/36789295" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/36789295"
+		style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
     </head>
 <body>
     <header>
-         <a href="/"><img id="logo" src="img/logo.jpg" /></a>
+         <img id="logo" src="img/logo.jpg" />
          <a href="http://vk.com/opendataby"><img id="vk" src="img/vk32.png" /></a>
     </header>
     <main>
 	<script> var days_left = <?php echo $days_till_margin; ?>;</script>
-    <h1>14 дней без горячей воды<sup>май-август 2016</sup></h1>
-        <p>Каждый год в Минске с конца весны и до начала осени проводятся испытания тепловых сетей перед отопительным сезоном. Поэтому городские службы последовательно отключают горячее водоснабжение потребителям на срок, как правило, не более 14 суток.</p>
-		<p>В 2016 году отключения горячей воды начались 11 мая и должны были завершиться 29 августа. Поздравляем всех посетителей сайта с окончанием сезона отключений!
-<!-- <p>Здесь можно узнать, где и как долго в городе уже нет горячей воды, где только планируют отключать и где уже должны были включить.</p>     
-		 <div id="ad">
-
-		<p id="caption">Реклама</p>
+    <h1>14 дней без горячей воды<sup>май &ndash; июнь 2018</sup></h1>
+		<p>Каждый год в Минске с конца весны и до начала осени проводятся
+			испытания тепловых сетей перед отопительным сезоном. Поэтому
+			городские службы последовательно отключают горячее водоснабжение
+			потребителям на срок, как правило, не более 14 суток.</p>
+		<p>В 2018 году отключения горячей воды в Минске начались 2 мая.
+			Дату отключения можно узнать через поиск по адресу.
+			График обновлен <strong>19 мая</strong>.</p>
+        <div id="ad">
+			<p id="caption">Реклама</p>
+			<p id="text"><?php echo $ad_texts[0]; ?></p>
 		</div>
--->
         <h2>Узнать дату отключения по адресу</h2>
-        <input id="autocomplete" value="Введите адрес" onkeyup="get_address(this.value)">
+		<input id="autocomplete" value="Введите адрес"
+				onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
         <div id="data_show" class="hidden"></div>
         <p id="message"></p>
         <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
         <div class="menu">
 		<div class="buttonGroup">
-			<input class="button" type="button" id="uzhe_otkliuchili" value="<?php echo $netvody; ?>">
+			<input class="button" type="button" id="uzhe_otkliuchili"
+				value="<?php echo $netvody; ?>">
         <p id="blue"></p>
         </div>
         <div class="buttonGroup">
-        	<input class="button" type="button" id="skoro_otkliuchat" value="<?php echo $skoronet; ?>">
+			<input class="button" type="button" id="skoro_otkliuchat"
+				value="<?php echo $skoronet; ?>">
         <p>скоро отключат и</p>
         </div>
         <div class="buttonGroup">
-        	<input class="button" type="button" id="dolzhny_vkliuchit" value="<?php echo $jestvoda; ?>">
+			<input class="button" type="button" id="dolzhny_vkliuchit"
+				value="<?php echo $jestvoda; ?>">
         <p>уже должны подключить.</p>
 		</div>
     </div>
     <div id="mapDiv" class="map"></div>
     <div id="warning">
-        <p>Во время испытаний возможны повреждения теплопровода. При обнаружении течи воды или парения из земли, колодцев, провалов грунта необходимо срочно сообщить об этом диспетчеру УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>, или диспетчеру филиала «Минские тепловые сети» по тел. <strong>298 27 27</strong>, <strong>298 27 37</strong>, или диспетчеру ЦДС РУП «Минскэнерго» по тел. <strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
+		<p>Во время испытаний возможны повреждения теплопровода.
+			При обнаружении течи воды или парения из земли, колодцев, провалов
+			грунта необходимо срочно сообщить об этом диспетчеру
+			УП «Минсккоммунтеплосеть» по тел. <strong>267-88-88</strong>,
+			или диспетчеру филиала «Минские тепловые сети» по тел.
+			<strong>298 27 27</strong>, <strong>298 27 37</strong>,
+			или диспетчеру ЦДС РУП «Минскэнерго» по тел.
+			<strong>227 35 24</strong> или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
         </div>
-		<h2>График капитального ремонта жилых домов в Минске в 2016 году<sup><?php echo $remont . " домов"; ?></sup></h2>
+		<h2>График капитального ремонта жилых домов в Минске в 2018 году<sup>
+			<?php echo $remont . " домов"; ?></sup>
+		</h2>
         <input id="remont" onkeyup="get_remont(this.value)" value="Введите адрес">
         <input type="button" id="buttonRemont" value="Узнать">
         <div id="remontMessage" class="hidden"></div>
         <p id="remontResponse"></p>
+<!--
 		<h2>Тарифы на основные коммунальные услуги в Минске</h2>	
-	
         <div class="menu">
         <div class="buttonGroup"><input class="button active" type="button"
 			id="voda" value="Вода">
@@ -132,16 +158,17 @@
 </div>
 		<section id="tarify">
 			<h3>Водоснабжение</h3>                                      
-			  <ul>                                                                    
+			  <ul>
 			    <li>До 140 литров на человека в месяц &ndash; 0,279 рублей за кубометр</li>
-	            <li>Свыше 140 литров &ndash; 0,6875 рублей</li>               
-			  </ul>                                                                   
+	            <li>Свыше 140 литров &ndash; 0,6875 рублей</li>           
+			  </ul>
 			<h3>Водоотведение</h3>                                                  
-			  <ul>                                                                    
+			  <ul>
 			    <li>До 140 литров &ndash; 0,1863 рубля</li>                   
 			    <li>Свыше 140 литров &ndash; 0,453 рубля</li>                 
 			  </ul>
 		</section>
+-->
 <div id="info">
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
@@ -154,12 +181,13 @@
         <li>Sputnik Беларусь, <a href="http://sputnik.by/technology/20150605/1015580135.html">http://sputnik.by/technology/20150605/...</a></li>
 		<li>Еўрарадыё, <a href="http://euroradio.by/shto-robyac-kamunalshchyki-pakul-adklyuchanaya-garachaya-vada">http://euroradio.by/shto-robyac-kamunalshchyki...</a></li>
 		<li>Комсомольская правда, <a href="http://www.kp.by/daily/26535.5/3552619/">http://www.kp.by/daily/26535.5/3552619</a></li>
+		<li>Белорусские новости, <a href="http://naviny.by/new/20170510/1494406937-v-minske-nachalos-sezonnoe-otklyuchenie-goryachey-vody">http://naviny.by/new/20170510/1494406937...</a></li>
         </ul>
         <p><strong>Прочее:</strong>
         <ul>
-        <li>Источник данных: Мингорисполком, <a href="http://minsk.gov.by/ru/actual/view/625/">http://minsk.gov.by/ru/actual/view/625/</a></li>
-        <li>Репозиторий приложения: <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
-        <li>Редактор приложения Алексей Медвецкий, am@opendata.by</li>
+        <li>Источник данных: Мингорисполком, <a href="http://minsk.gov.by/ru/actual/view/712/">http://minsk.gov.by/ru/actual/view/712/</a></li>
+        <li>Репозиторий проекта: <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
+        <li>Редактор проекта Алексей Медвецкий, am@opendata.by</li>
         <li>Другие проекты сообщества "Открытые данные для Беларуси": <a href="http://opendata.by/projects/">opendata.by/projects</a></li>
         <li>Контакты сообщества для желающих присоединиться: <a href="http://opendata.by/about/">opendata.by/about</a></li>
         </ul>
@@ -186,43 +214,43 @@
 		}
 		var voda = `<h3>Водоснабжение</h3>
 		<ul>
-			<li>До 140 литров на человека в месяц &ndash; 0,279 рублей за
+			<li>До 140 литров на человека в месяц &ndash; 0.5322 рублей за
 			кубометр</li>
-			<li>Свыше 140 литров на человека &ndash; 0,6875 рублей</li>
+			<li>Свыше 140 литров на человека &ndash; 0.7638 рублей</li>
 		</ul>
 		<h3>Водоотведение</h3>
 		<ul>
-			<li>До 140 литров на человека &ndash; 0,1863 рубля</li>
-			<li>Свыше 140 литров на человека &ndash; 0,453 рубля</li>
+			<li>До 140 литров на человека &ndash; 0.3554 рубля</li>
+			<li>Свыше 140 литров на человека &ndash; 0.5103 рубля</li>
 		</ul>`;
 		var gas = `<h3>Со счетчиком газа и газовым котлом</h3>
 					<ul>
-					<li>До 3 000 м3 в год &ndash; 0,2842 рубля за
-					кубометр / 0,0776 рубля за кубометр в отопительный сезон</li>
-					<li>От 3 000 м3 до 5 500 м3 &ndash; 0,36946 рубля /
-					0,1008 рубля</li>
-					<li>Свыше 5 500 м3 &ndash; 0,3738 рубля</li>
+					<li>До 3 000 м3 в год &ndash; 0,2853 рубля за
+					кубометр / 0,0911 рубля за кубометр в отопительный сезон</li>
+					<li>От 3 000 м3 до 5 500 м3 &ndash; 0,3709 рубля /
+					0,1184 рубля</li>
+					<li>Свыше 5 500 м3 &ndash; 0.4226 рубля</li>
 					</ul>
 					<h3>Со счетчиком и без газового котла</h3>
 					<ul>
-					<li>за кубометр &ndash; 0,2842 рубля</li>
+					<li>за кубометр &ndash; 0.2853 рубля</li>
 					</ul>
 					<h3>Без счетчика и без газового котла</h3>
 						<ul>
-							<li>На одного человека в месяц &ndash; 2,26 рубля</li>
+							<li>На одного человека в месяц &ndash; 3.38 рубля</li>
 
 						</ul>`;
 		var svet = `<h3>С электроплитой</h3>
 							<ul>
 							<li>При потреблении до 250 кВт&#183;ч в
-							месяц &ndash; 0,1009 рубля</li>
-							<li>от 250 до 400 кВт&#183;ч &ndash; 0,13117</li>
-							<li>Свыше 400 кВт&#183;ч &ndash; 0,19</li>
+							месяц &ndash; 12 копеек</li>
+							<li>от 250 до 400 кВт&#183;ч &ndash; 16 копеек</li>
+							<li>Свыше 400 кВт&#183;ч &ndash; 18 копеек</li>
 							</ul>
 							<h3>С газовой плитой</h3>
 							<ul>
-							<li>До 150 кВт&#183;ч &ndash; 0,1188</li>
-							<li>от 150 до 300 кВт&#183;ч &ndash; 0,1544</li>	
+							<li>До 150 кВт&#183;ч &ndash; 14 копеек</li>
+							<li>от 150 до 300 кВт&#183;ч &ndash; 19 копеек</li>	
 							<li>свыше 300 кВт&#183;ч &ndash; 0,19</li>	
 							</ul>	
 						`;

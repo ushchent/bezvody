@@ -53,13 +53,17 @@ sup {
     padding: 5px;
     width: 50%;
     margin-bottom: 0;
+    background-color: white;
+    border: 1px solid black;
 }
 
 #show_data, #buttonRemont {
     font-size: 20px;
-    padding: 5px;
+    padding: 4px;
     border-width: 1px;
     margin-left: .2%;
+    background-color: white;
+    border: 1px solid black;
 }
 #data_show, #remontMessage {
     position: absolute;
@@ -99,7 +103,7 @@ sup {
 	display: flex;
 }
 #mapDiv {
-	height: 23em;
+	height: 24em;
 }
 .menu {
 	font-size: 1em;

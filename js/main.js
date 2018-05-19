@@ -29,6 +29,21 @@ remontField.onblur = function() {
 
 document.getElementById("svodka").appendChild(document.createTextNode(convertDate(today)));
 
+// Обработка даты в сообщении о дате отключения воды
+function parse_start_date(start) {
+	var months = {
+		"04": "апреля",
+		"05": "мая",
+		"06": "июня",
+		"07": "июля",
+		"08": "августа",
+		"09": "сентября"
+	};
+	var month = start.slice(5,7);
+	var day = (start.slice(8,10)[0] == 0 ? start.slice(8,10)[1] : start.slice(8,10));
+	var readable_date = day + " " + months[month];
+	return readable_date;
+}
 
 // Определяем дату отключения и выводим сообщение.
 document.getElementById("show_data").onclick = function() {
@@ -42,11 +57,19 @@ if (document.getElementById("autocomplete").value == "Введите адрес"
 		for (var i = 0; i < data.length; i++) {
 			if (data[i].address == address_selected) {
 				var start = data[i].start;
+				if (data[i].fio_uchmil != "") {
+					var uch_mil = data[i].fio_uchmil;
+				}
 				break;
 			};
 		};
+		// Если введенный адрес нашелся в выпавшем списке и есть дата
+		start ? message.innerHTML = "Горячую воду отключают " + parse_start_date(start) + "." + (uch_mil ? "<br>Ваш участковый милиционер " + uch_mil + ".<br>Больше информации по вашему дому &ndash; в проекте " + '<a href="http://doma.opendata.by">Я дома</a>.' : "") : 
+			message.innerHTML = "<p>В ближайшие " + days_left + " дней отключения горячей воды по указанному адресу не ожидается. Пожалуйста, обратитесь позже.";
+		// Скрываем список
+		document.getElementById("data_show").className = "hidden";
 
-		message.innerHTML = "По адресу '" + address_selected + "' горячую воду отключают " + start + ".";		
+		//message.innerHTML = "Горячую воду отключают " + parse_start_date(start) + ".";		
 } else if (data.length == 0) {
 			var message_body = "<p>В ближайшие " + days_left + " дней отключения горячей воды по указанному адресу не ожидается. Пожалуйста, обратитесь позже.";
 			 message.innerHTML = message_body;
@@ -208,9 +231,9 @@ if (document.getElementById("remont").value == "Введите адрес" || re
 			};
 		};
 		
-		message_remont.innerHTML = "По адресу '" + address_found + "' капитальный ремонт ожидается в 2016 году.";		
+		message_remont.innerHTML = "У вас запланирован капитальный ремонт в текущем году.";		
 } else if (remont_data.length == 0) {
-			var message_body = "<p>В текущем году капитальный ремонт по указанному адресу не ожидается.";
+			var message_body = "<p>В текущем году капитальный ремонт у вас не ожидается.";
 			 message_remont.innerHTML = message_body;
 }
 }

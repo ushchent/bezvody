@@ -60,6 +60,7 @@ function addMarkers(indata, input, icon) {
             width: 53
                 }]
             };
+    
     markerclusterer = new MarkerClusterer(map, markers, mcOptions);
 }
 
