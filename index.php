@@ -185,7 +185,7 @@ $ad_selected = $ad_texts[$rand_keys];
         </ul>
         <p><strong>Прочее:</strong>
         <ul>
-        <li>Источники данных: УП "<a href="http://minsk.gov.by/ru/actual/view/712/">Минсккоммунтеплосеть</a>" и РУП "<a href="http://minskenergo.by/">Минскэнерго</a>"</li>
+        <li>Источники данных: УП "<a href="https://mkts.by/">Минсккоммунтеплосеть</a>" и РУП "<a href="http://minskenergo.by/">Минскэнерго</a>"</li>
         <li>Репозиторий проекта: <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
         <li>Редактор проекта Алексей Медвецкий, am@opendata.by</li>
         <li>Другие проекты сообщества "Открытые данные для Беларуси": <a href="http://opendata.by/projects/">opendata.by/projects</a></li>
