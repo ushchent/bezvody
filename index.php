@@ -40,11 +40,20 @@ $ad_selected = $ad_texts[$rand_keys];
 ?>
 
 <!DOCTYPE HTML>
-<html lang="ru">
+<html lang="ru" prefix="og: http://ogp.me/ns#">
     <head>
         <meta charset="utf-8">
+		<meta property="og:title" content="14 дней без горячей воды." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://bezvody.opendata.by" />
+		<meta property="og:description" 
+			content="Актуальный график отключений горячей воды в Минске
+				в 2018 году: даты отключений и интерактивная карта города.
+				График капитального ремонта домов в Минске." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Здесь можно узнать, когда и где отключают горячую воду в Минске летом, а также где ожидается капитальный ремонт.">
+		<meta name="description" content="Здесь можно узнать, когда и где
+				отключают горячую воду в Минске летом, а также где
+				ожидается капитальный ремонт.">
         <title>График отключения горячей воды в Минске в 2018 году</title>
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
@@ -173,24 +182,38 @@ $ad_selected = $ad_texts[$rand_keys];
 <div id="info">
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
-        <li>Компьютерные Вести, <a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>
-        <li>Телеграф, <a href="http://telegraf.by/2015/05/290076-minchane-sozdali-prilojenie-14-dnei-bez-goryachei-vodi">http://telegraf.by/2015/05/290076...</a></li>
-        <li>Хартия97, <a href="http://charter97.org/ru/news/2015/5/5/150281/">http://charter97.org/ru/news/2015/5/5/150281/</a></li>
-        <li>Как Тут Жить, <a href="http://kaktutzhit.by/news/minsk-14-dnei">http://kaktutzhit.by/news/minsk-14-dnei</a></li>
-        <li>Агентство социальных новостей, <a href="http://socnews.by/cites/2015/05/07/article_4622">http://socnews.by/cites/2015/05/07/...</a></li>
-        <li>Новы Час, <a href="http://novychas.info/hramadstva/mincanie_stvaryli_interaktyuny/">http://novychas.info/hramadstva/mincanie...</a></li>
-        <li>Sputnik Беларусь, <a href="http://sputnik.by/technology/20150605/1015580135.html">http://sputnik.by/technology/20150605/...</a></li>
-		<li>Еўрарадыё, <a href="http://euroradio.by/shto-robyac-kamunalshchyki-pakul-adklyuchanaya-garachaya-vada">http://euroradio.by/shto-robyac-kamunalshchyki...</a></li>
-		<li>Комсомольская правда, <a href="http://www.kp.by/daily/26535.5/3552619/">http://www.kp.by/daily/26535.5/3552619</a></li>
-		<li>Белорусские новости, <a href="http://naviny.by/new/20170510/1494406937-v-minske-nachalos-sezonnoe-otklyuchenie-goryachey-vody">http://naviny.by/new/20170510/1494406937...</a></li>
+		<li>Компьютерные Вести,
+		<a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>
+		<li>Телеграф,
+		<a href="http://telegraf.by/2015/05/290076-minchane-sozdali-prilojenie-14-dnei-bez-goryachei-vodi">http://telegraf.by/2015/05/290076...</a></li>
+		<li>Хартия97,
+		<a href="http://charter97.org/ru/news/2015/5/5/150281/">http://charter97.org/ru/news/2015/5/5/150281/</a></li>
+		<li>Как Тут Жить,
+		<a href="http://kaktutzhit.by/news/minsk-14-dnei">http://kaktutzhit.by/news/minsk-14-dnei</a></li>
+		<li>Агентство социальных новостей,
+		<a href="http://socnews.by/cites/2015/05/07/article_4622">http://socnews.by/cites/2015/05/07/...</a></li>
+		<li>Новы Час,
+		<a href="http://novychas.info/hramadstva/mincanie_stvaryli_interaktyuny/">http://novychas.info/hramadstva/mincanie...</a></li>
+		<li>Sputnik Беларусь,
+		<a href="http://sputnik.by/technology/20150605/1015580135.html">http://sputnik.by/technology/20150605/...</a></li>
+		<li>Еўрарадыё,
+		<a href="http://euroradio.by/shto-robyac-kamunalshchyki-pakul-adklyuchanaya-garachaya-vada">http://euroradio.by/shto-robyac-kamunalshchyki...</a></li>
+		<li>Комсомольская правда,
+		<a href="http://www.kp.by/daily/26535.5/3552619/">http://www.kp.by/daily/26535.5/3552619</a></li>
+		<li>Белорусские новости,
+		<a href="http://naviny.by/new/20170510/1494406937-v-minske-nachalos-sezonnoe-otklyuchenie-goryachey-vody">http://naviny.by/new/20170510/1494406937...</a></li>
         </ul>
         <p><strong>Прочее:</strong>
         <ul>
-        <li>Источники данных: УП "<a href="https://mkts.by/">Минсккоммунтеплосеть</a>" и РУП "<a href="http://minskenergo.by/">Минскэнерго</a>"</li>
-        <li>Репозиторий проекта: <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
+		<li>Источники данных: УП "<a href="https://mkts.by/">Минсккоммунтеплосеть</a>"
+			и РУП "<a href="http://minskenergo.by/">Минскэнерго</a>"</li>
+		<li>Репозиторий проекта:
+		<a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
         <li>Редактор проекта Алексей Медвецкий, am@opendata.by</li>
-        <li>Другие проекты сообщества "Открытые данные для Беларуси": <a href="http://opendata.by/projects/">opendata.by/projects</a></li>
-        <li>Контакты сообщества для желающих присоединиться: <a href="http://opendata.by/about/">opendata.by/about</a></li>
+		<li>Другие проекты сообщества "Открытые данные для Беларуси":
+		<a href="http://opendata.by/projects/">opendata.by/projects</a></li>
+		<li>Контакты сообщества для желающих присоединиться:
+		<a href="http://opendata.by/about/">opendata.by/about</a></li>
         </ul>
 </div>
     </main>
