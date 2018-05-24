@@ -55,6 +55,7 @@ $ad_selected = $ad_texts[$rand_keys];
 				отключают горячую воду в Минске летом, а также где
 				ожидается капитальный ремонт.">
         <title>График отключения горячей воды в Минске в 2018 году</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
