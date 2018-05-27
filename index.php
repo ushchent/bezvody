@@ -55,7 +55,7 @@ $ad_selected = $ad_texts[$rand_keys];
 				отключают горячую воду в Минске летом, а также где
 				ожидается капитальный ремонт.">
         <title>График отключения горячей воды в Минске в 2018 году</title>
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -105,7 +105,7 @@ $ad_selected = $ad_texts[$rand_keys];
 			городские службы последовательно отключают горячее водоснабжение
 			потребителям на срок, как правило, не более 14 суток.</p>
 		<p>В 2018 году отключения горячей воды в Минске начались 2 мая.
-			Дату отключения можно узнать через поиск по адресу.
+			Дату отключения вашего дома можно узнать через поиск по адресу.
 			График обновлен <strong>19 мая</strong>.</p>
         <div id="ad">
 			<p id="caption">Реклама</p>
