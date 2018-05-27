@@ -1,14 +1,33 @@
 <?php
-
-	$ad_texts = [ 'Компания "НетосТех" поможет вам с комфортом пережить отключение горячей воды. Возьмите <strong>водонагреватель в аренду</strong> c посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
-	'С начала года в Минске родились 10 904 ребенка. Компания "НетосТех" поздравляет семьи с пополнением и предлагает взять <strong>водонагреватель напрокат</strong>. Оплата посуточная. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
-	'Горячую воду можно вернуть. Компания "НетосТех" предлагает <strong>водонагреватели в аренду</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
-   'В августе горячую воду отключают в 2 852 домах столицы. Возьмите <strong>водонагреватель напрокат</strong> на нужное вам количество дней в компании "НетосТех". Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
-	'"А нам все равно!" &copy; Пускай отключают &#x263A;. Компания "НетосТех" предлагает <strong>водонагреватели напрокат</strong> с посуточной оплатой. Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.'
+	$ad_texts = [
+	'Компания "НетосТех" поможет вам с комфортом пережить отключение
+	горячей воды. Возьмите <strong>водонагреватель в аренду</strong>
+	c посуточной оплатой. Подробности на сайте
+	<a href="http://epro.by/leto">epro.by/leto</a> и по телефону мтс/velcom
+	<a href="tel:6698671">669 86 71</a>.',
+	'С начала года в Минске родились 10 904 ребенка. Компания "НетосТех"
+	поздравляет семьи с пополнением и предлагает взять
+	<strong>водонагреватель напрокат</strong>. Оплата посуточная.
+	Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a>
+	и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+	'Горячую воду можно вернуть. Компания "НетосТех" предлагает
+	<strong>водонагреватели в аренду</strong> с посуточной оплатой.
+	Подробности на сайте <a href="http://epro.by/leto">epro.by/leto</a>
+	и по телефону мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+   'В августе горячую воду отключают в 2 852 домах столицы.
+   Возьмите <strong>водонагреватель напрокат</strong> на нужное вам
+   количество дней в компании "НетосТех". Подробности на сайте
+   <a href="http://epro.by/leto">epro.by/leto</a> и по телефону
+   мтс/velcom <a href="tel:6698671">669 86 71</a>.',
+	'"А нам все равно!" &copy; Пускай отключают &#x263A;.
+	Компания "НетосТех" предлагает <strong>водонагреватели
+	напрокат</strong> с посуточной оплатой. Подробности на сайте
+	<a href="http://epro.by/leto">epro.by/leto</a> и по телефону
+	мтс/velcom <a href="tel:6698671">669 86 71</a>.'
 	];
 
-$rand_keys = array_rand($ad_texts, 1);
-$ad_selected = $ad_texts[$rand_keys];
+	$rand_keys = array_rand($ad_texts, 1);
+	$ad_selected = $ad_texts[$rand_keys];
 
 	// Определяем сегодняшнюю дату
 	$today_base_string = date("Y-m-d");
@@ -36,9 +55,7 @@ $ad_selected = $ad_texts[$rand_keys];
 
 	$sql_jestvoda = "select count(*) as count from data_all where start < '$margin_data_string';";
 	$jestvoda = $db->query($sql_jestvoda)->fetchArray(SQLITE3_ASSOC)["count"];
-
 ?>
-
 <!DOCTYPE HTML>
 <html lang="ru" prefix="og: http://ogp.me/ns#">
     <head>
@@ -55,9 +72,10 @@ $ad_selected = $ad_texts[$rand_keys];
 				отключают горячую воду в Минске летом, а также где
 				ожидается капитальный ремонт.">
         <title>График отключения горячей воды в Минске в 2018 году</title>
-		<link rel="icon" href="/favicon.png" type="image/png">
-		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="favicon.png" />
+		<link rel="icon" type="image/ico" href="favicon.ico" />
+		<link rel="apple-touch-icon-precomposed" type="image/png" href="apple-touch-icon-precomposed.png" />
+		<link rel="apple-touch-icon" type="image/png" href="apple-touch-icon.png" />
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -168,7 +186,6 @@ $ad_selected = $ad_texts[$rand_keys];
         <input class="button" type="button" id="svet" value="Свет">
 		</div>
 </div>
-
 		<section id="tarify">
 			<h3>Водоснабжение</h3>                                      
 			  <ul>
@@ -181,7 +198,6 @@ $ad_selected = $ad_texts[$rand_keys];
 			    <li>Свыше 140 литров &ndash; 53,98 копеек</li>                 
 			  </ul>
 		</section>
-
 <div id="info">
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
@@ -236,8 +252,6 @@ $ad_selected = $ad_texts[$rand_keys];
 			}
 			var classes = d.classList;
 			classes.add("active");
-
-
 		}
 		var voda = `<h3>Водоснабжение</h3>                                      
 			  <ul>
@@ -262,18 +276,18 @@ $ad_selected = $ad_texts[$rand_keys];
 					<li>За 1 кубометр &ndash; 32,75 копейки</li>
 					</ul>`;
 		var svet = `<h3>С электроплитой</h3>
-							<ul>
-							<li>При потреблении до 250 кВт&#183;ч в
-							месяц &ndash; 12,18 копеек</li>
-							<li>от 250 до 400 кВт&#183;ч &ndash; 15,83 копеек</li>
-							<li>Свыше 400 кВт&#183;ч &ndash; 18 копеек</li>
-							</ul>
-							<h3>С газовой плитой</h3>
-							<ul>
-							<li>До 150 кВт&#183;ч &ndash; 14,33 копеек</li>
-							<li>от 150 до 300 кВт&#183;ч &ndash; 18,41 копеек</li>	
-							<li>свыше 300 кВт&#183;ч &ndash; 18,41 копеек</li>	
-							</ul>	
+						<ul>
+						<li>При потреблении до 250 кВт&#183;ч в
+						месяц &ndash; 12,18 копеек</li>
+						<li>от 250 до 400 кВт&#183;ч &ndash; 15,83 копеек</li>
+						<li>Свыше 400 кВт&#183;ч &ndash; 18 копеек</li>
+						</ul>
+						<h3>С газовой плитой</h3>
+						<ul>
+						<li>До 150 кВт&#183;ч &ndash; 14,33 копеек</li>
+						<li>от 150 до 300 кВт&#183;ч &ndash; 18,41 копеек</li>	
+						<li>свыше 300 кВт&#183;ч &ndash; 18,41 копеек</li>	
+						</ul>	
 						`;
 		var voda_handler = document.getElementById("voda");
 		var target = document.getElementById("tarify");
