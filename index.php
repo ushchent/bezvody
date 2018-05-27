@@ -56,6 +56,8 @@ $ad_selected = $ad_texts[$rand_keys];
 				ожидается капитальный ремонт.">
         <title>График отключения горячей воды в Минске в 2018 году</title>
 		<link rel="icon" href="/favicon.png" type="image/png">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <link rel="stylesheet" href="css/styles.css">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
