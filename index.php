@@ -168,6 +168,15 @@
 			<a href="tel:+375172273524">227 35 24</a>
 			или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
         </div>
+        <h2>Ликбез по летнему отключению горячей воды</h2>
+        <div id="video">
+			<p>Журналисты столичного телеканала "СТВ" взяли подробные интервью у руководства двух организаций-операторов теплоснабжения Минска о том, почему и как происходит плановое отключение горячей воды.</p>
+			<div>
+			<p>Директор "Минсккоммунтеплосетей" Владимир Александров (2016 год):</p>
+			<iframe width="400" height="300" src="https://www.youtube.com/embed/Toz4wFOjgcY" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+			<div><p>Главный инженер "Минских теплосетей" Александр Драгун (2018 год):</p>
+			<iframe width="400" height="300" src="https://www.youtube.com/embed/U61VfWvBVCs" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+        </div>
 		<h2>График капитального ремонта жилых домов в Минске в 2018 году<sup>
 			<?php echo $remont . " домов"; ?></sup>
 		</h2>
