@@ -5,25 +5,25 @@ var message_remont = document.getElementById("remontResponse");
 
 var addressField = document.getElementById("autocomplete");
 addressField.onfocus = function() {
-        if (addressField.value == "Введите адрес") {
+        if (addressField.value == "Вводите адрес и выбирайте из списка") {
             addressField.value = "";
         }
     }
 addressField.onblur = function() {
         if (addressField.value == "") {
-            addressField.value = "Введите адрес";
+            addressField.value = "Вводите адрес и выбирайте из списка";
         }
    };
 
 var remontField = document.getElementById("remont");
 remontField.onfocus = function() {
-        if (remontField.value == "Введите адрес") {
+        if (remontField.value == "Вводите адрес и выбирайте из списка") {
             remontField.value = "";
         }
     }
 remontField.onblur = function() {
         if (remontField.value == "") {
-            remontField.value = "Введите адрес";
+            remontField.value = "Вводите адрес и выбирайте из списка";
         }
     };
 
@@ -48,7 +48,7 @@ function parse_start_date(start) {
 // Определяем дату отключения и выводим сообщение.
 document.getElementById("show_data").onclick = function() {
 
-if (document.getElementById("autocomplete").value == "Введите адрес" || data == undefined) {
+if (document.getElementById("autocomplete").value == "Вводите адрес и выбирайте из списка" || data == undefined) {
 	message.innerHTML = "Пожалуйста, введите адрес.";
 } else if (data.length > 0) {
 	
@@ -124,7 +124,7 @@ function get_address(str) {
 	var target = document.getElementById("data_show");
 	message.innerHTML = "";
 	
-	if (str.length <= 4 || str == "Введите адрес") {
+	if (str.length <= 4 || str == "Вводите адрес и выбирайте из списка") {
 	
 		target.className = "hidden";
 	}
@@ -172,7 +172,7 @@ function get_remont(str) {
 	var remont_target = document.getElementById("remontMessage");
 	message_remont.innerHTML = "";
 	
-	if (str.length <= 4 || str == "Введите адрес") {
+	if (str.length <= 4 || str == "Вводите адрес и выбирайте из списка") {
 	
 		remont_target.className = "hidden";
 	}
@@ -218,7 +218,7 @@ function get_remont(str) {
 
 document.getElementById("buttonRemont").onclick = function() {
 
-if (document.getElementById("remont").value == "Введите адрес" || remont_data == undefined) {
+if (document.getElementById("remont").value == "Вводите адрес и выбирайте из списка" || remont_data == undefined) {
 	message_remont.innerHTML = "Пожалуйста, введите адрес.";
 } else if (remont_data.length > 0) {
 	

@@ -119,21 +119,21 @@
     </header>
     <main>
 	<script> var days_left = <?php echo $days_till_margin; ?>;</script>
-    <h1>14 дней без горячей воды<sup>май &ndash; июль 2018</sup></h1>
+    <h1>14 дней без горячей воды<sup>май &ndash; август 2018</sup></h1>
 		<p>Каждый год в Минске с конца весны и до начала осени проводятся
 			испытания тепловых сетей перед отопительным сезоном. Поэтому
 			городские службы последовательно отключают горячее водоснабжение
 			потребителям на срок, как правило, не более 14 суток.</p>
 		<p>В 2018 году отключения горячей воды в Минске начались 2 мая.
 			Дату отключения вашего дома можно узнать через поиск по адресу.
-			График обновлен <strong>21 июня</strong>.</p>
+			График обновлен <strong>21 июля</strong>.</p>
 <!--        <div id="ad">
 			<p id="caption">Реклама</p>
 			<p id="text"><?php //echo $ad_texts[0]; ?></p>
 		</div>
 -->
         <h2>Узнать дату отключения по адресу</h2>
-		<input id="autocomplete" value="Введите адрес"
+		<input id="autocomplete" value="Вводите адрес и выбирайте из списка"
 				onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
         <div id="data_show" class="hidden"></div>
@@ -181,7 +181,7 @@
 		<h2>График капитального ремонта жилых домов в Минске в 2018 году<sup>
 			<?php echo $remont . " домов"; ?></sup>
 		</h2>
-        <input id="remont" onkeyup="get_remont(this.value)" value="Введите адрес">
+        <input id="remont" onkeyup="get_remont(this.value)" value="Вводите адрес и выбирайте из списка">
         <input type="button" id="buttonRemont" value="Узнать">
         <div id="remontMessage" class="hidden"></div>
         <p id="remontResponse"></p>
@@ -237,7 +237,7 @@
         <p><strong>Прочее:</strong>
         <ul>
 		<li>Источники данных: УП "<a href="https://mkts.by/">Минсккоммунтеплосеть</a>"
-			и РУП "<a href="http://minskenergo.by/">Минскэнерго</a>"</li>
+			и РУП "<a href="https://minskenergo.by/">Минскэнерго</a>"</li>
 		<li>Репозиторий проекта:
 		<a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
         <li>Редактор проекта Алексей Медвецкий, am@opendata.by</li>
