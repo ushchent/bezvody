@@ -71,7 +71,7 @@
 		<meta name="description" content="Здесь можно узнать, когда и где
 				отключают горячую воду в Минске летом, а также где
 				ожидается капитальный ремонт.">
-        <title>График отключения горячей воды в Минске в 2018 году</title>
+        <title>График отключения горячей воды в Минске в 2018 году. Май &ndash; Сентябрь.</title>
 		<link rel="icon" type="image/png" href="favicon.png" />
 		<link rel="icon" type="image/ico" href="favicon.ico" />
 		<link rel="apple-touch-icon-precomposed" type="image/png" href="apple-touch-icon-precomposed.png" />
@@ -126,7 +126,7 @@
 			потребителям на срок, как правило, не более 14 суток.</p>
 		<p>В 2018 году отключения горячей воды в Минске начались 2 мая.
 			Дату отключения вашего дома можно узнать через поиск по адресу.
-			График обновлен <strong>1 августа</strong>.</p>
+			График обновлен <strong>20 августа</strong>.</p>
 <!--        <div id="ad">
 			<p id="caption">Реклама</p>
 			<p id="text"><?php //echo $ad_texts[0]; ?></p>
