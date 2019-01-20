@@ -1,96 +1,160 @@
 body {
     margin: 0 auto;
-    max-width: 90%;
     font-family: sans-serif;
 }
 header, footer {
     background-color: #2A2F4E;
+}
+main {
+    width: 80%;
+    margin: 0 0 0 2em;
 }
 header #vk {
     float: right;
     padding: 4px 6px;
     margin: 4px 6px;
 }
+header img {
+	max-width: 100%;
+	}
+header p a {
+	color: white;
+	text-decoration: none;
+}
 sup {
-  font-weight: normal;
+    font-weight: normal;
 	font-size: 12px;
 	margin-left: 1em;
 	padding: 3px;
 	background-color: #2A2F4E;
 	color: white;
 }
-#ad {
-  font-weight: normal;
-	font-size: 12px;
-	margin-right: .5em;
-	margin-left: 0;
-	padding: 3px;
-	background-color: #F26060;
-	color: white;
+
+/* Реклама */
+
+#caption {
+	padding: 2px;
+	width: 80%;
+    background-color: #F16665;
+    color: white;
+}
+#text {
+	width: 80%;
+  	vertical-align: middle;
+  	border-bottom: 2px solid #F16665;
+  	padding-bottom: 1em;
 }
 
-#data_show p, #remont_table p {
-    background-color: #E2E5F8;
-    padding: 3px;
+/* Выпадающий список */
+
+#autocomplete, #remont {
+    position: realtive;
+    font-size: 20px;
+    padding: 5px;
+    width: 50%;
+    margin-bottom: 0;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#show_data, #buttonRemont {
+    font-size: 20px;
+    padding: 4px;
+    border-width: 1px;
+    margin-left: .2%;
+    background-color: white;
+    border: 1px solid black;
+}
+#data_show, #remontMessage {
+    position: absolute;
+    background-color: white;
+	width: 40%;
+    border: 3px solid black;
+    padding: 0 10px 0 0;
+    overflow: scroll;
+    max-height: 150px;
+    margin-top: 0;
+}
+#data_show li, #remontMessage li {
+    list-style: none;
+    margin-left: 0;
+    cursor: pointer;
+    padding: 2px;
+    font-size: 16px;
+}
+
+#data_show li:hover, #remontMessage li:hover {
+	background-color: #CECECE;
+}
+#data_show ul, #remontMessage ul {
+    margin: 0.2em auto 0.2em 0;
+    padding-left: .3em;
+}
+.hidden {
+	display: none;
+}
+#message {
+	margin-bottom: 2em;
+}
+
+
+/* Кнопки карты и тарифов */
+.menu, #mapDiv {
+	display: flex;
 }
 #mapDiv {
-    height: 500px;
-    margin-top: 1em;
-    }
-input {
+	height: 24em;
+}
+.menu {
+	font-size: 1em;
+}
+#karta {
+	margin-top: 0;
+}
+.buttonGroup {
+	text-align: center;
+    float: left;
     display: inline;
-    border: 2px solid;
-    padding: 3px;
-    }
-#remont, #autocomplete {
-    width: 50%;
-    border: 1px solid black;
-    padding: 6px;
-}
-#remont_button {
-    padding: 5px;
-    border-width: 1px;
-}
-#remont_table{
-    margin-bottom: 3em;
+    padding-right: .5em;
 }
 .button:hover {
     cursor: pointer;
 }
-#uzhe_otkliuchili {
+.menu .button {
+    border-radius: 50%;
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    width: 4em;
+    height: 4em;
+    font-size: 1.1em;
+}
+#uzhe_otkliuchili, #voda {
     border: 2px solid #008BFE;
     background-color: #008BFE;
     color: white;
-    padding: 3px;
 }
-#menu input {
-    font-size: 18px;
-    padding: 4px;
-}
-#autocomplete {
-    font-size: 18px;
-    padding: 5px;
-    
-}
-#ui-id-2, #ui-id-1 {
-    box-sizing: border-box;
-    max-height: 191px;
-	overflow: scroll;
-}
-#show_data {
-    font-size: 18px;
-    padding: 4px;
-    border-width: 1px;
-}
-#skoro_otkliuchat {
+#skoro_otkliuchat, #gas {
     border: 2px solid #FFBF00;
     background-color: #FFBF00;
     }
-#dolzhny_vkliuchit {
+#dolzhny_vkliuchit, #svet {
     border: 2px solid #EC1313;
     background-color: #EC1313;
     color: white;
     }
+#warning {
+	margin-top: 2em;
+}	
+
+#info {
+	margin-top: 3em;
+}
+#gas.active, #svet.active, #voda.active {
+	border: 4px solid #FF9B86;
+}
+
+/* Подвал */
+
 footer p {
     padding-top: 1em;
     padding-bottom: 1em;

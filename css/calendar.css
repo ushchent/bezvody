@@ -1,0 +1,38 @@
+table tr td:nth-child(2) {
+	text-align: right
+}
+thead tr th:nth-child(1) {
+	text-align: left;
+}
+thead tr th:nth-child(2) {
+	text-align: right;
+}
+th, td {
+	padding-right: 1em;
+}
+#mapDiv {
+	display: flex;
+	height: 30em;
+}
+#calendar {
+	float: left;
+	margin-right: 1em;
+	border-right: 1px dashed black;
+}
+.date:hover {
+	cursor: pointer;
+}
+.date {
+	text-decoration: underline;
+}
+.active {
+	color: red;
+}
+#tsg {
+	max-height: 300px;
+	max-width: 80%;
+	overflow: scroll;
+}
+#tsg table tr:nth-child(odd) {
+    background-color: #f4f4f4;
+    }

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru" prefix="og: http://ogp.me/ns#">
+<head>
+        <meta charset="utf-8">
+        <meta property="og:title" content="14 дней без горячей воды." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://bezvody.opendata.by" />
+        <meta property="og:description" 
+            content="Актуальный график отключений горячей воды в Минске
+                в 2018 году: даты отключений и интерактивная карта города.
+                График капитального ремонта домов в Минске." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Здесь можно узнать, когда и где
+                отключают горячую воду в Минске летом, а также где
+                ожидается капитальный ремонт.">
+        <title>График отключения горячей воды в Минске в 2018 году. Май &ndash; Сентябрь.</title>
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="icon" type="image/ico" href="favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" type="image/png" href="apple-touch-icon-precomposed.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon.png" />
+        <link rel="stylesheet" href="css/styles.css">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    if (document.location.hostname != "localhost") {
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter36789295 = new Ya.Metrika({
+                    id:36789295,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+} else {
+    console.log("You're on localhost.");
+}
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/36789295"
+        style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <header>
+         <img id="logo" src="img/logo.jpg" />
+         <a href="http://vk.com/opendataby"><img id="vk" src="img/vk32.png" /></a>
+    </header>
+    <main>
+    <h1>14 дней без горячей воды<sup>май &ndash; сентябрь 2018</sup></h1>
+        <p>Каждый год в Минске с конца весны и до начала осени проводятся
+            испытания тепловых сетей перед отопительным сезоном. Поэтому
+            городские службы последовательно отключают горячее водоснабжение
+            потребителям на срок, как правило, не более 14 суток.</p>
+        <p>В 2018 году сезонные отключения горячей воды в Минске начались 2 мая и закончились 19 сентября.
+            Желаем вам тепла этой зимой!</p>
+        <h2>Узнать дату отключения по адресу</h2>
+        <input id="autocomplete" value="Справка отключена до конца отопительного сезона 2018-2019"
+                onkeyup="">
+<!--
+        <input class="button" type="button" id="show_data" value="Узнать">
+-->
+        <div id="data_show" class="hidden"></div>
+        <p id="message"></p>
+        <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
+        <div class="menu">
+        <div class="buttonGroup">
+            <input class="button" type="button" id="uzhe_otkliuchili"
+                value="0">
+        <p id="blue"></p>
+        </div>
+        <div class="buttonGroup">
+            <input class="button" type="button" id="skoro_otkliuchat"
+                value="0">
+        <p>скоро отключат и</p>
+        </div>
+        <div class="buttonGroup">
+            <input class="button" type="button" id="dolzhny_vkliuchit"
+                value="0">
+        <p>уже должны подключить.</p>
+        </div>
+    </div>
+    <div id="mapDiv" class="map"></div>
+    <div id="warning">
+        <p>Во время испытаний возможны повреждения теплопровода.
+            При обнаружении течи воды или парения из земли, колодцев, провалов
+            грунта необходимо срочно сообщить об этом диспетчеру
+            УП «Минсккоммунтеплосеть» по тел.
+            <a href="tel:+375172678888">267-88-88</a>, или диспетчеру филиала
+            «Минские тепловые сети» по тел. <a href="tel:+375172982727">298 27 27</a>,
+            <a href="tel:+375172982737">298 27 37</a>,
+            или диспетчеру ЦДС РУП «Минскэнерго» по тел.
+            <a href="tel:+375172273524">227 35 24</a>
+            или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
+        </div>
+        <h2>Ликбез по летнему отключению горячей воды</h2>
+        <div id="video">
+            <p>Журналисты столичного телеканала "СТВ" взяли подробные интервью у руководства двух организаций-операторов теплоснабжения Минска о том, почему и как происходит плановое отключение горячей воды.</p>
+            <div><p>Директор "Минсккоммунтеплосетей" Владимир Александров (2016 год):</p>
+            <iframe width="400" height="300" src="https://www.youtube.com/embed/Toz4wFOjgcY" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div><p>Главный инженер "Минских теплосетей" Александр Драгун (2018 год):</p>
+            <iframe width="400" height="300" src="https://www.youtube.com/embed/U61VfWvBVCs" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+        </div>
+
+<div id="info">
+        <p><strong>Упоминания в СМИ:</strong></p>
+        <ul>
+        <li>Компьютерные Вести,
+        <a href="http://www.kv.by/content/335283-proekt-datashkola-predstavlyaet-informatsionnoe-prilozhenie-14-dnei-bez-goryachei-vod">http://www.kv.by/content/335283...</a></li>
+        <li>Телеграф,
+        <a href="http://telegraf.by/2015/05/290076-minchane-sozdali-prilojenie-14-dnei-bez-goryachei-vodi">http://telegraf.by/2015/05/290076...</a></li>
+        <li>Хартия97,
+        <a href="http://charter97.org/ru/news/2015/5/5/150281/">http://charter97.org/ru/news/2015/5/5/150281/</a></li>
+        <li>Как Тут Жить,
+        <a href="http://kaktutzhit.by/news/minsk-14-dnei">http://kaktutzhit.by/news/minsk-14-dnei</a></li>
+        <li>Агентство социальных новостей,
+        <a href="http://socnews.by/cites/2015/05/07/article_4622">http://socnews.by/cites/2015/05/07/...</a></li>
+        <li>Новы Час,
+        <a href="http://novychas.info/hramadstva/mincanie_stvaryli_interaktyuny/">http://novychas.info/hramadstva/mincanie...</a></li>
+        <li>Sputnik Беларусь,
+        <a href="http://sputnik.by/technology/20150605/1015580135.html">http://sputnik.by/technology/20150605/...</a></li>
+        <li>Еўрарадыё,
+        <a href="http://euroradio.by/shto-robyac-kamunalshchyki-pakul-adklyuchanaya-garachaya-vada">http://euroradio.by/shto-robyac-kamunalshchyki...</a></li>
+        <li>Комсомольская правда,
+        <a href="http://www.kp.by/daily/26535.5/3552619/">http://www.kp.by/daily/26535.5/3552619</a></li>
+        <li>Белорусские новости,
+        <a href="http://naviny.by/new/20170510/1494406937-v-minske-nachalos-sezonnoe-otklyuchenie-goryachey-vody">http://naviny.by/new/20170510/1494406937...</a></li>
+        </ul>
+        <p><strong>Прочее:</strong>
+        <ul>
+        <li>Источники данных: УП "<a href="https://mkts.by/">Минсккоммунтеплосеть</a>"
+            и РУП "<a href="https://minskenergo.by/">Минскэнерго</a>"</li>
+        <li>Репозиторий проекта:
+        <a href="https://github.com/ushchent/bezVody/">github.com/ushchent/bezVody</a></li>
+        <li>Редактор проекта Алексей Медвецкий, am@opendata.by</li>
+        <li>Другие проекты сообщества "Открытые данные для Беларуси":
+        <a href="http://opendata.by/projects/">opendata.by/projects</a></li>
+        <li>Контакты сообщества для желающих присоединиться:
+        <a href="http://opendata.by/about/">opendata.by/about</a></li>
+        </ul>
+</div>
+    </main>
+    <footer>
+    <p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>
+    <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz0gGX_Qz0f8LIFna6DNSOwOrN7zontE"></script>
+    <script src="js/markerclusterer_compiled.js"></script>
+    <script src="js/script.js"></script>
+    </footer>
+</body>
+</html>
