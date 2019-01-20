@@ -15,17 +15,6 @@ addressField.onblur = function() {
         }
    };
 
-var remontField = document.getElementById("remont");
-remontField.onfocus = function() {
-        if (remontField.value == "Вводите адрес и выбирайте из списка") {
-            remontField.value = "";
-        }
-    }
-remontField.onblur = function() {
-        if (remontField.value == "") {
-            remontField.value = "Вводите адрес и выбирайте из списка";
-        }
-    };
 
 document.getElementById("svodka").appendChild(document.createTextNode(convertDate(today)));
 
@@ -107,17 +96,7 @@ function bezvody_list_items_listeners(item, place_holder) {
 	}
 }
 
-function remont_list_items_listeners(item, place_holder) {
-	var place = document.getElementById(place_holder);
-	var items = place.getElementsByTagName(item);
-	for (var i = 0; i < items.length; i++) {
-		items[i].addEventListener("click", function() {
-			var selected = this.textContent;
-			document.getElementById("remont").value = selected;
-			document.getElementById("remontMessage").className = "hidden";
-		});
-	}
-}
+
 
 function get_address(str) {
 
@@ -167,76 +146,6 @@ function get_address(str) {
 }
 
 
-function get_remont(str) {
-
-	var remont_target = document.getElementById("remontMessage");
-	message_remont.innerHTML = "";
-	
-	if (str.length <= 4 || str == "Вводите адрес и выбирайте из списка") {
-	
-		remont_target.className = "hidden";
-	}
-          if (str.length > 4) {
-          
-          if (window.XMLHttpRequest) {
-
-            var request = new XMLHttpRequest();
-          } else {  
-            var request = new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-
-				if (remont_target.getElementsByTagName('ul')[0]) {
-					remont_target.getElementsByTagName('ul')[0].remove();
-				}
-				var list = document.createElement("ul");
-
-              remont_data = JSON.parse(request.responseText);
-
-              if (remont_data.length == 0) {
-				remont_target.className = "hidden";
-				} else {
-					remont_target.className = "";
-				}
-              for (var i = 0; i < remont_data.length; i++) {
-				  var address_text = document.createTextNode(remont_data[i].address);
-				  var list_item = document.createElement("li");
-				  list_item.appendChild(address_text);
-				  list.appendChild(list_item);
-			  }
-			  remont_target.appendChild(list);
-			  remont_list_items_listeners("li", "remontMessage")
-              document.getElementById("remontMessage").style.border = "1px solid #A5ACB2";
-            }
-          }
-          request.open("GET", "api/?r=" + str, true);
-          request.send();
-        }
-}
-
-
-document.getElementById("buttonRemont").onclick = function() {
-
-if (document.getElementById("remont").value == "Вводите адрес и выбирайте из списка" || remont_data == undefined) {
-	message_remont.innerHTML = "Пожалуйста, введите адрес.";
-} else if (remont_data.length > 0) {
-	
-		var address_selected = document.getElementById("remont").value;
-
-		for (var i = 0; i < remont_data.length; i++) {
-			if (remont_data[i].address == address_selected) {
-				var address_found = remont_data[i].address;
-				break;
-			};
-		};
-		
-		message_remont.innerHTML = "У вас запланирован капитальный ремонт в текущем году.";		
-} else if (remont_data.length == 0) {
-			var message_body = "<p>В текущем году капитальный ремонт у вас не ожидается.";
-			 message_remont.innerHTML = message_body;
-}
-}
 
 document.getElementById("blue").innerHTML = nominativ(document.getElementById("uzhe_otkliuchili").value) + " уже отключили,";
 
