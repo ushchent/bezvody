@@ -94,9 +94,10 @@ function selectData(input) {
 		if (request.readyState === 4 && request.status == 200) {
 			data = JSON.parse(request.responseText);
 			addMarkers(data, input, icon);
+			document.getElementById("skoro_otkliuchat").value = data.length;
 			}
 		}
-	request.open("GET", "api/?q=" + input, true);
+	request.open("GET", "https://api.opendata.by/bezvody/?q=" + input, true);
 	request.send(null);
 }
 
@@ -110,5 +111,5 @@ window.onload = function() {
 	}
 	insertMap();
 	setMenuEvents();
-	selectData("uzhe_otkliuchili");
+	selectData("skoro_otkliuchat");
 }

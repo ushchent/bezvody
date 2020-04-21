@@ -1,7 +1,6 @@
 var data, remont_data, today = new Date();
 
 var message = document.getElementById("message");
-var message_remont = document.getElementById("remontResponse");
 
 var addressField = document.getElementById("autocomplete");
 addressField.onfocus = function() {
@@ -14,7 +13,6 @@ addressField.onblur = function() {
             addressField.value = "Вводите адрес и выбирайте из списка";
         }
    };
-
 
 document.getElementById("svodka").appendChild(document.createTextNode(convertDate(today)));
 
@@ -96,8 +94,6 @@ function bezvody_list_items_listeners(item, place_holder) {
 	}
 }
 
-
-
 function get_address(str) {
 
 	var target = document.getElementById("data_show");
@@ -140,7 +136,7 @@ function get_address(str) {
               document.getElementById("data_show").style.border = "1px solid #A5ACB2";
             }
           }
-          request.open("GET", "api/?q=" + str, true);
+          request.open("GET", "https://api.opendata.by/bezvody/?q=" + str, true);
           request.send();
         }
 }
@@ -148,6 +144,3 @@ function get_address(str) {
 
 
 document.getElementById("blue").innerHTML = nominativ(document.getElementById("uzhe_otkliuchili").value) + " уже отключили,";
-
-
-

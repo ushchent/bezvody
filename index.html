@@ -64,11 +64,9 @@
             потребителям на срок, как правило, не более 14 суток.</p>
         <p>В 2020 году сезонные отключения горячей воды в Минске ожидаются с 11 мая. См. <a href="https://vk.com/opendataby?w=wall-117087984_127">разъяснение</a> по ситуации.</p>
         <h2>Узнать дату отключения по адресу</h2>
-        <input id="autocomplete" value="График 2020 года будет доступен к концу апреля, если ситуация не изменится"
-                onkeyup="">
-<!--
+        <input id="autocomplete" value="Вводите адрес и выбирайте из списка"
+                onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
--->
         <div id="data_show" class="hidden"></div>
         <p id="message"></p>
         <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
