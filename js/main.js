@@ -136,7 +136,7 @@ function get_address(str) {
               document.getElementById("data_show").style.border = "1px solid #A5ACB2";
             }
           }
-          request.open("GET", "/api/bezvody/?q=" + str, true);
+          request.open("GET", "https://api.opendata.by/bezvody/?q=" + str, true);
           request.send();
         }
 }
