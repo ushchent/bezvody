@@ -100,7 +100,7 @@ function selectData(input) {
 			days_left = Math.floor((days_margin - new Date()) / (1000*86400));
 			}
 		}
-	request.open("GET", "https://api.opendata.by/bezvody/?q=" + input, true);
+	request.open("GET", "http://api.nagrady.by/bezvody/?q=" + input, true);
 	request.send(null);
 }
 
