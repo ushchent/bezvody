@@ -1,4 +1,6 @@
 // Передавать days_left в основном index.html.
+// https://api.opendata.by/
+// api/
 
 var data, remont_data, today = new Date();
 
