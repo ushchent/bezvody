@@ -95,7 +95,7 @@ function selectData(input) {
 		if (request.readyState === 4 && request.status == 200) {
 			data = JSON.parse(request.responseText);
 			addMarkers(data, input, icon);
-			document.getElementById("skoro_otkliuchat").value = data.length;
+			document.getElementById("uzhe_otkliuchili").value = data.length;
 			const days_margin = data.map(d => new Date(d.start)).sort((a, b) => a - b)[data.length - 1];
 			days_left = Math.floor((days_margin - new Date()) / (1000*86400));
 			}
