@@ -30,19 +30,10 @@ sup {
 	color: white;
 }
 
-/* Реклама */
-
-#caption {
-	padding: 2px;
-	width: 80%;
-    background-color: #F16665;
-    color: white;
-}
-#text {
-	width: 80%;
-  	vertical-align: middle;
-  	border-bottom: 2px solid #F16665;
-  	padding-bottom: 1em;
+code {
+    font-size: 1.5em;
+    color: #2a2f4e;
+    padding-left: 10%;
 }
 
 /* Выпадающий список */

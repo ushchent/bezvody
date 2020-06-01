@@ -104,6 +104,15 @@ function selectData(input) {
 	request.send(null);
 }
 
+function get_stats() {
+	fetch("https://api.opendata.by/bezvody/?q=stats")
+		.then(response => response.json())
+		.then(data => {
+			document.getElementById("uzhe_otkliuchili").value = data[0];
+			document.getElementById("skoro_otkliuchat").value = data[1];
+			document.getElementById("dolzhny_vkliuchit").value = data[2];
+			})
+}
 
 
 window.onload = function() {
@@ -112,7 +121,8 @@ window.onload = function() {
 	} else {  
 		request = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	insertMap();
-	setMenuEvents();
-	selectData("uzhe_otkliuchili");
+	//insertMap();
+	//setMenuEvents();
+	//get_stats();
+	//selectData("uzhe_otkliuchili");
 }

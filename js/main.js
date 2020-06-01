@@ -145,6 +145,4 @@ function get_address(str) {
         }
 }
 
-
-
 document.getElementById("blue").innerHTML = nominativ(document.getElementById("uzhe_otkliuchili").value) + " уже отключили,";
