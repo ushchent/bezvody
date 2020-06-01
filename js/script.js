@@ -114,5 +114,5 @@ window.onload = function() {
 	}
 	insertMap();
 	setMenuEvents();
-	selectData("skoro_otkliuchat");
+	selectData("uzhe_otkliuchili");
 }
