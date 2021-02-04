@@ -29,6 +29,12 @@
 		};
 		get_stats();
         </script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     if (document.location.hostname != "localhost") {
@@ -101,7 +107,15 @@
         <p>уже должны подключить.</p>
         </div>
     </div>
-    <code>[ Карта на ремонте ]</code>
+    <div id="mapid"></div>
+
+<script>
+var mymap = L.map('mapid').setView([53.893009, 27.567444], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(mymap);
+</script>
+
     <div id="warning">
         <p>Во время испытаний возможны повреждения теплопровода.
             При обнаружении течи воды или парения из земли, колодцев, провалов
@@ -116,6 +130,7 @@
         </div>
         <h2>Ликбез по летнему отключению горячей воды</h2>
 
+
         <div id="video">
             <p>Журналисты столичного телеканала "СТВ" взяли подробные интервью у руководства двух организаций-операторов теплоснабжения Минска о том, почему и как происходит плановое отключение горячей воды.</p>
             <div><p>Директор "Минсккоммунтеплосетей" Владимир Александров (2016 год):</p>
@@ -124,6 +139,7 @@
             <div><p>Главный инженер "Минских теплосетей" Александр Драгун (2018 год):</p>
             <iframe width="400" height="300" src="https://www.youtube.com/embed/U61VfWvBVCs" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
         </div>
+
 
 <div id="info">
         <p><strong>Упоминания в СМИ:</strong></p>
