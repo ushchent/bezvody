@@ -7,7 +7,7 @@
         <meta property="og:url" content="http://bezvody.opendata.by" />
         <meta property="og:description" 
             content="Актуальный график отключений горячей воды в Минске
-                в 2020 году: даты отключений и интерактивная карта города." />
+                в 2021 году. Даты отключений и интерактивная карта города." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Здесь можно узнать, когда и где
                 отключают горячую воду в Минске летом.">
@@ -17,24 +17,11 @@
         <link rel="apple-touch-icon-precomposed" type="image/png" href="apple-touch-icon-precomposed.png" />
         <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon.png" />
         <link rel="stylesheet" href="css/styles.css">
-        <script>
-        function get_stats() {
-			fetch("https://api.opendata.by/bezvody/?q=stats")
-				.then(response => response.json())
-				.then(data => {
-					document.getElementById("uzhe_otkliuchili").value = data[0];
-					document.getElementById("skoro_otkliuchat").value = data[1];
-					document.getElementById("dolzhny_vkliuchit").value = data[2];
-					})
-		};
-		get_stats();
-        </script>
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+ <link rel="stylesheet" href="css/MarkerCluster.css"/>
+ <link rel="stylesheet" href="css/MarkerCluster.Default.css"/>
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+ <script src="js/leaflet.markercluster.js"></script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     if (document.location.hostname != "localhost") {
@@ -87,9 +74,9 @@
         <input id="autocomplete" value="Вводите адрес и выбирайте из списка"
                 onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
-        <div id="data_show" class="hidden"></div>
+        <div id="results_list" class="hidden"></div>
         <p id="message"></p>
-        <h2>Карта отключений горячей воды на <span id="svodka"></span></h2>
+        <h2>Карта отключений горячей воды на <span id="today"></span></h2>
         <div class="menu">
         <div class="buttonGroup">
             <input class="button" type="button" id="uzhe_otkliuchili"
@@ -108,15 +95,6 @@
         </div>
     </div>
     <div id="mapid"></div>
-
-<script>
-var mymap = L.map('mapid', {minZoom: 11,
-    maxZoom: 16}).setView([53.893009, 27.567444], 12);
-L.tileLayer('tiles/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(mymap);
-</script>
-
     <div id="warning">
         <p>Во время испытаний возможны повреждения теплопровода.
             При обнаружении течи воды или парения из земли, колодцев, провалов
@@ -129,9 +107,8 @@ L.tileLayer('tiles/{z}/{x}/{y}.png', {
             <a href="tel:+375172273524">227 35 24</a>
             или в ближайший ГДУП «ЖЭУ, ЖЭС».</p>
         </div>
+<!--
         <h2>Ликбез по летнему отключению горячей воды</h2>
-
-
         <div id="video">
             <p>Журналисты столичного телеканала "СТВ" взяли подробные интервью у руководства двух организаций-операторов теплоснабжения Минска о том, почему и как происходит плановое отключение горячей воды.</p>
             <div><p>Директор "Минсккоммунтеплосетей" Владимир Александров (2016 год):</p>
@@ -140,8 +117,7 @@ L.tileLayer('tiles/{z}/{x}/{y}.png', {
             <div><p>Главный инженер "Минских теплосетей" Александр Драгун (2018 год):</p>
             <iframe width="400" height="300" src="https://www.youtube.com/embed/U61VfWvBVCs" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
         </div>
-
-
+-->
 <div id="info">
         <p><strong>Упоминания в СМИ:</strong></p>
         <ul>
@@ -182,7 +158,6 @@ L.tileLayer('tiles/{z}/{x}/{y}.png', {
     </main>
     <footer>
     <p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>
-    <script src="js/main.js"></script>
     <script src="js/script.js"></script>
     </footer>
 </body>

@@ -38,7 +38,7 @@ code {
 
 /* Выпадающий список */
 
-#autocomplete, #remont {
+#autocomplete {
     position: realtive;
     font-size: 20px;
     padding: 5px;
@@ -48,7 +48,7 @@ code {
     border: 1px solid black;
 }
 
-#show_data, #buttonRemont {
+#show_data {
     font-size: 20px;
     padding: 4px;
     border-width: 1px;
@@ -56,7 +56,7 @@ code {
     background-color: white;
     border: 1px solid black;
 }
-#data_show, #remontMessage {
+#results_list {
     position: absolute;
     background-color: white;
 	width: 40%;
@@ -66,7 +66,7 @@ code {
     max-height: 150px;
     margin-top: 0;
 }
-#data_show li, #remontMessage li {
+#results_list li {
     list-style: none;
     margin-left: 0;
     cursor: pointer;
@@ -74,10 +74,10 @@ code {
     font-size: 16px;
 }
 
-#data_show li:hover, #remontMessage li:hover {
+#results_list li:hover {
 	background-color: #CECECE;
 }
-#data_show ul, #remontMessage ul {
+#results_list ul {
     margin: 0.2em auto 0.2em 0;
     padding-left: .3em;
 }
@@ -140,9 +140,6 @@ code {
 
 #info {
 	margin-top: 3em;
-}
-#gas.active, #svet.active, #voda.active {
-	border: 4px solid #FF9B86;
 }
 
 /* Подвал */
