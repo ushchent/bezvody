@@ -38,7 +38,7 @@ document.getElementById("today").appendChild(document.createTextNode(convertDate
 
 // Сбор общей статистики отключений для 3-х кнопок 
 function get_stats() {
-	fetch(`${hosts["local"]}/bezvody/?q=stats`)
+	fetch(`${hosts["web"]}/bezvody/?q=stats`)
 		.then(response => response.json())
 		.then(data => {
 			document.getElementById("uzhe_otkliuchili").value = data[0];
@@ -85,7 +85,7 @@ function get_address(str) {
 	
 		target.className = "hidden";
 	} else {
-		fetch(`${hosts["local"]}/bezvody/?q=${str}`)
+		fetch(`${hosts["web"]}/bezvody/?q=${str}`)
 			.then(response => response.json())
 			.then(data => {
 					state.data = data;
@@ -152,7 +152,7 @@ function set_menu_events() {
 
 function load_data_by_id(id) {
 	if (state[id] === null) {
-		fetch(`${hosts["local"]}/bezvody/?q=${id}`)
+		fetch(`${hosts["web"]}/bezvody/?q=${id}`)
 			.then(response => response.json())
 			.then(data => {
 				state[id] = data;

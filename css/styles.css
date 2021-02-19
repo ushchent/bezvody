@@ -1,39 +1,65 @@
 body {
+    width: 80%;
     margin: 0 auto;
     font-family: sans-serif;
 }
-header, footer {
-    background-color: #2A2F4E;
+
+h1 span {
+    vertical-align: super;
+    color: white;
+    font-size: .5em;
+    background-color: #2a2f4f;
+    padding: .2em .4em
 }
-main {
-    width: 80%;
-    margin: 0 0 0 2em;
+h2 {
+    font-size: 1.2em;
+}
+nav a:not(last-child) {
+    margin-right: 1em;
+}
+
+header {
+    margin-top: .3em;
+}
+
+header>a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a, .text a {
+	color: black;
+    text-decoration-style: dashed;
+}
+
+nav {
+    float: right;
+    font-size: 1.1em;
+}
+header h1, header nav {
+    display: inline;
+}
+
+main, footer {
+    margin: 0 0 0 1em;
 }
 header #vk {
     float: right;
     padding: 4px 6px;
     margin: 4px 6px;
 }
-header img {
-	max-width: 100%;
-	}
-header p a {
-	color: white;
-	text-decoration: none;
-}
-sup {
-    font-weight: normal;
-	font-size: 12px;
-	margin-left: 1em;
-	padding: 3px;
-	background-color: #2A2F4E;
-	color: white;
+
+#video div {
+    display: inline;
+    float: left;
 }
 
-code {
-    font-size: 1.5em;
-    color: #2a2f4e;
-    padding-left: 10%;
+#video div:nth-child(3) {
+    float: right;
+}
+
+footer {
+    clear: both;
 }
 
 /* Выпадающий список */
@@ -88,21 +114,16 @@ code {
 	margin-bottom: 2em;
 }
 
-#mapid { height: 500px; }
+#mapid {
+	height: 500px;
+}
 
 /* Кнопки карты и тарифов */
-.menu, #mapDiv {
-	display: flex;
-}
-#mapDiv {
-	height: 24em;
-}
 .menu {
+	display: flex;
 	font-size: 1em;
 }
-#karta {
-	margin-top: 0;
-}
+
 .buttonGroup {
 	text-align: center;
     float: left;
@@ -113,46 +134,36 @@ code {
     cursor: pointer;
 }
 .menu .button {
-    border-radius: 50%;
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
-    width: 4em;
-    height: 4em;
+    width: 5em;
+    height: 3em;
     font-size: 1.1em;
 }
-#uzhe_otkliuchili, #voda {
-    border: 2px solid #008BFE;
-    background-color: #008BFE;
+#uzhe_otkliuchili {
+    border: 1px solid #2b83ba;
+    background-color: #2b83ba;
     color: white;
 }
-#skoro_otkliuchat, #gas {
-    border: 2px solid #FFBF00;
-    background-color: #FFBF00;
+#skoro_otkliuchat {
+    border: 1px solid #fdae61;
+    background-color: #fdae61;
     }
-#dolzhny_vkliuchit, #svet {
-    border: 2px solid #EC1313;
-    background-color: #EC1313;
+#dolzhny_vkliuchit {
+    border: 1px solid #d7191c;
+    background-color: #d7191c;
     color: white;
     }
 #warning {
 	margin-top: 2em;
 }	
 
-#info {
-	margin-top: 3em;
+/* Подвал  */
+footer {
+	margin-top: 1.2em;
+}
+footer .cc_logo, footer .text {
+	float: left;
+}
+footer .cc_logo {
+	  padding-right: .5em;
 }
 
-/* Подвал */
-
-footer p {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    padding-left: 30px;
-    font-size: .8em;
-    color: white;
-    margin: 0 auto;
-}
-footer a {
-    color: white;
-    margin: 0 auto;
-}

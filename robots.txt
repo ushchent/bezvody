@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: 
 Host: https://bezvody.opendata.by
