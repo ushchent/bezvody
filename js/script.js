@@ -175,11 +175,11 @@ const map_icon = L.icon({
 
 const mymap = L.map('mapid', {
                 minZoom: 11,
-                maxZoom: 16
+                maxZoom: 15
                 })
                 .setView([53.893009, 27.567444], 12);
 
-L.tileLayer('minsk_bbox/{z}/{x}/{y}.png', {
+L.tileLayer('https://api.opendata.by/tiles/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mymap);
 
