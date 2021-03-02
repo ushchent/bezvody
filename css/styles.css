@@ -28,8 +28,7 @@ header>a {
 }
 
 nav a, .text a {
-	color: black;
-    text-decoration-style: dashed;
+    color: black;
 }
 
 nav {
