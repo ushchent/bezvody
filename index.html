@@ -52,8 +52,8 @@
     <main>
         <p>Сезонные отключения горячей воды в Минске в 2021 году ожидаются с 12 мая.</p>
         <h2>Узнать дату отключения по вашему адресу</h2>
-        <input id="autocomplete" value="График 2021 года ожидается в конце апреля"
-                onkeyup="">
+        <input id="autocomplete" value="Вводите адрес и выбирайте из списка"
+                onkeyup="get_address(this.value)">
         <input class="button" type="button" id="show_data" value="Узнать">
         <div id="results_list" class="hidden"></div>
         <p id="message"></p>
