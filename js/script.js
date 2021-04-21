@@ -7,7 +7,8 @@ const state = {
     "skoro_otkliuchat": null,
     "dolzhny_vkliuchit": null,
     "data": null,
-    "markers": null
+    "markers": null,
+    "latest": null
 };
 
 // Управление текстом в строке ввода адреса
@@ -38,12 +39,13 @@ document.getElementById("today").appendChild(document.createTextNode(convertDate
 
 // Сбор общей статистики отключений для 3-х кнопок 
 function get_stats() {
-    fetch(`${hosts["web"]}/bezvody/?q=stats`)
+    fetch(`${hosts["local"]}/bezvody/?q=stats`)
         .then(response => response.json())
         .then(data => {
             document.getElementById("uzhe_otkliuchili").value = data[0];
             document.getElementById("skoro_otkliuchat").value = data[1];
             document.getElementById("dolzhny_vkliuchit").value = data[2];
+            state.latest = data[3];
             })
 }
 
@@ -83,7 +85,7 @@ function get_address(str) {
     
         target.className = "hidden";
     } else {
-        fetch(`${hosts["web"]}/bezvody/?q=${str}`)
+        fetch(`${hosts["local"]}/bezvody/?q=${str}`)
             .then(response => response.json())
             .then(data => {
                     state.data = data;
@@ -91,6 +93,8 @@ function get_address(str) {
                 })
     }
 }
+
+const delta_in_days = (today, start) => Math.ceil((new Date(start) - today) / (86400000));
 
 // Определяем дату отключения и выводим сообщение.
 document.getElementById("show_data").onclick = function() {
@@ -104,6 +108,8 @@ document.getElementById("show_data").onclick = function() {
     } else if (data.length > 0) {
         var address_selected = document.getElementById("autocomplete").value;
 
+// Переделать фрагмент на новый лад.
+
         for (var i = 0; i < data.length; i++) {
                 if (data[i].address == address_selected) {
                     var start = data[i].start;
@@ -112,11 +118,11 @@ document.getElementById("show_data").onclick = function() {
             };
             // Если введенный адрес нашелся в выпавшем списке и есть дата
             start ? message.innerHTML = "Горячую воду отключают " + parse_start_date(start) + "." : 
-                message.innerHTML = "<p>В ближайшие " + days_left + " дней отключения горячей воды по указанному адресу не ожидается. Пожалуйста, обратитесь позже.";
+                message.innerHTML = "<p>В ближайшие " + delta_in_days(today, state.latest) + " дней отключения горячей воды по указанному адресу не ожидается. Пожалуйста, обратитесь позже.";
             // Скрываем список
             document.getElementById("results_list").className = "hidden";
     } else if (data.length == 0) {
-                var message_body = "<p>В ближайшие " + days_left + " дней отключения горячей воды по указанному адресу не ожидается. Пожалуйста, обратитесь позже.";
+                var message_body = "<p>В ближайшие " + delta_in_days(today, state.latest) + " дней отключения горячей воды по указанному адресу не ожидается. Пожалуйста, обратитесь позже.";
                  message.innerHTML = message_body;
     }
 
@@ -150,7 +156,7 @@ function set_menu_events() {
 
 function load_data_by_id(id) {
     if (state[id] === null) {
-        fetch(`${hosts["web"]}/bezvody/?q=${id}`)
+        fetch(`${hosts["local"]}/bezvody/?q=${id}`)
             .then(response => response.json())
             .then(data => {
                 state[id] = data;
