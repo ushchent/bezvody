@@ -1,10 +1,4 @@
 /*
-Правильный набор стилей: leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive.
-* 
-* У меня получается такой, нерабочий: leaflet-marker-icon skoro_otkliuchat marker-cluster leaflet-zoom-animated leaflet-interactive 
- */
-
-/*
 .uzhe_otkliuchili.marker-cluster{
 	background-color: rgba(281, 126, 140, 0.6) !important;;
 	}
@@ -19,6 +13,9 @@
 	}
 */
 .skoro_otkliuchat.marker-cluster div {
+	background-color: rgba(253, 174, 97, .6) !important;;
+	}
+.zisterny.marker-cluster div {
 	background-color: rgba(253, 174, 97, .6) !important;;
 	}
 

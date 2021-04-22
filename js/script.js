@@ -1,11 +1,13 @@
 // Хосты для запуска продукта локально или в эфире
 const hosts = {"local": "/api", "web": "https://api.opendata.by"};
+const current_host = hosts["web"];
 
 // Состояние программы в части загрузки данных для отображение на карте
 const state = {
     "uzhe_otkliuchili": null,
     "skoro_otkliuchat": null,
     "dolzhny_vkliuchit": null,
+    "zisterny": null,
     "data": null,
     "markers": null,
     "latest": null
@@ -39,13 +41,15 @@ document.getElementById("today").appendChild(document.createTextNode(convertDate
 
 // Сбор общей статистики отключений для 3-х кнопок 
 function get_stats() {
-    fetch(`${hosts["web"]}/bezvody/?q=stats`)
+    fetch(`${current_host}/bezvody/?q=stats`)
         .then(response => response.json())
         .then(data => {
+			console.log(data);
             document.getElementById("uzhe_otkliuchili").value = data[0];
             document.getElementById("skoro_otkliuchat").value = data[1];
             document.getElementById("dolzhny_vkliuchit").value = data[2];
-            state.latest = data[3];
+            document.getElementById("zisterny").value = data[3];
+            state.latest = data[4];
             })
 }
 
@@ -85,7 +89,7 @@ function get_address(str) {
     
         target.className = "hidden";
     } else {
-        fetch(`${hosts["web"]}/bezvody/?q=${str}`)
+        fetch(`${current_host}/bezvody/?q=${str}`)
             .then(response => response.json())
             .then(data => {
                     state.data = data;
@@ -156,13 +160,13 @@ function set_menu_events() {
 
 function load_data_by_id(id) {
     if (state[id] === null) {
-        fetch(`${hosts["web"]}/bezvody/?q=${id}`)
+        fetch(`${current_host}/bezvody/?q=${id}`)
             .then(response => response.json())
             .then(data => {
                 state[id] = data;
                 manage_markers(data, id);
-                const days_margin = data.map(d => new Date(d.start)).sort((a, b) => a - b)[data.length - 1];
-                days_left = Math.floor((days_margin - new Date()) / (1000*86400));
+                //const days_margin = data.map(d => new Date(d.start)).sort((a, b) => a - b)[data.length - 1];
+                //days_left = Math.floor((days_margin - new Date()) / (1000*86400));
             });
     } else {
         manage_markers(state[id], id);
@@ -192,7 +196,7 @@ L.tileLayer('https://api.opendata.by/tiles/{z}/{x}/{y}.png', {
 
 function add_markers(data) {
     data.forEach(d => {
-        let popup = d.address + '<br/>' + d.start;
+        let popup = d.address + '<br/>' + ( d.start ? d.start : "") ;
         let marker = L.marker([d.lat, d.lon], {icon: map_icon})
                 .bindPopup(popup);
         state.markers.addLayer(marker);

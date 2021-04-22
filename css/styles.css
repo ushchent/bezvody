@@ -151,6 +151,11 @@ footer {
     background-color: #d7191c;
     color: white;
     }
+#zisterny {
+    border: 1px solid #4292c6;
+    background-color: #9ecae1;
+    color: white;
+}
 #warning {
 	margin-top: 2em;
 }	
