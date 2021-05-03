@@ -44,11 +44,10 @@ function get_stats() {
     fetch(`${current_host}/bezvody/?q=stats`)
         .then(response => response.json())
         .then(data => {
-			console.log(data);
             document.getElementById("uzhe_otkliuchili").value = data[0];
             document.getElementById("skoro_otkliuchat").value = data[1];
             document.getElementById("dolzhny_vkliuchit").value = data[2];
-            document.getElementById("zisterny").value = data[3];
+            //document.getElementById("zisterny").value = data[3];
             state.latest = data[4];
             })
 }
@@ -270,3 +269,5 @@ function parse_start_date(date_string) {
 
     return readable_date;
 }
+
+load_data_by_id("skoro_otkliuchat");
