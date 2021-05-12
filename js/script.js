@@ -186,7 +186,7 @@ const mymap = L.map('mapid', {
                 minZoom: 11,
                 maxZoom: 15
                 })
-                .setView([53.893009, 27.567444], 12);
+                .setView([53.893009, 27.567444], 11);
 
 L.tileLayer('https://api.opendata.by/tiles/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
