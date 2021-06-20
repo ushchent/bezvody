@@ -31,13 +31,16 @@ address_field.onblur = function() {
 const today = new Date();
 
 function convertDate(d) {
-    var months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+    var months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля",
+					"августа", "сентября", "октября", "ноября", "декабря"];
     var month = d.getMonth();
     var date = d.getDate();
     return date + " " + months[month];
 }
 
-document.getElementById("today").appendChild(document.createTextNode(convertDate(today)));
+document.getElementById("today").appendChild(
+	document.createTextNode(convertDate(today))
+);
 
 // Сбор общей статистики отключений для 3-х кнопок 
 function get_stats() {
