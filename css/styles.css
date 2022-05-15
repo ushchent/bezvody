@@ -10,7 +10,9 @@
         text-decoration: none;
     color: black;
 }
-
+.big {
+    display: none;
+}
 h1 {
     font-size: 1.4em;
 }
@@ -32,10 +34,6 @@ nav a {
 
 h2 {
         font-size: 1.1em;
-}
-
-.big {
-    display: none;
 }
 
 #autocomplete {
@@ -137,14 +135,22 @@ footer {
 
 
 
-@media (min-width: 650px) {
+@media (min-width: 700px) {
 /* Прежний код */
 body {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     font-family: sans-serif;
 }
-
+#logo a span {
+    display: inline;
+}
+.big {
+    display: block;
+}
+.mobile {
+    display: block;
+}
 h1 span {
     display: inline;
     vertical-align: super;
@@ -223,7 +229,7 @@ footer {
 #show_data {
     display: inline-block;
     font-size: 20px;
-    padding: 4px;
+    padding: 5px;
     border-width: 1px;
     margin-left: .2%;
     background-color: white;
@@ -266,17 +272,17 @@ footer {
 }
 
 /* Кнопки карты и тарифов */
-.menu {
-	display: flex;
-	font-size: 1em;
-}
-
 .buttonGroup {
 	text-align: center;
-    float: left;
-    display: inline;
+    display: inline-block;
     padding-right: .5em;
 }
+.buttonGroup input,
+    .buttonGroup p {
+        display: block;
+        margin: .5em auto;
+    }
+    
 .button:hover {
     cursor: pointer;
 }
