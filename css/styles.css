@@ -1,3 +1,144 @@
+* {
+    box-sizing: border-box;
+}
+
+#logo a span {
+    display: none;
+}
+
+#logo a {
+        text-decoration: none;
+    color: black;
+}
+
+h1 {
+    font-size: 1.4em;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    list-style: none;
+    display: inline;
+    margin-left: .5em;
+}
+
+nav a {
+    color: black;
+}
+
+h2 {
+        font-size: 1.1em;
+}
+
+.big {
+    display: none;
+}
+
+#autocomplete {
+    width: calc(100% - 40px);
+    position: realtive;
+    font-size: 20px;
+    padding: 5px;
+    margin-bottom: 0;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#show_data_mobile {
+    display: inline-block;
+    font-size: 20px;
+    padding: 5px;
+    border-width: 1px;
+    margin-left: .2%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#results_list {
+    position: absolute;
+    background-color: white;
+	width: calc(100% - 56px);
+    border: 3px solid black;
+    padding: 0 10px 0 0;
+    overflow: scroll;
+    max-height: 150px;
+    margin-top: 0;
+}
+#results_list li {
+    list-style: none;
+    margin-left: 0;
+    cursor: pointer;
+    padding: 2px;
+    font-size: 16px;
+}
+
+#results_list li:hover {
+	background-color: #CECECE;
+}
+#results_list ul {
+    margin: 0.2em auto 0.2em 0;
+    padding-left: .3em;
+}
+.hidden {
+	display: none;
+}
+#message {
+	margin-bottom: 2em;
+}
+
+#mapid {
+	height: 500px;
+}
+
+
+.buttonGroup {
+    margin-bottom: 1em;
+    display: block;
+}
+.button:hover {
+    cursor: pointer;
+}
+.menu .button {
+    width: 5em;
+    height: 3em;
+    font-size: 1.1em;
+}
+.buttonGroup input,
+.buttonGroup p {
+    display: inline-block;
+}
+
+#uzhe_otkliuchili {
+    border: 1px solid #2b83ba;
+    background-color: #2b83ba;
+    color: white;
+}
+#skoro_otkliuchat {
+    border: 1px solid #fdae61;
+    background-color: #fdae61;
+    }
+#dolzhny_vkliuchit {
+    border: 1px solid #d7191c;
+    background-color: #d7191c;
+    color: white;
+    }
+
+/* Подвал  */
+footer {
+	margin-top: 1.5em;
+    font-size: .8em;
+}
+
+
+
+
+
+@media (min-width: 650px) {
+/* Прежний код */
 body {
     width: 80%;
     margin: 0 auto;
@@ -5,6 +146,7 @@ body {
 }
 
 h1 span {
+    display: inline;
     vertical-align: super;
     color: white;
     font-size: .5em;
@@ -73,7 +215,13 @@ footer {
     border: 1px solid black;
 }
 
+    #show_data_mobile {
+        display: none;
+    }
+    
+    
 #show_data {
+    display: inline-block;
     font-size: 20px;
     padding: 4px;
     border-width: 1px;
@@ -170,4 +318,4 @@ footer .cc_logo, footer .text {
 footer .cc_logo {
 	  padding-right: .5em;
 }
-
+}

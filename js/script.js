@@ -103,7 +103,10 @@ function get_address(str) {
 const delta_in_days = (today, start) => Math.ceil((new Date(start) - today) / (86400000));
 
 // Определяем дату отключения и выводим сообщение.
-document.getElementById("show_data").onclick = function() {
+document.getElementById("show_data_mobile").onclick = show_data;
+document.getElementById("show_data").onclick = show_data;
+
+function show_data() {
 
     const message = document.getElementById("message");
     const { data } = state;

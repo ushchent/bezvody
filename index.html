@@ -41,13 +41,17 @@
 </head>
 <body>
     <header>
-        <a href="/">
-            <h1>13 дней без горячей воды <span>май 2022</span></h1>
-        </a>
+		<div id="logo">
+			<h1>
+				<a href="/">13 дней без горячей воды <span>май 2022</span></a>
+			</h1>
+		</div>
         <nav>
-            <a href="/likbez.html">Ликбез по теме</a>
-            <a href="/about.html">О проекте</a>
-            <a href="http://vk.com/opendataby">VK</a>
+			<ul>
+				<li><a href="/likbez.html">Ликбез по теме</a></li>
+				<li><a href="/about.html">О проекте</a></li>
+				<li><a href="http://vk.com/opendataby">VK</a></li>
+			</ul>
         </nav>
     </header>
     <main>
@@ -56,10 +60,13 @@
         <h2>Узнать дату отключения по вашему адресу</h2>
         <input id="autocomplete" value="Вводите адрес и выбирайте из списка"
                 onkeyup="get_address(this.value)">
-        <input class="button" type="button" id="show_data" value="Узнать">
+        <input class="button" type="button" id="show_data_mobile"
+												   value=">">
+        <input class="button big" type="button" id="show_data" value="Узнать">
         <div id="results_list" class="hidden"></div>
         <p id="message"></p>
-        <h2>Карта отключений горячей воды на <span id="today"></span></h2>
+        <h2 class="mobile">Карта отключений на <span id="today"></span></h2>
+        <h2 class="big">Карта отключений горячей воды на <span id="today"></span></h2>
         <div class="menu">
         <div class="buttonGroup">
             <input class="button" type="button" id="uzhe_otkliuchili"
@@ -98,11 +105,6 @@
         </div>
     </main>
     <footer>
-        <div class="cc_logo">
-            <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.ru">
-                <img src="img/bysa.png" alt="Creative Commons CC BY-SA 4.0">
-            </a>
-        </div>
         <div class="text">
             <p>2015 – 2022 dataШкола сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".
             </p>
