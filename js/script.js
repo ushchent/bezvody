@@ -276,4 +276,4 @@ function parse_start_date(date_string) {
     return readable_date;
 }
 
-load_data_by_id("dolzhny_vkliuchit");
+load_data_by_id("uzhe_otkliuchili");
