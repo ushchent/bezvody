@@ -1,3 +1,9 @@
+#backdrop {
+    background-color: red;
+    z-index: 10;
+    position: absolute;
+}
+
 * {
     box-sizing: border-box;
     font-family: sans-serif;
