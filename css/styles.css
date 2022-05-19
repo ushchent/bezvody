@@ -1,7 +1,53 @@
-#backdrop {
-    background-color: red;
-    z-index: 10;
-    position: absolute;
+#mobile_nav_button span {
+    border: 1px solid black;
+    display: block;
+    width: 24px;
+    margin-top: .5em;
+}
+
+#mobile_nav_button, #logo {
+    display: inline-block;
+}
+
+#mobile_nav_button {
+    margin-right: 1em;
+}
+
+#mobile_nav {
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1002;
+    width: 70vw;
+    height: 100vh;
+    display: none;
+    background-color: white;
+}
+
+#mobile_nav ul li {
+    display: block;
+    margin-top: 2em;
+    text-align: center;
+}
+
+#mobile_nav ul {
+    margin: 0 auto;
+}
+
+nav {
+    display: none;
+}
+.backdrop {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.open {
+    display: block !important;
 }
 
 * {
@@ -142,7 +188,14 @@ footer {
 
 
 
-@media (min-width: 700px) {
+@media (min-width: 900px) {
+    #mobile_nav_button {
+    display: none;
+}
+nav {
+    display: block;
+}
+    
 /* Прежний код */
 body {
     width: 85%;

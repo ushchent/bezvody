@@ -276,4 +276,17 @@ function parse_start_date(date_string) {
     return readable_date;
 }
 
+
+const display_switcher = () => {
+	
+}
+document.querySelector("#mobile_nav_button").addEventListener("click", function() {
+			document.querySelector(".backdrop").classList.add("open");
+			document.querySelector("#mobile_nav").classList.add("open");
+				});
+
+document.querySelector(".backdrop").addEventListener("click", function() {
+	document.querySelector(".backdrop").classList.toggle("open");
+	document.querySelector("#mobile_nav").classList.toggle("open");
+})
 load_data_by_id("uzhe_otkliuchili");

@@ -33,7 +33,13 @@
 <!-- /Yandex.Metrika counter -->
 </head>
 <body>
+	<div class="backdrop"></div>
     <header>
+		<div id="mobile_nav_button">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
 		<div id="logo">
 			<h1>
 				<a href="/">13 дней без горячей воды <span>май &ndash; июнь 2022</span></a>
@@ -47,6 +53,13 @@
 			</ul>
         </nav>
     </header>
+	<nav id="mobile_nav">
+		<ul>
+			<li><a href="/likbez.html">Ликбез по теме</a></li>
+			<li><a href="/about.html">О проекте</a></li>
+			<li><a href="http://vk.com/opendataby">VK</a></li>
+		</ul>
+	</nav>
     <main>
         <p>Каждый год в Минске с конца весны и до начала осени проводятся
             испытания тепловых сетей перед отопительным сезоном. Поэтому
@@ -90,5 +103,16 @@
             </p>
         </div>
     </footer>
+			<script>
+			document.querySelector("#mobile_nav_button").addEventListener("click", function() {
+					document.querySelector(".backdrop").classList.add("open");
+				document.querySelector("#mobile_nav").classList.add("open");
+					});
+
+		document.querySelector(".backdrop").addEventListener("click", function() {
+			document.querySelector(".backdrop").classList.toggle("open");
+			document.querySelector("#mobile_nav").classList.toggle("open");
+		})
+			</script>
 </body>
 </html>
