@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru" prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8">
@@ -80,19 +80,57 @@
         <h2 class="big">Карта отключений горячей воды на <span id="today"></span></h2>
         <div class="menu">
         <div class="buttonGroup">
-            <input class="button" type="button" id="uzhe_otkliuchili"
-                value="0">
-            <p id="blue"></p>
+            <button type="button" class="button" id="uzhe_otkliuchili">
+			<div class="button_value" >0</div>
+            <div class="button_emoji">
+<svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <g id="line">
+    <circle cx="36" cy="36" r="23" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/>
+    <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="M26.5,48c1.8768-3.8326,5.8239-6.1965,10-6c3.8343,0.1804,7.2926,2.4926,9,6"/>
+    <path fill="grey" stroke="#000000" stroke-miterlimit="10" stroke-width="2" d="M20.3869,41.6299 c-0.5326-0.5326-0.8258-1.2405-0.8256-1.9936c0-2.4789,2.3433-4.8508,2.443-4.9505c0.2074-0.2074,0.5431-0.2072,0.7503,0 c0.0998,0.0998,2.4432,2.4718,2.4437,4.9512l0.0002,0.0002c-0.0007,1.5535-1.2653,2.8177-2.8189,2.8175 C21.6273,42.4556,20.9195,42.1624,20.3869,41.6299z"/>
+    <path d="M30,31c0,1.6568-1.3448,3-3,3c-1.6553,0-3-1.3433-3-3c0-1.6552,1.3447-3,3-3C28.6552,28,30,29.3448,30,31"/>
+    <path d="M48,31c0,1.6568-1.3447,3-3,3s-3-1.3433-3-3c0-1.6552,1.3447-3,3-3S48,29.3448,48,31"/>
+  </g>
+</svg>
+
+            </div>
+            </button>
+            <p id="blue" class="caption"></p>
         </div>
         <div class="buttonGroup">
-            <input class="button" type="button" id="skoro_otkliuchat"
-                value="0">
-            <p>скоро отключат и</p>
+            <button type="button" class="button" id="skoro_otkliuchat">
+				<div class="button_value" >0</div>
+            <div class="button_emoji">
+<svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <g id="line">
+    <circle cx="36" cy="36" r="23" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/>
+    <line x1="27" x2="45" y1="43" y2="43" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M30,31c0,1.6568-1.3448,3-3,3c-1.6553,0-3-1.3433-3-3c0-1.6552,1.3447-3,3-3C28.6552,28,30,29.3448,30,31"/>
+    <path d="M48,31c0,1.6568-1.3447,3-3,3s-3-1.3433-3-3c0-1.6552,1.3447-3,3-3S48,29.3448,48,31"/>
+  </g>
+</svg>
+
+
+            </div>
+            </button>
+            <p class="caption">скоро отключат и</p>
         </div>
         <div class="buttonGroup">
-            <input class="button" type="button" id="dolzhny_vkliuchit"
-                value="0">
-            <p>уже должны подключить.</p>
+            <button type="button" class="button" id="dolzhny_vkliuchit">
+				<div class="button_value">0</div>
+            <div class="button_emoji">
+                <svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <g id="line">
+    <circle cx="36" cy="36" r="23" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M45.8147,45.2268a15.4294,15.4294,0,0,1-19.6294,0"/>
+    <path fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M31.6941,33.4036a4.7262,4.7262,0,0,0-8.6382,0"/>
+    <path fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M48.9441,33.4036a4.7262,4.7262,0,0,0-8.6382,0"/>
+  </g>
+</svg>
+
+            </div>
+            </button>
+            <p class="caption">уже должны подключить.</p>
         </div>
 <!--
         <div class="buttonGroup">

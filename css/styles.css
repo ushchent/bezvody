@@ -1,3 +1,14 @@
+.button_emoji {
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 0;
+    margin: 0;
+}
+
+
+
 #mobile_nav_button span {
     border: 1px solid black;
     display: block;
@@ -149,22 +160,28 @@ h2 {
 	height: 500px;
 }
 
-
-.buttonGroup {
-    margin-bottom: 1em;
-    display: block;
-}
 .button:hover {
     cursor: pointer;
 }
 .menu .button {
-    width: 5em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
     font-size: 1.1em;
+    border-radius: 50%
 }
-.buttonGroup input,
-.buttonGroup p {
+
+.menu {
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.buttonGroup {
     display: inline-block;
+    padding: 0 1em;
+}
+
+.caption {
+    display: none;
 }
 
 #uzhe_otkliuchili {
@@ -192,13 +209,19 @@ footer {
 
 
 
-@media (min-width: 900px) {
+@media (min-width: 790px) {
     #mobile_nav_button {
     display: none;
 }
 nav {
     display: block;
 }
+    .caption {
+    display: inline-block;
+}
+    .button_emoji {
+        display: none;
+    }
     
 /* Прежний код */
 body {
@@ -353,10 +376,17 @@ footer {
 .button:hover {
     cursor: pointer;
 }
+    
+.menu {
+    margin-bottom: 1em;
+    text-align: left;
+
+}
 .menu .button {
     width: 5em;
     height: 3em;
     font-size: 1.1em;
+    border-radius: 0;
 }
 #uzhe_otkliuchili {
     border: 1px solid #2b83ba;
