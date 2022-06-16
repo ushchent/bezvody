@@ -17,13 +17,13 @@ const state = {
 const address_field = document.getElementById("autocomplete");
 
 address_field.onfocus = function() {
-    if (address_field.value == "Вводите адрес и выбирайте из списка") {
+    if (address_field.value == "Вводите адрес и выбирайте") {
         address_field.value = "";
     }
 }
 address_field.onblur = function() {
     if (address_field.value == "") {
-        address_field.value = "Вводите адрес и выбирайте из списка";
+        address_field.value = "Вводите адрес и выбирайте";
     }
 };
 
@@ -89,7 +89,7 @@ function get_address(str) {
     var target = document.getElementById("results_list");
     document.getElementById("message").innerHTML = "";
     
-    if (str.length <= 4 || str == "Вводите адрес и выбирайте из списка") {
+    if (str.length <= 4 || str == "Вводите адрес и выбирайте") {
     
         target.className = "hidden";
     } else {
@@ -113,7 +113,7 @@ function show_data() {
     const message = document.getElementById("message");
     const { data } = state;
 
-    if (document.getElementById("autocomplete").value == "Вводите адрес и выбирайте из списка") {
+    if (document.getElementById("autocomplete").value == "Вводите адрес и выбирайте") {
         message.innerHTML = "Пожалуйста, введите адрес.";
 
     } else if (data.length > 0) {
