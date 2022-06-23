@@ -88,12 +88,12 @@ function create_result_list(data) {
 function get_address(str) {
     var target = document.getElementById("results_list");
     document.getElementById("message").innerHTML = "";
-    
-    if (str.length <= 4 || str == "Вводите адрес и выбирайте") {
+   	var str_body = str.replace(/улица|проспект/i, "", str) 
+    if (str_body.length <= 4 || str == "Вводите адрес и выбирайте") {
     
         target.className = "hidden";
     } else {
-        fetch(`${current_host}/bezvody/?q=${str}`)
+        fetch(`${current_host}/bezvody/?q=${str_body}`)
             .then(response => response.json())
             .then(data => {
                     state.data = data;
