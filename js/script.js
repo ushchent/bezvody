@@ -196,7 +196,7 @@ const mymap = L.map('mapid', {
                 })
                 .setView([53.893009, 27.567444], 11);
 
-L.tileLayer(`${current_host}/tiles/{z}/{x}/{y}.png`, {
+L.tileLayer('https://test.nagrady.by/tiles/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mymap);
 
