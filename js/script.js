@@ -1,6 +1,7 @@
 // Хосты для запуска продукта локально или в эфире
-const hosts = {"local": "/api", "web": "https://api.opendata.by"};
-const current_host = hosts["web"];
+const hosts = {"local": "/api", "web": "https://api.opendata.by",
+	"test": "https://test.nagrady.by"};
+const current_host = hosts["test"];
 
 // Состояние программы в части загрузки данных для отображение на карте
 const state = {
@@ -88,7 +89,7 @@ function create_result_list(data) {
 function get_address(str) {
     var target = document.getElementById("results_list");
     document.getElementById("message").innerHTML = "";
-   	var str_body = str //.replace(/улица|проспект/i, "", str) 
+   	var str_body = str.replace(/улица|проспект/i, "", str) 
     if (str_body.length <= 4 || str == "Вводите адрес и выбирайте") {
     
         target.className = "hidden";
