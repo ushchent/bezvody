@@ -1,7 +1,7 @@
 // Хосты для запуска продукта локально или в эфире
 const hosts = {"local": "/api", "web": "https://api.opendata.by",
 	"test": "https://test.nagrady.by"};
-const current_host = hosts["test"];
+const current_host = hosts["web"];
 
 // Состояние программы в части загрузки данных для отображение на карте
 const state = {
@@ -45,7 +45,7 @@ document.getElementById("today").appendChild(
 
 // Сбор общей статистики отключений для 3-х кнопок 
 function get_stats() {
-    fetch(`${current_host}/bezvody/?q=stats`)
+    fetch(`${current_host}/bezvody/stats`)
         .then(response => response.json())
         .then(data => {
 			document.querySelector("#dolzhny_vkliuchit .button_value").textContent = 12;
@@ -94,7 +94,7 @@ function get_address(str) {
     
         target.className = "hidden";
     } else {
-        fetch(`${current_host}/bezvody/?q=${str_body}`)
+        fetch(`${current_host}/bezvody/address/${str_body}`)
             .then(response => response.json())
             .then(data => {
                     state.data = data;
@@ -167,7 +167,7 @@ function set_menu_events() {
 
 function load_data_by_id(id) {
     if (state[id] === null) {
-        fetch(`${current_host}/bezvody/?q=${id}`)
+        fetch(`${current_host}/bezvody/data/${id}`)
             .then(response => response.json())
             .then(data => {
                 state[id] = data;

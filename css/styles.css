@@ -1,3 +1,8 @@
+.warning {
+    font-size: .8em;
+    color: brown;
+}
+
 #search_box {
   position: relative;
   margin-right: .2rem;
