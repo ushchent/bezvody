@@ -1,7 +1,7 @@
 // Хосты для запуска продукта локально или в эфире
 const hosts = {"local": "/api", "web": "https://api.opendata.by",
 	"test": "https://test.nagrady.by"};
-const current_host = hosts["web"];
+const current_host = hosts["test"];
 
 // Состояние программы в части загрузки данных для отображение на карте
 const state = {
@@ -45,9 +45,11 @@ document.getElementById("today").appendChild(
 
 // Сбор общей статистики отключений для 3-х кнопок 
 function get_stats() {
-    fetch(`${current_host}/bezvody/stats`)
+    fetch(`${current_host}/bezvody/?q=stats`)
         .then(response => response.json())
         .then(data => {
+			document.querySelector("#dolzhny_vkliuchit .button_value").textContent = 12;
+			
             document.querySelector("#uzhe_otkliuchili .button_value").textContent = data[0];
             document.querySelector("#skoro_otkliuchat .button_value").textContent = data[1];
             document.querySelector("#dolzhny_vkliuchit .button_value").textContent = data[2];
@@ -92,7 +94,7 @@ function get_address(str) {
     
         target.className = "hidden";
     } else {
-        fetch(`${current_host}/bezvody/address/${str_body}`)
+        fetch(`${current_host}/bezvody/?q=${str_body}`)
             .then(response => response.json())
             .then(data => {
                     state.data = data;
@@ -165,11 +167,13 @@ function set_menu_events() {
 
 function load_data_by_id(id) {
     if (state[id] === null) {
-        fetch(`${current_host}/bezvody/data/${id}`)
+        fetch(`${current_host}/bezvody/?q=${id}`)
             .then(response => response.json())
             .then(data => {
                 state[id] = data;
                 manage_markers(data, id);
+                //const days_margin = data.map(d => new Date(d.start)).sort((a, b) => a - b)[data.length - 1];
+                //days_left = Math.floor((days_margin - new Date()) / (1000*86400));
             });
     } else {
         manage_markers(state[id], id);
@@ -199,7 +203,7 @@ L.tileLayer('https://map.opendata.by/tiles/{z}/{x}/{y}.png', {
 
 function add_markers(data) {
     data.forEach(d => {
-        let popup = d.address + '<br/>' + ( d.start ? parse_start_date(d.start) + " 2022" : "") ;
+        let popup = d.address + '<br/>' + ( d.start ? d.start : "") ;
         let marker = L.marker([d.lat, d.lon], {icon: map_icon})
                 .bindPopup(popup);
         state.markers.addLayer(marker);
@@ -230,9 +234,8 @@ function manage_markers(data, id) {
     }
 }
 
-
-// Обработка падежей
-
+////////////////////////////////////
+//// Обработка падежей
 function nominativ(s) {
     var n = parseInt(s.charAt(s.length - 1));
     if (n == 1) {
@@ -256,7 +259,6 @@ function dativ(s) {
 }
 
 //// Обработка даты в сообщении о дате отключения воды
-
 function parse_start_date(date_string) {
     const months = {
         3: "апреля",
@@ -276,8 +278,10 @@ function parse_start_date(date_string) {
     return readable_date;
 }
 
-//  Управление меню в мобильной верстке
 
+const display_switcher = () => {
+	
+}
 document.querySelector("#mobile_nav_button").addEventListener("click", function() {
 			document.querySelector(".backdrop").classList.add("open");
 			document.querySelector("#mobile_nav").classList.add("open");
@@ -287,7 +291,4 @@ document.querySelector(".backdrop").addEventListener("click", function() {
 	document.querySelector(".backdrop").classList.toggle("open");
 	document.querySelector("#mobile_nav").classList.toggle("open");
 })
-
-// Первая загрузка данных
- 
 load_data_by_id("uzhe_otkliuchili");
