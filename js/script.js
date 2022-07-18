@@ -203,7 +203,7 @@ L.tileLayer('https://map.opendata.by/tiles/{z}/{x}/{y}.png', {
 
 function add_markers(data) {
     data.forEach(d => {
-        let popup = d.address + '<br/>' + ( d.start ? d.start : "") ;
+        let popup = d.address + '<br/>' + ( d.start ? parse_start_date(d.start) + " 2022" : "") ;
         let marker = L.marker([d.lat, d.lon], {icon: map_icon})
                 .bindPopup(popup);
         state.markers.addLayer(marker);
@@ -279,9 +279,6 @@ function parse_start_date(date_string) {
 }
 
 
-const display_switcher = () => {
-	
-}
 document.querySelector("#mobile_nav_button").addEventListener("click", function() {
 			document.querySelector(".backdrop").classList.add("open");
 			document.querySelector("#mobile_nav").classList.add("open");
@@ -291,4 +288,5 @@ document.querySelector(".backdrop").addEventListener("click", function() {
 	document.querySelector(".backdrop").classList.toggle("open");
 	document.querySelector("#mobile_nav").classList.toggle("open");
 })
+
 load_data_by_id("uzhe_otkliuchili");
