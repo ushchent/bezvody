@@ -48,13 +48,10 @@ function get_stats() {
     fetch(`${current_host}/bezvody/stats`)
         .then(response => response.json())
         .then(data => {
-			document.querySelector("#dolzhny_vkliuchit .button_value").textContent = 12;
-			
             document.querySelector("#uzhe_otkliuchili .button_value").textContent = data[0];
             document.querySelector("#skoro_otkliuchat .button_value").textContent = data[1];
             document.querySelector("#dolzhny_vkliuchit .button_value").textContent = data[2];
-            //document.getElementById("zisterny").value = data[3];
-            state.latest = data[4];
+            state.latest = data[3];
             })
 }
 
