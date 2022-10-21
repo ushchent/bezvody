@@ -3,6 +3,10 @@ const hosts = {"local": "/api", "web": "https://api.opendata.by",
 	"test": "https://test.nagrady.by"};
 const current_host = hosts["web"];
 
+const label_map = {
+	"fname": "фамилия",
+	"name": "имя"
+}
 // Состояние программы в части загрузки данных для отображение на карте
 const state = {
     "uzhe_otkliuchili": null,
