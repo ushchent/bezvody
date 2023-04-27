@@ -168,7 +168,7 @@ function set_menu_events() {
 
 function load_data_by_id(id) {
     if (state[id] === null) {
-        fetch(`${current_host}/bezvody/data/${id}/`)
+        fetch(`${current_host}/bezvody/data/${id}`)
             .then(response => response.json())
             .then(data => {
                 state[id] = data;
