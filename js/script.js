@@ -290,4 +290,4 @@ document.querySelector(".backdrop").addEventListener("click", function() {
 	document.querySelector("#mobile_nav").classList.toggle("open");
 })
 
-load_data_by_id("uzhe_otkliuchili");
+load_data_by_id("skoro_otkliuchat");
