@@ -72,8 +72,8 @@
         16 мая. Данные скоро будут добавлены и появятся в поиске и на карте.</p>
         <h2>Узнать дату отключения по вашему адресу</h2>
 		<div id="search_box">
-			<input id="autocomplete" value="Данные в обработке. Скоро появятся."
-					onkeyup="">
+			<input id="autocomplete" value="Вводите адрес и выбирайте"
+					onkeyup="get_address(this.value)">
 			<button id="show_data">Узнать</button>
 		</div>
         <div id="results_list" class="hidden"></div>
